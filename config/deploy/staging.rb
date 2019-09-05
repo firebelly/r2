@@ -1,6 +1,6 @@
 set :stage, :staging
-set :login, 'firebelly'
-set :domain, 'staging.fb-bedrock.com'
+set :login, 'r2'
+set :domain, 'staging.r2.me'
 
 # Simple Role Syntax
 # ==================

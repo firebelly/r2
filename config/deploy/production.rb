@@ -1,7 +1,7 @@
 set :stage, :production
-set :login, 'firebelly'
-set :application, 'fb-bedrock'
-set :domain, 'fb-bedrock.com'
+set :login, 'r2'
+set :application, 'r2'
+set :domain, 'r2.me'
 set :wpcli_remote_url, "https://#{fetch(:domain)}"
 
 # Simple Role Syntax
