@@ -95,6 +95,7 @@ body.nav-open {
   @include media-nav {
     padding: 0;
     width: auto;
+    height: auto;
     display: block;
     transform: none;
     position: relative;
