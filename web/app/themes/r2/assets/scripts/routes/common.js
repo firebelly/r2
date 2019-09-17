@@ -4,6 +4,19 @@ export default {
     const $siteHeader = $('#site-header');
     const $siteNav = $('#site-nav');
 
+    // Resize Vars
+    var transitionElements = [],
+        resizeTimer,
+        breakpointIndicatorString,
+        breakpoint_xl = false,
+        breakpoint_nav = false,
+        breakpoint_lg = false,
+        breakpoint_md = false,
+        breakpoint_sm = false,
+        breakpoint_xs = false;
+
+    transitionElements = [$siteNav];
+
     // JavaScript to be fired on all pages
     _initActiveToggle();
     _initSiteNav();
@@ -139,8 +152,59 @@ export default {
         });
       });
     }
+
+    // Disabling transitions on certain elements on resize
+    function _disableTransitions() {
+      $.each(transitionElements, function() {
+        $(this).css('transition', 'none');
+      });
+    }
+    function _enableTransitions() {
+      $.each(transitionElements, function() {
+        $(this).attr('style', '');
+      });
+    }
+
+    /**
+     * Called in quick succession as window is resized
+     */
+    function _resize() {
+      // Check breakpoint indicator in DOM ( :after { content } is controlled by CSS media queries )
+      breakpointIndicatorString = window.getComputedStyle(
+        document.querySelector('#breakpoint-indicator'), ':after'
+      ).getPropertyValue('content')
+      .replace(/['"]+/g, '');
+
+      // Determine current breakpoint
+      breakpoint_xl = breakpointIndicatorString === 'xl';
+      breakpoint_nav = breakpointIndicatorString === 'nav' || breakpoint_xl;
+      breakpoint_lg = breakpointIndicatorString === 'lg' || breakpoint_nav;
+      breakpoint_md = breakpointIndicatorString === 'md' || breakpoint_lg;
+      breakpoint_sm = breakpointIndicatorString === 'sm' || breakpoint_md;
+      breakpoint_xs = breakpointIndicatorString === 'xs' || breakpoint_sm;
+
+      // Disable transitions when resizing
+      _disableTransitions();
+
+      // Reset inline styles for navigation for medium breakpoint
+      if (breakpoint_nav) {
+        $('#site-nav, .nav-toggle').removeClass('-active');
+        $('body').removeClass('nav-open');
+      }
+
+      // Functions to run on resize end
+      clearTimeout(resizeTimer);
+      resizeTimer = setTimeout(function() {
+        // Re-enable transitions
+        _enableTransitions();
+      }, 250);
+    }
+
+    $(window).resize(_resize);
   },
   finalize() {
     // JavaScript to be fired on all pages, after page specific JS is fired
   },
 };
+
+// Fire Resize Functions

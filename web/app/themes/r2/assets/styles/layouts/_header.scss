@@ -46,23 +46,38 @@ body.nav-open {
   left: 0;
   z-index: 5;
   width: 100%;
-  display: none;
+  height: 100vh;
   position: fixed;
+  pointer-events: none;
+  transform: translateY(-100%);
   background-color: color('black');
   padding: 116px $beat $padding-sm;
+  transition: transform .35s $slide-easing;
 
   &.-active {
-    display: block;
+    pointer-events: auto;
+    transform: translateY(0);
+
+    ul {
+      opacity: 1;
+      transition: opacity .2s 0 ease-out;
+    }
   }
 
   ul {
     @extend .semantic-list;
+    opacity: 0;
+    transition: opacity .2s .35s ease-out;
 
     li {
       &.active {
         a {
           color: color('red');
         }
+      }
+
+      + li {
+        border-top: 1px solid color('white');
       }
     }
 
@@ -71,9 +86,9 @@ body.nav-open {
       @include underline;
       display: block;
       line-height: 1;
-      padding: $beat 0;
       color: color('white');
       text-decoration: none;
+      padding: #{$beat * 2} 0;
     }
   }
 
@@ -81,10 +96,15 @@ body.nav-open {
     padding: 0;
     width: auto;
     display: block;
+    transform: none;
     position: relative;
+    pointer-events: auto;
     background-color: transparent;
 
     ul {
+      opacity: 1;
+      transition: none;
+
       li {
         display: inline-block;
         &.active {
@@ -95,11 +115,13 @@ body.nav-open {
         }
 
         + li {
+          border: none;
           margin-left: $beat * 2;
         }
       }
 
       a {
+        padding: $beat 0;
         color: color('black');
       }
     }

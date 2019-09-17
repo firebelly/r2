@@ -116,11 +116,11 @@ svg.icon {
     @include media-md {
       content: 'md';
     }
-    @include media-nav {
-      content: 'nav';
-    }
     @include media-lg {
       content: 'lg';
+    }
+    @include media-nav {
+      content: 'nav';
     }
     @include media-xl {
       content: 'xl';
