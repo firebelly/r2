@@ -1,187 +1,87 @@
-// FBSage - Firebelly 2015
-/*jshint latedef:false*/
+// import external dependencies
+import 'jquery';
+import Swup from 'swup';
+import SwupBodyClassPlugin from '@swup/body-class-plugin';
+import Waypoint from 'waypoints/lib/jquery.waypoints.js';
 
-// Good Design for Good Reason for Good Namespace
-var FBSage = (function($) {
+// import local dependencies
+import Router from './util/Router';
+import common from './routes/common';
+import home from './routes/home';
+import about from './routes/about';
 
-  var breakpoints = [],
-      breakpointClasses = ['xl','lg','nav','md','sm','xs'],
-      $body,
-      $document,
-      loadingTimer;
+const swup = new Swup({
+  plugins: [new SwupBodyClassPlugin()]
+});
 
-  function _init() {
-    // Cache some common DOM queries
-    $body = $(document.body);
-    $document = $(document);
+/** Populate Router instance with DOM routes */
+const routes = new Router({
+  // All pages
+  common,
+  // Home page
+  home,
+  // About page
+  about,
+});
 
-    // DOM is loaded
-    $body.addClass('loaded');
+// Load Events
+$(document).ready(() => routes.loadEvents());
+// Reload events when swup replaces content
+swup.on('contentReplaced', function() {
+  routes.loadEvents();
+});
 
-    // Set screen size vars
-    _resize();
+// Resize Vars
+var transitionElements = [],
+    resizeTimer,
+    breakpointIndicatorString,
+    breakpoint_xl = false,
+    breakpoint_nav = false,
+    breakpoint_lg = false,
+    breakpoint_md = false,
+    breakpoint_sm = false,
+    breakpoint_xs = false;
 
-    // Fit them vids!
-    $('main').fitVids();
+// Disabling transitions on certain elements on resize
+function _disableTransitions() {
+  $.each(transitionElements, function() {
+    $(this).css('transition', 'none');
+  });
+}
+function _enableTransitions() {
+  $.each(transitionElements, function() {
+    $(this).attr('style', '');
+  });
+}
 
-    // _initNav();
-    // _initSearch();
-    // _initLoadMore();
+/**
+ * Called in quick succession as window is resized
+ */
+function resize() {
+  // Check breakpoint indicator in DOM ( :after { content } is controlled by CSS media queries )
+  breakpointIndicatorString = window.getComputedStyle(
+    document.querySelector('#breakpoint-indicator'), ':after'
+  ).getPropertyValue('content')
+  .replace(/['"]+/g, '');
 
-    // Esc handlers
-    $(document).keyup(function(e) {
-      if (e.keyCode === 27) {
-        _hideSearch();
-        _hideMobileNav();
-      }
-    });
+  // Determine current breakpoint
+  breakpoint_xl = breakpointIndicatorString === 'xl';
+  breakpoint_nav = breakpointIndicatorString === 'nav' || breakpoint_xl;
+  breakpoint_lg = breakpointIndicatorString === 'lg' || breakpoint_nav;
+  breakpoint_md = breakpointIndicatorString === 'md' || breakpoint_lg;
+  breakpoint_sm = breakpointIndicatorString === 'sm' || breakpoint_md;
+  breakpoint_xs = breakpointIndicatorString === 'xs' || breakpoint_sm;
 
-    // Smoothscroll links
-    $('a.smoothscroll').click(function(e) {
-      e.preventDefault();
-      var href = $(this).attr('href');
-      _scrollBody($(href));
-    });
+  // Disable transitions when resizing
+  _disableTransitions();
 
-    // Scroll down to hash afer page load
-    $(window).load(function() {
-      if (window.location.hash) {
-        _scrollBody($(window.location.hash));
-      }
-    });
+  // Functions to run on resize end
+  clearTimeout(resizeTimer);
+  resizeTimer = setTimeout(function() {
+    // Re-enable transitions
+    _enableTransitions();
+  }, 250);
+}
 
-  } // end init()
-
-  function _scrollBody(element, duration, delay) {
-    if ($('#wpadminbar').length) {
-      wpOffset = $('#wpadminbar').height();
-    } else {
-      wpOffset = 0;
-    }
-    element.velocity('scroll', {
-      duration: duration,
-      delay: delay,
-      offset: -wpOffset
-    }, 'easeOutSine');
-  }
-
-  function _initSearch() {
-    $('.search-form:not(.mobile-search) .search-submit').on('click', function (e) {
-      if ($('.search-form').hasClass('active')) {
-
-      } else {
-        e.preventDefault();
-        $('.search-form').addClass('active');
-        $('.search-field:first').focus();
-      }
-    });
-    $('.search-form .close-button').on('click', function() {
-      _hideSearch();
-      _hideMobileNav();
-    });
-  }
-
-  function _hideSearch() {
-    $('.search-form').removeClass('active');
-  }
-
-  // Handles main nav
-  function _initNav() {
-    // SEO-useless nav toggler
-    $('<div class="menu-toggle"><div class="menu-bar"><span class="sr-only">Menu</span></div></div>')
-      .prependTo('header.banner')
-      .on('click', function(e) {
-        _showMobileNav();
-      });
-    var mobileSearch = $('.search-form').clone().addClass('mobile-search');
-    mobileSearch.prependTo('.site-nav');
-  }
-
-  function _showMobileNav() {
-    $('.menu-toggle').addClass('menu-open');
-    $('.site-nav').addClass('active');
-  }
-
-  function _hideMobileNav() {
-    $('.menu-toggle').removeClass('menu-open');
-    $('.site-nav').removeClass('active');
-  }
-
-  function _initLoadMore() {
-    $document.on('click', '.load-more a', function(e) {
-      e.preventDefault();
-      var $load_more = $(this).closest('.load-more');
-      var post_type = $load_more.attr('data-post-type') ? $load_more.attr('data-post-type') : 'news';
-      var page = parseInt($load_more.attr('data-page-at'));
-      var per_page = parseInt($load_more.attr('data-per-page'));
-      var category = $load_more.attr('data-category');
-      var more_container = $load_more.parents('section,main').find('.load-more-container');
-      loadingTimer = setTimeout(function() { more_container.addClass('loading'); }, 500);
-
-      $.ajax({
-          url: wp_ajax_url,
-          method: 'post',
-          data: {
-              action: 'load_more_posts',
-              post_type: post_type,
-              page: page+1,
-              per_page: per_page,
-              category: category
-          },
-          success: function(data) {
-            var $data = $(data);
-            if (loadingTimer) { clearTimeout(loadingTimer); }
-            more_container.append($data).removeClass('loading');
-            if (breakpoints.md) {
-              more_container.masonry('appended', $data, true);
-            }
-            $load_more.attr('data-page-at', page+1);
-
-            // Hide load more if last page
-            if ($load_more.attr('data-total-pages') <= page + 1) {
-                $load_more.addClass('hide');
-            }
-          }
-      });
-    });
-  }
-
-  // Track ajax pages in Analytics
-  function _trackPage() {
-    if (typeof ga !== 'undefined') { ga('send', 'pageview', document.location.href); }
-  }
-
-  // Track events in Analytics
-  function _trackEvent(category, action) {
-    if (typeof ga !== 'undefined') { ga('send', 'event', category, action); }
-  }
-
-  // Called in quick succession as window is resized
-  function _resize() {
-    // Check breakpoint indicator in DOM ( :after { content } is controlled by CSS media queries )
-    breakpointIndicatorString = window.getComputedStyle(
-      document.querySelector('#breakpoint-indicator'), ':after'
-    ).getPropertyValue('content').replace(/['"]/g, '');
-    breakpoints = {};
-    // Populate hash of breakpoints, use `if (breakpoints.md) {` to test if breakpoint is active
-    for (var i = 0; i < breakpointClasses.length; i++) {
-      breakpoints[breakpointClasses[i]] = (breakpointIndicatorString === breakpointClasses[i] || (i>0 && breakpoints[breakpointClasses[i-1]]));
-    }
-  }
-
-  // Public functions
-  return {
-    init: _init,
-    resize: _resize,
-    scrollBody: function(section, duration, delay) {
-      _scrollBody(section, duration, delay);
-    }
-  };
-
-})(jQuery);
-
-// Fire up the mothership
-jQuery(document).ready(FBSage.init);
-
-// Zig-zag the mothership
-jQuery(window).resize(FBSage.resize);
+// Fire Resize Functions
+$(window).resize(resize);

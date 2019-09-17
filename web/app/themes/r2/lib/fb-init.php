@@ -183,3 +183,13 @@ function omit_pages_from_search($query) {
   return $query;
 }
 add_filter( 'pre_get_posts', __NAMESPACE__ . '\omit_pages_from_search');
+
+/**
+ * Adding the defer attribute to the main js file
+ */
+// function add_defer_attribute($tag, $handle) {
+//     if ( 'sage/js' !== $handle )
+//         return $tag;
+//     return str_replace( ' src', ' defer="defer" src', $tag );
+// }
+// add_filter('script_loader_tag', __NAMESPACE__ . '\add_defer_attribute', 10, 2);

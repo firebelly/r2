@@ -1,0 +1,157 @@
+// Header
+
+.site-header {
+  height: $header-sm;
+  @include media-nav {
+    padding-top: 17px;
+    height: $header-md;
+  }
+
+  .site-logo {
+    margin: 0;
+    top: $beat;
+    z-index: 20;
+    position: relative;
+    display: inline-block;
+
+    a {
+      display: inline-block;
+    }
+
+    svg {
+      width: 15px;
+      height: 66px;
+      display: block;
+      fill: color('black');
+    }
+
+    @include media-md {
+      top: $beat;
+      left: $beat;
+      position: absolute;
+    }
+  }
+}
+
+// When Mobile Nav is Active
+body.nav-open {
+  .site-header .site-logo svg {
+    fill: color('white');
+  }
+}
+
+// Site Nav
+.site-nav {
+  top: 0;
+  left: 0;
+  z-index: 5;
+  width: 100%;
+  display: none;
+  position: fixed;
+  background-color: color('black');
+  padding: 116px $beat $padding-sm;
+
+  &.-active {
+    display: block;
+  }
+
+  ul {
+    @extend .semantic-list;
+
+    li {
+      &.active {
+        a {
+          color: color('red');
+        }
+      }
+    }
+
+    a {
+      @include h4;
+      @include underline;
+      display: block;
+      line-height: 1;
+      padding: $beat 0;
+      color: color('white');
+      text-decoration: none;
+    }
+  }
+
+  @include media-nav {
+    padding: 0;
+    width: auto;
+    display: block;
+    position: relative;
+    background-color: transparent;
+
+    ul {
+      li {
+        display: inline-block;
+        &.active {
+          a {
+            color: color('black');
+            background-size: 100% 100%;
+          }
+        }
+
+        + li {
+          margin-left: $beat * 2;
+        }
+      }
+
+      a {
+        color: color('black');
+      }
+    }
+
+  }
+}
+
+// Nav Toggle
+.nav-toggle {
+  @extend .button-reset;
+  padding: 0;
+  z-index: 10;
+  width: 22px;
+  height: 12px;
+  right: $beat;
+  top: $beat * 2;
+  cursor: pointer;
+  position: fixed;
+  &::before,
+  &::after {
+    left: 0;
+    content: '';
+    width: 100%;
+    height: 1px;
+    position: absolute;
+    background-color: color('black');
+    transform-origin: center center;
+  }
+  &::before {
+    top: 0;
+    animation: nav-toggle-top .35s ease-out forwards;
+  }
+  &::after {
+    bottom: 0;
+    animation: nav-toggle-bottom .35s ease-out forwards;
+  }
+
+  // Active State
+  &.-active {
+    &::before,
+    &::after {
+      background-color: color('white');
+    }
+    &::before {
+      animation: nav-toggle-top-active .35s ease-out forwards;
+    }
+    &::after {
+      animation: nav-toggle-bottom-active .35s ease-out forwards;
+    }
+  }
+
+  @include media-nav {
+    display: none;
+  }
+}

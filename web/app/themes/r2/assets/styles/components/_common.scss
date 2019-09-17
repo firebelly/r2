@@ -1,0 +1,63 @@
+// Common Components
+
+.dashed-rule {
+  &--top-black {
+    @include dashed-rule(before, black);
+  }
+  &--top-white {
+    @include dashed-rule(before, white);
+  }
+  &--bottom-black {
+    @include dashed-rule(after, black);
+  }
+  &--bottom-white {
+    @include dashed-rule(after, white);
+  }
+}
+
+.button {
+  @extend .button-reset;
+  @include p1;
+  color: inherit;
+  text-decoration: underline;
+
+  @each $color, $value in $colors {
+    &.-#{$color} {
+      color: $value;
+    }
+  }
+}
+
+// Animate on scroll classes
+.animate-in,
+.animation-item {
+  opacity: 0;
+  transform: translate3d(0,50px,0);
+  transition: opacity 1s ease-out, transform .5s ease-out;
+
+  &.in-view {
+    opacity: 1;
+    transform: none;
+  }
+}
+
+.animate-out {
+  opacity: 1;
+  transition: opacity 1s ease-out, transform .5s ease-out;
+
+  &.out-of-view {
+    opacity: 0;
+    transform: translate3d(0,-50px,0);
+  }
+}
+
+// Animate-in-series animates in individual elements in series
+// when the container scrolls into view
+.animate-in-series {
+  &.in-view {
+    .animation-item {
+      opacity: 1;
+      transform: none;
+    }
+  }
+}

@@ -1,0 +1,43 @@
+// Color Themes
+
+@mixin colorTheme($primary, $secondary) {
+  color: color($secondary);
+  background-color: color($primary);
+
+  .site-header {
+    .site-logo {
+      svg {
+        fill: color($secondary);
+      }
+    }
+  }
+
+  .site-nav {
+    @include media-nav {
+      ul a {
+        color: color($secondary);
+        background-image: linear-gradient(180deg,transparent 94%,color($secondary) 0);
+      }
+    }
+  }
+
+  .nav-toggle {
+    &::before,
+    &::after {
+      background-color: color($secondary);
+    }
+  }
+
+  .site-main::before {
+    background-color: color($secondary);
+  }
+
+  .site-footer > .container::after {
+    color: color($secondary);
+  }
+}
+
+// Dark Theme
+.theme-dark {
+  @include colorTheme('black', 'white');
+}

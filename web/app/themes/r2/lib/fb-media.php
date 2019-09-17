@@ -67,7 +67,7 @@ function get_header_bg($post_or_image, $opts=[]) {
   $opts = array_merge([
     'absolute_url' => false,
     'thumb_id' => '',
-    'colors' => ['222222','f0f0f0'],
+    'colors' => ['232323','ffffff'],
     'size' => 'banner',
     'output' => 'background',
   ], $opts);
@@ -108,7 +108,7 @@ function get_header_bg($post_or_image, $opts=[]) {
         mkdir($base_dir);
       }
       $convert_command = (WP_ENV==='development') ? '/usr/local/bin/convert' : '/usr/bin/convert';
-      exec($convert_command.' '.$background_image.' +profile "*"  -quality 65 -modulate 100,0 -size 256x1! gradient:#'.$opts['colors'][0].'-#'.$opts['colors'][1].' -clut '.$treated_image);
+      exec($convert_command.' '.$background_image.' +profile "*"  -quality 65 -modulate 100,0 -size 256x1! -brightness-contrast 0x5 gradient:#'.$opts['colors'][0].'-#'.$opts['colors'][1].' -clut '.$treated_image);
     }
 
     // Option to return commonly used style=background, or just filename

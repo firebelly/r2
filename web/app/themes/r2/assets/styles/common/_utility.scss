@@ -1,0 +1,134 @@
+// Utility Classes
+
+// Visibility
+.hidden,
+.hide {
+  display: none;
+}
+.invisible {
+  visibility: hidden;
+}
+.transparent {
+  opacity: 0;
+}
+.visually-hidden {
+  border: 0;
+  padding: 0;
+  width: 1px;
+  height: 1px;
+  margin: -1px;
+  overflow: hidden;
+  position: absolute;
+  white-space: nowrap;
+  clip: rect(0 0 0 0);
+}
+
+// Disable-scrolling
+.no-scroll {
+  position: fixed;
+  overflow: hidden;
+}
+
+// Clearfix
+.clearfix,
+.cf {
+  @include clearfix;
+}
+
+// Semantic List
+.semantic-list {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+// Button reset
+.button-reset {
+  border: none;
+  appearance: none;
+  background: none;
+
+  &:hover,
+  &:focus {
+    outline: none;
+  }
+}
+
+// Input reset
+.input-reset {
+  padding: 0;
+  border: none;
+  appearance: none;
+  background: none;
+
+  &:focus {
+    outline: none;
+  }
+}
+
+// Text alignment
+.align-left {
+  text-align: left;
+}
+.align-center {
+  text-align: center;
+}
+.align-right {
+  text-align: right;
+}
+
+// CSS Columns
+.columns-2 {
+  @include media-md {
+    columns: 2;
+  }
+}
+.columns-3 {
+  @include media-md {
+    columns: 2;
+  }
+  @include media-lg {
+    columns: 3;
+  }
+}
+
+// Margin Classes
+.margin-bottom {
+  margin-bottom: 24px;
+}
+.margin-bottom-md {
+  margin-bottom: $padding-sm;
+}
+.margin-bottom-lg {
+  margin-bottom: $padding-md;
+}
+.margin-top {
+  margin-top: 24px;
+}
+.margin-top-md {
+  margin-top: $padding-sm;
+}
+.margin-top-lg {
+  margin-top: $padding-md;
+}
+
+@include media-md {
+  .margin-bottom {
+    margin-bottom: 42px;
+  }
+  .margin-bottom-md {
+    margin-bottom: $padding-md;
+  }
+  .margin-bottom-lg {
+    margin-bottom: $padding-lg;
+  }
+  .margin-top {
+    margin-top: 42px;
+  }
+  .margin-top-md {
+    margin-top: $padding-md;
+  }
+  .margin-top-lg {
+    margin-top: $padding-lg;
+  }
+}

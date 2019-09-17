@@ -1,0 +1,36 @@
+// Colors
+$colors: (
+  'white': #F5F5F3,
+  'gray-light': #D8D6CE,
+  'gray-mid': #A5A096,
+  'gray-dark': #757575,
+  'black': #232323,
+  'red': #E03C2D
+);
+
+@function color($color-name) {
+  @return map-get($colors, $color-name);
+}
+
+// Breakpoints
+$breakpoint-sm: 520px;
+$breakpoint-md: 768px;
+$breakpoint-lg: 900px;
+$breakpoint-nav: 1100px;
+$breakpoint-xl: 1346px;
+
+// Padding/spacing
+$beat: 10px;
+$padding-sm: $beat;
+$padding-md: $beat * 6;
+$padding-lg: $beat * 9;
+
+// Site Wrapper
+$container: 1260px + ($padding-lg * 2);
+
+// Header Heights
+$header-sm: 70px;
+$header-md: 79px;
+
+// Transitions
+$slide-easing: cubic-bezier(0.65, 0, 0.35, 1);

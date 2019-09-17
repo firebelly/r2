@@ -1,0 +1,36 @@
+// Page Header
+
+.page-header {
+  padding: 34px 0 45px;
+
+  h1 {
+    @include h2;
+    margin: 0;
+  }
+
+  .intro-text {
+    display: none;
+    p {
+      margin: 0;
+      max-width: 300px;
+    }
+  }
+
+  @include media-md {
+    display: flex;
+
+    > * {
+      max-width: 50%;
+      flex-basis: 50%;
+    }
+
+    .intro-title {
+      padding-right: columns(2,16);
+    }
+
+    .intro-text {
+      display: block;
+      padding-left: columns(1,16);
+    }
+  }
+}

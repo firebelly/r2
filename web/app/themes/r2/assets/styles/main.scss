@@ -1,36 +1,23 @@
-@charset "UTF-8";
-
-// Automatically injected Bower dependencies via wiredep (never manually edit this block)
-// bower:scss
-// endbower
-
-// Reset
-@import "helpers/normalize";
-
-// Helpers and Variables
-@import "helpers/variables";
-@import "helpers/mixins";
-@import "helpers/typography";
-@import "helpers/animations";
-@import "helpers/accessibility";
-@import "helpers/ie";
-
-// Vendor
-
+@import "common/variables";
+// Common
+@import "common/normalize";
+@import "common/mixins";
+@import "common/utility";
+@import "common/typography";
+@import "common/grid";
+@import "common/animations";
+@import "common/base";
+@import "common/color-themes";
+@import "common/user-content";
 // Components
-@import "components/base";
-@import "components/user-content";
-@import "components/header";
-@import "components/nav";
-@import "components/search";
+@import "components/common";
 @import "components/forms";
-@import "components/footer";
-
+@import "components/pagination";
+// Layouts
+@import "layouts/header";
+@import "layouts/nav";
+@import "layouts/page-header";
+@import "layouts/footer";
 // Pages
 @import "pages/home";
-@import "pages/single-post";
-@import "pages/search-results";
-
-// WP specifics
-@import 'helpers/wp-classes';
-@import 'helpers/tinymce';
+@import "pages/team";

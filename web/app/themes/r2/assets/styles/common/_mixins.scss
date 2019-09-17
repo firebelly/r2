@@ -1,0 +1,103 @@
+// Mixins
+
+// Underline Style
+@mixin underline($speed: .2s, $color: 'black') {
+  padding-bottom: 3px;
+  background-size: 0 100%;
+  background-repeat: no-repeat;
+  transition: background-size $speed ease-out;
+  background-image: linear-gradient(180deg,transparent 94%,color($color) 0);
+
+  &:hover {
+    background-size: 100% 100%;
+  }
+}
+
+// Dashed Rules
+@mixin dashed-rule($position: 'before', $color: 'black') {
+  position: relative;
+  &::#{$position} {
+    @if $position == before {
+      top: 0;
+    } @else {
+      bottom: 0;
+    }
+    left: 0;
+    height: 1px;
+    width: 100%;
+    content: '';
+    position: absolute;
+    background-image: url('../images/dash-#{$color}.svg');
+    background-repeat: round no-repeat;
+  }
+}
+
+// Clearfix
+@mixin clearfix {
+  &:after {
+    content: '';
+    display: table;
+    clear: both;
+  }
+}
+%clearfix {
+  @include clearfix;
+}
+
+// Smooth text
+@mixin smooth {
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+%smooth {
+  @include smooth;
+}
+
+// Responsive mixins by Andy Richardson (@andimal): https://github.com/andimal/sass-responsive-mixin-madness
+@mixin media-xs() {
+  @media screen and (max-width: $breakpoint-sm - 1) {
+    @content;
+  }
+}
+@mixin media-sm() {
+  @media screen and (min-width: $breakpoint-sm) {
+    @content;
+  }
+}
+@mixin media-md() {
+  @media screen and (min-width: $breakpoint-md) {
+    @content;
+  }
+}
+@mixin media-nav() {
+  @media screen and (min-width: $breakpoint-nav) {
+    @content;
+  }
+}
+@mixin media-lg() {
+  @media screen and (min-width: $breakpoint-lg) {
+    @content;
+  }
+}
+@mixin media-xl() {
+  @media screen and (min-width: $breakpoint-xl) {
+    @content;
+  }
+}
+
+// On-the fly media-queries
+@mixin screen($res-min, $res-max) {
+  @media screen and (min-width: $res-min) and (max-width: #{$res-max - 1px}) {
+    @content;
+  }
+}
+@mixin max-screen($res) {
+  @media screen and (max-width: #{$res - 1px}) {
+    @content;
+  }
+}
+@mixin min-screen($res) {
+  @media screen and (min-width: $res) {
+    @content;
+  }
+}

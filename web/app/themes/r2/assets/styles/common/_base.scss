@@ -1,0 +1,129 @@
+// Base styles
+*, *::before, *::after {
+  box-sizing: inherit;
+}
+
+html {
+  box-sizing: border-box;
+}
+html,
+body {
+  overflow-x: hidden;
+}
+
+body {
+  font-size: 12px;
+  line-height: 20px;
+  color: color('black');
+  @include font-relative-faux;
+  background-color: color('white');
+  text-rendering: optimizeLegibility;
+}
+
+p {
+  letter-spacing: 0.1025em;
+  em {
+    font-style: italic;
+  }
+}
+
+a {
+  color: inherit;
+}
+
+img {
+  height: auto;
+  max-width: 100%;
+}
+
+address {
+  font-style: normal;
+}
+
+// Page Transitions
+.transition-fade {
+  transition: 0.4s;
+  opacity: 1;
+}
+html.is-animating .transition-fade {
+  opacity: 0;
+}
+
+// Global Site Wrapper
+.container {
+  margin: 0 auto;
+  padding-left: $beat;
+  padding-right: $beat;
+  max-width: $container;
+
+  @include media-md {
+    padding-left: $padding-lg;
+    padding-right: $padding-lg;
+  }
+}
+
+.site-main {
+  @include media-nav {
+    position: relative;
+    &::before {
+      bottom: 0;
+      width: 1px;
+      content: '';
+      right: $beat;
+      position: absolute;
+      top: -#{$header-md - $beat};
+      background-color: color('black');
+    }
+  }
+}
+
+// Breadcrumbs
+.breadcrumbs {
+  @include h4;
+  right: $beat;
+  display: none;
+  top: -$header-md;
+  position: absolute;
+  text-transform: uppercase;
+  transform: rotate(90deg) translateX(calc(100% + #{$beat}));
+  transform-origin: top right;
+
+  @include media-nav {
+    display: block;
+  }
+}
+
+// Default svg icon sizes
+svg.icon {
+  width: 24px;
+  height: 24px;
+  fill: color('black');
+  display: inline-block;
+}
+
+// This allows js to determine breakpoint
+#breakpoint-indicator {
+  width: 0;
+  height: 0;
+  overflow: hidden;
+  visibility: hidden;
+
+  &::after {
+    content: 'xs';
+    @include media-sm {
+      content: 'sm';
+    }
+    @include media-md {
+      content: 'md';
+    }
+    @include media-nav {
+      content: 'nav';
+    }
+    @include media-lg {
+      content: 'lg';
+    }
+    @include media-xl {
+      content: 'xl';
+    }
+  }
+}

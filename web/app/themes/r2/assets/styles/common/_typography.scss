@@ -1,0 +1,103 @@
+// Typography
+
+// @font-face
+@font-face {
+  font-family: 'relative-faux';
+  src: url('../fonts/relative-faux.eot');
+  src: url('../fonts/relative-faux.eot?#iefix') format('embedded-opentype'),
+       url('../fonts/relative-faux.woff2') format('woff2'),
+       url('../fonts/relative-faux.woff') format('woff'),
+       url('../fonts/relative-faux.ttf') format('truetype');
+  font-weight: normal;
+  font-style: normal;
+}
+@font-face {
+  font-family: 'R2 Numbers';
+  src: url('../fonts/r2numbers-display-webfont.woff2') format('woff2'),
+       url('../fonts/r2numbers-display-webfont.woff') format('woff');
+  font-weight: normal;
+  font-style: normal;
+}
+// Font-family mixins
+@mixin font-relative-faux {
+  font-family: 'relative-faux', serif;
+}
+@mixin font-relative-medium {
+  font-weight: 500;
+  font-family: 'Relative-Medium', sans-serif;
+}
+@mixin font-numbers {
+  font-family: 'R2 Numbers';
+}
+
+/// Mixin to allow us to concisely define all aspects of a paragraph style (except for family.)
+/// @param {number} $size - Font size specified in pixels (without 'px')
+/// @param {number} $lh - Line height specified in pixels (without 'px')
+/// @param {number} $ls [0em] - Letter spacing
+/// @param {number or string} $w [normal] - Font weight
+/// @param {string} $tt [none] - Text transform
+/// @example scss - Used as a shortcut in defining a paragraph style...
+///   @mixin h1 {
+///     @include font-display; // The font face
+///     @include paragraph-style (12, 16, $ls: .075em, $tt: uppercase); // Other properties
+///   }
+@mixin paragraph-style ($size, $lh, $ls: 0em, $w: normal, $tt: none) {
+  font-size: #{$size}px;
+  line-height: ($lh / $size);
+  letter-spacing: $ls;
+  text-transform: $tt;
+  font-weight: $w;
+}
+
+// Type Style Mixins + Classes
+/// example:
+/// @mixin h1 {
+///   @include font-display;
+///   @include paragraph-style(31, 40, -.010322581em);
+///   @include media-md {
+///     @include paragraph-style(96, 96, -.005208333em);
+///   }
+/// }
+/// .h1 {
+///   @include h1;
+/// }
+
+@mixin h2 {
+  @include font-relative-faux;
+  @include paragraph-style(36, 50, .06em, normal);
+}
+.h2 {
+  @include h2;
+}
+
+@mixin h4 {
+  @include font-relative-medium;
+  @include paragraph-style(12, 20, .1475em, normal, uppercase);
+}
+.h4 {
+  @include h4;
+}
+
+@mixin p1 {
+  @include font-relative-faux;
+  @include paragraph-style(12, 20, .1025em, normal, capitalize)
+}
+.p1 {
+  @include p1;
+}
+
+@mixin type-caption {
+  @include font-relative-faux;
+  @include paragraph-style(10, 16, .2225em, normal, uppercase)
+}
+.type-caption {
+  @include type-caption;
+}
+
+@mixin numbers-lg {
+  @include font-numbers;
+  @include paragraph-style(96,96);
+}
+.numbers-lg {
+  @include numbers-lg;
+}

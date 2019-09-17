@@ -113,47 +113,6 @@ class FbSiteOptions {
     ) );
 
     // Set our CMB2 fields
-
-    $cmb->add_field( array(
-      'name'       => __( 'PayPal ID', 'cmb2' ),
-      'id'         => 'paypal_id',
-      'type'       => 'text',
-      'before_row' => '<h3>Donations</h3>',
-    ) );
-
-    $cmb->add_field( array(
-      'name'       => __( 'Twitter ID', 'cmb2' ),
-      'id'         => 'twitter_id',
-      'type'       => 'text',
-      'before_row' => '<h3>Footer Links & Info</h3>',
-    ) );
-
-    $cmb->add_field( array(
-      'name' => __( 'Facebook ID', 'cmb2' ),
-      'id'   => 'facebook_id',
-      'type' => 'text',
-    ) );
-
-    // $cmb->add_field( array(
-    //   'name' => __( 'Vimeo ID', 'cmb2' ),
-    //   'id'   => 'vimeo_id',
-    //   'type' => 'text',
-    // ) );
-
-    $cmb->add_field( array(
-      'name' => __( 'Contact Street Address', 'cmb2' ),
-      'id'   => 'contact_address',
-      'desc' => __( 'e.g. 555 N Western Ave #2'),
-      'type' => 'text',
-    ) );
-
-    $cmb->add_field( array(
-      'name' => __( 'Contact City, State & Postal Code', 'cmb2' ),
-      'id'   => 'contact_locality',
-      'desc' => __( 'e.g. Chicago, IL 60605'),
-      'type' => 'text',
-    ) );
-
     $cmb->add_field( array(
       'name' => __( 'Contact Phone Number', 'cmb2' ),
       'id'   => 'contact_phone',
@@ -161,16 +120,93 @@ class FbSiteOptions {
     ) );
 
     $cmb->add_field( array(
-      'name' => __( 'Contact Email', 'cmb2' ),
-      'id'   => 'contact_email',
-      'type' => 'text_email',
+      'name' => __( 'Headquarters', 'cmb2' ),
+      'id'   => 'headquarters_title',
+      'type' => 'title',
+      'desc' => 'Headquarters listed in footer.'
     ) );
 
+    $headequarters_group = $cmb->add_field([
+      'id'          => 'headquarters',
+      'type'        => 'group',
+      'description' => __( '' ),
+      'before_row' => '<h3>Headquarters</h3>',
+      'options'     => array(
+          'group_title'   => esc_html__( 'Headquarters #{#}', 'cmb' ),
+          'add_button'    => esc_html__( 'Add Another Headquarters', 'cmb' ),
+          'remove_button' => esc_html__( 'Remove Headquarters', 'cmb' ),
+          'sortable'      => true,
+      ),
+    ]);
+    $cmb->add_group_field( $headequarters_group, [
+      'name'  => 'Street Address',
+      'id'    => 'stree_address',
+      'desc'  => 'e.g. 555 N Western Ave #2',
+      'type'  => 'text',
+    ]);
+    $cmb->add_group_field( $headequarters_group, [
+      'name'    => 'City',
+      'id'      => 'city',
+      'type'    => 'text',
+    ]);
+    $cmb->add_group_field( $headequarters_group, [
+      'name'    => 'State (Abbreviation)',
+      'id'      => 'state',
+      'desc'    => 'Ex: IL',
+      'type'    => 'text_small',
+    ]);
+    $cmb->add_group_field( $headequarters_group, [
+      'name'    => 'Postal Code',
+      'id'      => 'postal_code',
+      'type'    => 'text_small',
+    ]);
+
     $cmb->add_field( array(
-      'name' => __( 'Footer Statement', 'cmb2' ),
-      'id'   => 'footer_statement',
-      'desc' => __( 'Statement shown in the footer'),
-      'type' => 'textarea_small',
+      'name' => __( 'Contact Emails', 'cmb2' ),
+      'id'   => 'contact_emails_title',
+      'type' => 'title',
+      'desc' => 'Contact emails that appear in footer.'
+    ) );
+
+    $contact_email_group = $cmb->add_field([
+      'id'          => 'contact_emails',
+      'type'        => 'group',
+      'description' => __( '' ),
+      'before_row' => '<h3>Contact Emails</h3>',
+      'options'     => array(
+          'group_title'   => esc_html__( 'Contact #{#}', 'cmb' ),
+          'add_button'    => esc_html__( 'Add Another Contact', 'cmb' ),
+          'remove_button' => esc_html__( 'Remove Contact', 'cmb' ),
+          'sortable'      => true,
+      ),
+    ]);
+    $cmb->add_group_field( $contact_email_group, [
+      'name'  => 'Label',
+      'id'    => 'label',
+      'desc'  => 'e.g. Management',
+      'type'  => 'text',
+    ]);
+    $cmb->add_group_field( $contact_email_group, [
+      'name'    => 'Email',
+      'id'      => 'email',
+      'type'    => 'text_email',
+    ]);
+
+    $cmb->add_field( array(
+      'name' => __( 'Instagram ID', 'cmb2' ),
+      'id'   => 'instagram_id',
+      'type' => 'text',
+      'before_row' => '<h3>Social Media</h3>',
+    ) );
+    $cmb->add_field( array(
+      'name' => __( 'Twitter ID', 'cmb2' ),
+      'id'   => 'twitter_id',
+      'type' => 'text',
+    ) );
+    $cmb->add_field( array(
+      'name' => __( 'Facebook ID', 'cmb2' ),
+      'id'   => 'facebook_id',
+      'type' => 'text',
     ) );
 
     $cmb->add_field( array(

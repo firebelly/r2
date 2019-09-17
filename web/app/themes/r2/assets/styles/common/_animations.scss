@@ -1,0 +1,61 @@
+// Animations
+
+@keyframes nav-toggle-top-active {
+  0% {
+    top: 0;
+    transform: none;
+  }
+  45%,55% {
+    top: 50%;
+    transform: none;
+  }
+  100% {
+    top: 50%;
+    transform: rotate(30deg);
+  }
+}
+
+@keyframes nav-toggle-bottom-active {
+  0% {
+    bottom: 0;
+    transform: none;
+  }
+  45%,55% {
+    bottom: 50%;
+    transform: none;
+  }
+  100% {
+    bottom: 50%;
+    transform: rotate(-30deg);
+  }
+}
+
+@keyframes nav-toggle-top {
+  0% {
+    top: 50%;
+    transform: rotate(30deg);
+  }
+  45%,55% {
+    top: 50%;
+    transform: none;
+  }
+  100% {
+    top: 0;
+    transform: none;
+  }
+}
+
+@keyframes nav-toggle-bottom {
+  0% {
+    bottom: 50%;
+    transform: rotate(-30deg);
+  }
+  45%,55% {
+    bottom: 50%;
+    transform: none;
+  }
+  100% {
+    bottom: 0;
+    transform: none;
+  }
+}

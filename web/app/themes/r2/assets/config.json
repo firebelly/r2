@@ -1,0 +1,23 @@
+{
+  "entry": {
+    "main": [
+      "./scripts/main.js",
+      "./styles/main.scss"
+    ],
+    "print": [
+      "./styles/print.scss"
+    ],
+    "customizer": [
+      "./scripts/customizer.js"
+    ]
+  },
+  "publicPath": "/assets/",
+  "devUrl": "http://r2.sage",
+  "proxyUrl": "http://localhost:3000",
+  "open": false,
+  "cacheBusting": "[name]_[hash:8]",
+  "watch": [
+    "templates/**/*.html",
+    "config/**/*.php"
+  ]
+}

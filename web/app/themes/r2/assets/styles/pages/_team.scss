@@ -1,0 +1,85 @@
+// Team Page
+
+.page.team {
+  @extend .theme-dark;
+}
+
+.team-grid {
+  .member-row {
+    @include media-lg {
+      + .member-row {
+        margin-top: 80px;
+      }
+    }
+  }
+
+  .team-member {
+    margin-bottom: $padding-md;
+
+    @include media-lg {
+      margin-bottom: 0;
+    }
+
+    .member-image {
+      height: 0;
+      width: 100%;
+      margin: 0 0 $beat;
+      position: relative;
+      background-size: cover;
+      padding-bottom: 66.6666%;
+      background-position: center center;
+      &::before {
+        top: 0;
+        left: 0;
+        bottom: 0;
+        opacity: 1;
+        width: 100%;
+        content: '';
+        position: absolute;
+        mix-blend-mode: saturation;
+        background-color: color('black');
+        transition: opacity .3s ease-out;
+      }
+    }
+
+    h4 {
+      margin: 0;
+      @include h4;
+    }
+    h5 {
+      @include p1;
+      margin: 0 0 #{$beat * 2};
+    }
+
+    .contact-info {
+      p {
+        margin: 0;
+        span {
+          display: inline-block;
+          margin-right: $beat * 2;
+        }
+      }
+
+      a {
+        text-decoration: none;
+        &:hover,
+        &:focus {
+          text-decoration: underline;
+        }
+      }
+    }
+
+    // Hover State
+    &.principle {
+      cursor: pointer;
+
+      &.-hover,
+      &:hover,
+      &:focus {
+        .member-image::before {
+          opacity: 0;
+        }
+      }
+    }
+  }
+}

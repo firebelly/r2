@@ -1,33 +1,36 @@
-// Forms
+// Form Elements
 
-// Custom select styles
+form {
+  input {
+    @include p1;
+    @extend .input-reset;
+    padding: 0 12px;
+    line-height: 40px;
+    border-radius: 4px;
+    color: color('white');
+    background-color: rgba(color('gray-dark'),.25);
+  }
 
-.select-wrapper {
-    margin: 0;
-    padding: 0;
+  .input-wrap {
     position: relative;
-    &:after {
-      right: 10px;
-      height: 8px;
-      width: 13px;
-      content: '';
-      bottom: 14px;
-      position: absolute;
-      pointer-events: none;
-      background-size: 13px 8px;
+
+    &.-focus,
+    &.-filled {
+      label {
+        display: none;
+      }
     }
-}
 
-.select-wrapper select {
-    border: none;
-    box-shadow: none;
-    border-radius: 0;
-    padding-right: 18px;
-    background-color: transparent;
-    background-image: none;
-    -webkit-appearance: none;
-}
+    input {
+      width: 100%;
+    }
 
-.select-wrapper select:focus {
-    outline: none;
+    label {
+      @include p1;
+      top: 12px;
+      left: 12px;
+      position: absolute;
+      color: color('white');
+    }
+  }
 }
