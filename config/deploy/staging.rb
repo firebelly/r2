@@ -1,6 +1,6 @@
 set :stage, :staging
-set :login, 'r2'
-set :domain, 'staging.r2.me'
+set :login, 'firebelly'
+set :domain, 'r2.firebelly.co'
 
 # Simple Role Syntax
 # ==================
