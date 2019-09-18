@@ -8,18 +8,22 @@ use PostTypes\PostType; // see https://github.com/jjgrainger/PostTypes
 use PostTypes\Taxonomy;
 
 $team_members = new PostType(['name' => 'team_member', 'plural' => 'Team Members', 'slug' => 'team'], [
-  'taxonomies' => ['category'],
+  'taxonomies' => ['team_member_category'],
   'supports'   => ['title', 'thumbnail', 'revisions'],
   'rewrite'    => ['with_front' => false],
 ]);
-$team_members->filters(['category']);
+$team_members->filters(['team_member_category']);
 $team_members->icon('dashicons-groups');
+$team_members->register();
 
 // Custom taxonomies
-$category = new Taxonomy('category');
-$category->register();
+$team_member_category = new Taxonomy([
+  'name'     => 'team_member_category',
+  'slug'     => 'team_member_category',
+  'plural'   => 'Team Member Categories',
+]);
+$team_member_category->register();
 
-$team_members->register();
 
 /**
  * CMB2 custom fields
@@ -104,7 +108,7 @@ function get_team_members($options=[]) {
   if (!empty($options['category'])) {
     $args['tax_query'] = [
       [
-        'taxonomy' => 'category',
+        'taxonomy' => 'team_member_category',
         'field' => 'slug',
         'terms' => $options['category']
       ]

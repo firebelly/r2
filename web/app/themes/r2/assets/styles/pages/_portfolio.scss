@@ -1,0 +1,86 @@
+// Portfolio Page
+
+.project-grid {
+  .member-row {
+    @include media-lg {
+      + .member-row {
+        margin-top: 80px;
+      }
+    }
+  }
+
+  .project {
+    margin-bottom: $padding-md;
+
+    &:hover {
+      .project-info,
+      .project-image::after {
+        opacity: 1;
+      }
+    }
+
+    > .-inner {
+      position: relative;
+    }
+
+    @include media-lg {
+      margin-bottom: 0;
+    }
+
+    .project-image {
+      height: 0;
+      width: 100%;
+      margin: 0 0 $beat;
+      position: relative;
+      background-size: cover;
+      padding-bottom: 66.6666%;
+      background-position: center center;
+      &::after {
+        top: 0;
+        left: 0;
+        bottom: 0;
+        opacity: 0;
+        width: 100%;
+        content: '';
+        position: absolute;
+        mix-blend-mode: multiply;
+        background-color: color('gray-dark');
+      }
+    }
+
+    .project-info {
+      top: 0;
+      left: 0;
+      bottom: 0;
+      opacity: 0;
+      z-index: 1;
+      width: 100%;
+      padding: $beat;
+      position: absolute;
+      color: color('white');
+      transition: opacity .2s ease-out;
+    }
+
+    h2 {
+      margin: 0;
+      @include h4;
+    }
+    h3 {
+      @include p1;
+      margin: 0 0 #{$beat * 2};
+    }
+
+    // Hover State
+    &.principle {
+      cursor: pointer;
+
+      &.-hover,
+      &:hover,
+      &:focus {
+        .member-image::before {
+          opacity: 0;
+        }
+      }
+    }
+  }
+}

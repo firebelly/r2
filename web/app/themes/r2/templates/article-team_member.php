@@ -1,7 +1,7 @@
 <?php
 $title = get_post_meta($team_member->ID, '_cmb2_member_title', true);
 $image = \Firebelly\Media\get_post_thumbnail($team_member->ID);
-$category = \Firebelly\Utils\get_first_term($team_member);
+$category = \Firebelly\Utils\get_first_term($team_member, 'team_member_category');
 $email = $phone = $linkedin = '';
 $email = get_post_meta($team_member->ID, '_cmb2_member_email', true);
 $phone = get_post_meta($team_member->ID, '_cmb2_member_phone', true);
