@@ -70,10 +70,27 @@
 }
 
 // Homepage Animaiton
+@keyframes fadeIn {
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
+}
+@keyframes fadeOut {
+  0% {
+    opacity: 1;
+  }
+  100% {
+    opacity: 0;
+  }
+}
+
 @keyframes homepageAnimationLogo {
   0% {
     opacity: 0;
-    transform: translate(-50%, -25%);
+    transform: translate(-50%, -40%);
   }
   100% {
     opacity: 1;
@@ -84,7 +101,7 @@
 @keyframes homepageAnimationWord {
   0% {
     opacity: 0;
-    transform: translateX(50px);
+    transform: translateX(35px);
   }
   100% {
     opacity: 1;

@@ -17,19 +17,17 @@ $banner_video = get_post_meta($post->ID, '_cmb2_banner_video', true);
     </div>
   <?php endif ?>
   <div class="intro-animation">
-    <div class="container">
-      <div class="intro-text">
-        <?php if (!empty($animation_text)): ?>
-          <p class="container">
-            <?php foreach ($animation_text_words as $word): ?>
-              <span><?= $word ?></span>
-            <?php endforeach ?>
-          </p>
-        <?php else: ?>
-          <p class="container"><span>In</span> <span>Relentless</span> <span>Pursuit</span> <span>of</span> <span>Opportunity.</span></p>
-        <?php endif ?>
-      </div>
-      <svg class="r2-logo" aria-hidden="true" role="presentation"><use xlink:href="#r2"/></svg>
+    <div class="backdrop"></div>
+    <div class="intro-text">
+      <?php if (!empty($animation_text)): ?>
+        <p class="container">
+          <?php foreach ($animation_text_words as $word): ?>
+            <span><?= $word ?></span>
+          <?php endforeach ?>
+        </p>
+      <?php else: ?>
+        <p class="container"><span>In</span> <span>Relentless</span> <span>Pursuit</span> <span>of</span> <span>Opportunity.</span></p>
+      <?php endif ?>
     </div>
   </div>
 </div>
