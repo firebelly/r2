@@ -13,6 +13,7 @@
   $callout_copy = get_post_meta($post->ID, '_cmb2_callout_copy', true);
   $downloads = get_post_meta($post->ID, '_cmb2_downloads', true);
   $project_images = get_post_meta($post->ID, '_cmb2_project_images', true);
+  $project_comparison_images = get_post_meta($post->ID, '_cmb2_project_comparison_images', true);
 ?>
 
 <?php if (!empty($header_images)): ?>
@@ -109,6 +110,19 @@
             </figcaption>
           <?php endif ?>
         </figure>
+      <?php endforeach ?>
+    </div>
+  </div>
+<?php endif ?>
+
+<?php if (!empty($project_comparison_images)): ?>
+  <div class="comparison-images">
+    <div class="-inner container">
+      <?php foreach ($project_comparison_images as $image): ?>
+        <div class="cocoen">
+          <img src="<?= $image['before'] ?>" alt="">
+          <img src="<?= $image['after'] ?>" alt="">
+        </div>
       <?php endforeach ?>
     </div>
   </div>

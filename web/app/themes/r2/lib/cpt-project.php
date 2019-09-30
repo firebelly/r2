@@ -161,6 +161,34 @@ function metaboxes() {
     'type'  => 'checkbox',
     'desc'  => 'Should this image be treated as a black and white image?'
   ]);
+
+  $comparison_images = new_cmb2_box([
+    'id'            => $prefix . 'project_comparison_images_group',
+    'title'         => __( 'Comparison Images', 'cmb2' ),
+    'object_types'  => ['project'],
+    'context'       => 'normal',
+    'priority'      => 'high',
+  ]);
+  $comparison_images_group = $comparison_images->add_field([
+    'id'              => $prefix .'project_comparison_images',
+    'type'            => 'group',
+    'options'         => [
+      'group_title'   => __( 'Comparison {#}', 'cmb2' ),
+      'add_button'    => __( 'Add Another Comparison', 'cmb2' ),
+      'remove_button' => __( 'Remove Comparison', 'cmb2' ),
+      'sortable'      => true,
+    ],
+  ]);
+  $comparison_images->add_group_field( $comparison_images_group, [
+    'name' => 'Before Image',
+    'id'   => 'before',
+    'type' => 'file',
+  ]);
+  $comparison_images->add_group_field( $comparison_images_group, [
+    'name' => 'After Image',
+    'id'   => 'after',
+    'type' => 'file',
+  ]);
 }
 add_filter( 'cmb2_admin_init', __NAMESPACE__ . '\metaboxes' );
 

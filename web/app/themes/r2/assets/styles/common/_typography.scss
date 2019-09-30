@@ -81,7 +81,7 @@
 @mixin h4 {
   @include smooth;
   @include font-relative-medium;
-  @include paragraph-style(12, 20, .1475em, normal, uppercase);
+  @include paragraph-style(12, 20, .1475em, 500, uppercase);
 }
 .h4 {
   @include h4;

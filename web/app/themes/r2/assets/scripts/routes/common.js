@@ -1,12 +1,14 @@
 import jQueryBridget from 'jquery-bridget';
 import Isotope from 'isotope-layout';
 import Flickity from 'flickity-fade';
+import Cocoen from 'cocoen';
 
 export default {
   init() {
     // Set up isotope to be used with jQuery
     jQueryBridget( 'isotope', Isotope, $ );
     jQueryBridget( 'flickity', Flickity, $ );
+    jQueryBridget( 'cocoen', Cocoen, $ );
     // Set up Global Vars
     const $body = $('body');
     const $siteHeader = $('#site-header');
@@ -34,6 +36,7 @@ export default {
     _initFilters();
     _initCarousels();
     _initTeamModal();
+    _initCocoen();
 
     // Keyboard-triggered functions
     $(document).keyup(function(e) {
@@ -393,6 +396,10 @@ export default {
       _hideSiteOverlay();
       $body.removeClass('modal-open');
       _enableScroll();
+    }
+
+    function _initCocoen() {
+      $('.cocoen').cocoen();
     }
 
     // Disabling transitions on certain elements on resize
