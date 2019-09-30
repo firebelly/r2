@@ -9,10 +9,10 @@ const src = path => `assets/${path}`;
 // Public Path
 mix
   .setPublicPath('dist')
-  // .setResourceRoot(`/app/themes/sage/${mix.config.publicPath}/`)
-  // .webpackConfig({
-  //   output: { publicPath: mix.config.resourceRoot }
-  // });
+  .setResourceRoot(`/app/themes/r2/${mix.config.publicPath}/`)
+  .webpackConfig({
+    output: { publicPath: mix.config.resourceRoot }
+  });
 
 // Browsersync
 mix.browserSync('r2.sage');
