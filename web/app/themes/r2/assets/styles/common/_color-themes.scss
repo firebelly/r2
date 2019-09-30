@@ -35,6 +35,19 @@
   .site-footer > .container::after {
     color: color($secondary);
   }
+
+  .filters {
+    .filters-toggle,
+    button.filter {
+      svg {
+        fill: color($secondary);
+      }
+    }
+
+    button.filters-close {
+      color: color($secondary);
+    }
+  }
 }
 
 // Dark Theme

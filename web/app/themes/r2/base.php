@@ -16,8 +16,8 @@ use Roots\Sage\Wrapper;
         get_template_part('templates/header');
       ?>
       <div class="site-wrap transition-fade" role="document">
-        <main class="site-main container" role="main">
-          <div class="breadcrumbs">/ <?= $post->post_name ?></div>
+        <main class="site-main" role="main">
+          <div class="breadcrumbs">/ <?= $post->post_title ?></div>
           <?php include Wrapper\template_path(); ?>
         </main><!-- /.main -->
       </div><!-- /.site-wrap -->

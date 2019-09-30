@@ -1,0 +1,106 @@
+// Filters
+
+.filters {
+  @include clearfix;
+  padding-bottom: $beat * 3;
+
+  .toggle-container {
+    @include media-md {
+      float: left;
+      width: columns(2,16);
+    }
+  }
+
+  .filters-toggle {
+    @extend .button-reset;
+    @include h4;
+
+    svg {
+      top: -2px;
+      width: 7px;
+      height: 4px;
+      margin-left: 4px;
+      position: relative;
+      fill: color('black');
+      display: inline-block;
+    }
+  }
+
+  button {
+    margin-left: -7px;
+  }
+
+  .filters-container {
+    @include clearfix;
+    display: none;
+    position: relative;
+
+    @include media-md {
+      float: left;
+      width: columns(14,16);
+    }
+  }
+
+  .filter-group {
+    ul {
+      @extend .semantic-list;
+
+      li {
+        + li {
+          margin-top: $beat * 2;
+        }
+      }
+    }
+
+    @include media-md {
+      float: left;
+      min-width: 190px;
+      max-width: columns(3,16);
+      padding-right: columns(1,16);
+    }
+  }
+
+  .group-label {
+    @include h4;
+    margin: 0 0 #{$beat * 2};
+  }
+
+  button.filter {
+    @extend .button-reset;
+    @include p1;
+    position: relative;
+
+    &:hover {
+      text-decoration: underline;
+    }
+
+    .icon {
+      top: 6px;
+      width: 7px;
+      height: 7px;
+      display: none;
+      right: -$beat;
+      position: absolute;
+      fill: color('black');
+    }
+
+    &.is-checked {
+      text-decoration: underline;
+      .icon {
+        display: block;
+      }
+    }
+  }
+
+  .filters-close {
+    @extend .button-reset;
+    @include p1;
+    top: 0;
+    right: 0;
+    margin-top: -7px;
+    position: absolute;
+    text-decoration: underline;
+    transform: translateX(100%) rotate(90deg);
+    transform-origin: top left;
+  }
+}

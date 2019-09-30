@@ -6,10 +6,14 @@
 $team_members = Firebelly\PostTypes\TeamMember\get_team_members();
 ?>
 
-<?php get_template_part('templates/page', 'header'); ?>
+<div class="container">
+  <?php get_template_part('templates/page', 'header'); ?>
 
-<?php if (!empty($team_members)): ?>
-  <div class="team-grid">
-    <?= $team_members ?>
-  </div>
-<?php endif ?>
+  <?php get_template_part('templates/team-filters'); ?>
+
+  <?php if (!empty($team_members)): ?>
+    <div class="team-grid grid spaced filter-grid">
+      <?= $team_members ?>
+    </div>
+  <?php endif ?>
+</div>

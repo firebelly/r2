@@ -1,5 +1,11 @@
 // Portfolio Page
 
+.page.portfolio {
+  .site-main {
+    padding-bottom: $padding-lg;
+  }
+}
+
 .project-grid {
   .member-row {
     @include media-lg {
@@ -20,6 +26,7 @@
     }
 
     > .-inner {
+      display: block;
       position: relative;
     }
 

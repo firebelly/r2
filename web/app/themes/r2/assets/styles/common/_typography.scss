@@ -70,12 +70,29 @@
   @include h2;
 }
 
+@mixin h3 {
+  @include font-relative-faux;
+  @include paragraph-style(24, 40, .06em, normal);
+}
+.h3 {
+  @include h3;
+}
+
 @mixin h4 {
+  @include smooth;
   @include font-relative-medium;
   @include paragraph-style(12, 20, .1475em, normal, uppercase);
 }
 .h4 {
   @include h4;
+}
+
+@mixin h5 {
+  @include font-relative-medium;
+  @include paragraph-style(10, 20, .1475em, normal, uppercase);
+}
+.h5 {
+  @include h5;
 }
 
 @mixin p1 {

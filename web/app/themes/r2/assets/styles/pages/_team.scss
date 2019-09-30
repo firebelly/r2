@@ -2,46 +2,12 @@
 
 .page.team {
   @extend .theme-dark;
-}
 
-.team-grid {
-  .member-row {
-    @include media-lg {
-      + .member-row {
-        margin-top: 80px;
-      }
-    }
+  .site-main {
+    padding-bottom: $padding-lg;
   }
 
-  .team-member {
-    margin-bottom: $padding-md;
-
-    @include media-lg {
-      margin-bottom: 0;
-    }
-
-    .member-image {
-      height: 0;
-      width: 100%;
-      margin: 0 0 $beat;
-      position: relative;
-      background-size: cover;
-      padding-bottom: 66.6666%;
-      background-position: center center;
-      &::before {
-        top: 0;
-        left: 0;
-        bottom: 0;
-        opacity: 1;
-        width: 100%;
-        content: '';
-        position: absolute;
-        mix-blend-mode: saturation;
-        background-color: color('black');
-        transition: opacity .3s ease-out;
-      }
-    }
-
+  .member-info {
     h4 {
       margin: 0;
       @include h4;
@@ -68,6 +34,40 @@
         }
       }
     }
+  }
+}
+
+.team-grid {
+  .team-member {
+    > .-inner {
+      padding-bottom: $padding-md;
+    }
+
+    .member-image {
+      height: 0;
+      width: 100%;
+      margin: 0 0 $beat;
+      position: relative;
+      background-size: cover;
+      padding-bottom: 66.6666%;
+      background-position: center center;
+      &::before {
+        top: 0;
+        left: 0;
+        bottom: 0;
+        opacity: 1;
+        width: 100%;
+        content: '';
+        position: absolute;
+        mix-blend-mode: saturation;
+        background-color: color('black');
+        transition: opacity .3s ease-out;
+      }
+    }
+
+    .member-bio {
+      display: none;
+    }
 
     // Hover State
     &.principle {
@@ -79,6 +79,141 @@
         .member-image::before {
           opacity: 0;
         }
+      }
+    }
+  }
+}
+
+// Team Modal
+.team-modal {
+  top: 0;
+  right: 0;
+  z-index: 20;
+  display: none;
+  position: fixed;
+  max-height: 100vh;
+  will-change: transform;
+  transform-origin: bottom left;
+  background-color: color('black');
+
+  &.-active {
+    transform-origin: top left;
+
+    .modal-content {
+      .member-meta .member-photo {
+        opacity: 1;
+        filter: blur(0);
+      }
+      .member-bio > .-inner {
+        opacity: 1;
+      }
+    }
+  }
+
+  @include media-md {
+    width: calc(100% - #{$padding-lg});
+  }
+  @include media-lg {
+    width: calc(100% - #{$padding-lg * 2});
+  }
+
+  .modal-close {
+    @extend .button-reset;
+    z-index: 1;
+    top: $beat;
+    padding: 0;
+    width: 20px;
+    left: $beat;
+    position: absolute;
+    mix-blend-mode: exclusion;
+
+    svg {
+      width: 20px;
+      height: 11px;
+      fill: color('white');
+    }
+
+    @include media-md {
+      left: auto;
+      right: 100%;
+      margin-right: $beat;
+
+      svg {
+        fill: color('white');
+      }
+    }
+  }
+
+  .modal-content {
+    overflow: auto;
+    max-height: 100vh;
+    -webkit-overflow-scrolling: touch;
+
+    @include media-md {
+      display: flex;
+      overflow: hidden;
+    }
+
+    > div {
+      @include media-md {
+        max-width: 50%;
+        flex-basis: 50%;
+      }
+    }
+
+    .member-meta {
+      .member-photo {
+        height: 0;
+        opacity: 0;
+        filter: blur(3px);
+        position: relative;
+        background-size: cover;
+        padding-bottom: 73.8461%;
+        transition: opacity .35s ease-out, filter .5s ease-out;
+        &::before {
+          top: 0;
+          left: 0;
+          bottom: 0;
+          opacity: 1;
+          width: 100%;
+          content: '';
+          position: absolute;
+          mix-blend-mode: saturation;
+          background-color: color('black');
+          transition: opacity .3s ease-out;
+        }
+      }
+      .member-info {
+        color: color('white');
+        padding: $padding-md $padding-sm;
+
+        @include media-md {
+          padding: $padding-md;
+        }
+        @include media-lg {
+          padding: $padding-lg;
+        }
+      }
+    }
+
+    .member-bio {
+      color: color('black');
+      background-color: color('white');
+      padding: $padding-sm $padding-sm $padding-lg;
+
+      > .-inner {
+        opacity: 0;
+        transition: opacity 1s ease-out;
+      }
+
+      @include media-md {
+        overflow: auto;
+        max-height: 100vh;
+        padding: $padding-md;
+        -webkit-overflow-scrolling: touch;
+      }
+      @include media-lg {
+        padding: $padding-lg;
       }
     }
   }

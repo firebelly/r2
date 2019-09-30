@@ -1,5 +1,8 @@
-@import "common/variables";
+// Vendor
+@import "~flickity/css/flickity.css";
+@import "~flickity-fade/flickity-fade.css";
 // Common
+@import "common/variables";
 @import "common/normalize";
 @import "common/mixins";
 @import "common/utility";
@@ -12,8 +15,10 @@
 // Components
 @import "components/common";
 @import "components/forms";
+@import "components/filters";
 @import "components/pagination";
 // Layouts
+@import "layouts/tinymce";
 @import "layouts/header";
 @import "layouts/nav";
 @import "layouts/page-header";
@@ -22,3 +27,4 @@
 @import "pages/home";
 @import "pages/team";
 @import "pages/portfolio";
+@import "pages/single-project";

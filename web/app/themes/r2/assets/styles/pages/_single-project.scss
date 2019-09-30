@@ -1,0 +1,272 @@
+// Single Project Template
+
+body.single-project {
+  .header-carousel {
+    position: relative;
+    margin-right: -$padding-sm;
+
+    @include media-md {
+      margin-right: -$padding-lg;
+    }
+
+    .image {
+      height: 0;
+      opacity: 0!important;
+      width: 100%;
+      display: block;
+      padding-bottom: 50%;
+      background-size: cover;
+      transition: opacity .5s ease-out;
+
+      &.is-selected {
+        opacity: 1!important;
+      }
+    }
+
+    .flickity-page-dots {
+      bottom: $padding-md;
+
+      .dot {
+        opacity: 1;
+        height: 5px;
+        width: 72px;
+        border-radius: 0;
+        background-color: transparent;
+        border: 1px solid color('white');
+        &.is-selected {
+          background-color: color('white');
+        }
+      }
+
+      @include media-md {
+        bottom: $padding-lg;
+        right: $padding-lg / 2;
+      }
+      @include media-lg {
+        bottom: $padding-lg * 2;
+      }
+    }
+  }
+
+  .project-info {
+    .top-row {
+      border-bottom: 1px solid color('black');
+
+      > div {
+        padding: 0 0 $padding-md;
+      }
+
+      @include media-md {
+        > div {
+          padding: $padding-lg 0;
+          &:first-of-type {
+            border-right: 1px solid color('black');
+          }
+        }
+      }
+    }
+
+    .project-title {
+      margin: 0;
+
+      span {
+        display: block;
+      }
+
+      .first {
+        @include h2;
+
+        &.numeral {
+          @include numbers-lg;
+        }
+      }
+      .second {
+        @include h5;
+        margin-top: $beat * 2;
+      }
+    }
+
+    .locality {
+      margin: 0;
+    }
+
+    .square-footage {
+      @include dashed-rule(after);
+      padding-bottom: 1em;
+      display: inline-block;
+      margin: $padding-md 0 0;
+    }
+
+    .description {
+      p {
+        &:first-of-type {
+          margin-top: 0;
+        }
+        &:last-of-type {
+          margin-bottom: 0;
+        }
+      }
+    }
+
+    .callout {
+      margin: $padding-md 0 0;
+
+      h5 {
+        @include h4;
+        margin: 0;
+      }
+
+      .callout-copy {
+        p:first-of-type {
+          margin-top: 0;
+        }
+      }
+    }
+
+    .downloads {
+      text-align: left;
+      padding: $padding-md 0;
+      border-bottom: 1px solid color('black');
+
+      h3 {
+        @include h4;
+        margin: 0 0 $padding-sm;
+      }
+
+      ul {
+        @extend .semantic-list;
+
+        li {
+          display: inline-block;
+          margin-bottom: $padding-sm;
+
+          + li {
+            margin-left: $padding-sm;
+          }
+        }
+
+        a {
+          color: color('red');
+        }
+      }
+
+      @include media-md {
+        border-bottom: none;
+        padding: $padding-lg 0;
+        outline: 1px solid color('black');
+      }
+    }
+  }
+
+  .project-images {
+    padding: $padding-md 0;
+
+    figure {
+      margin: 0 0 $beat;
+
+      img {
+        vertical-align: top;
+      }
+
+      figcaption {
+        max-width: 540px;
+        margin-bottom: $padding-md;
+        p {
+          @include type-caption;
+        }
+      }
+    }
+
+    @include media-md {
+      padding: $padding-lg 0;
+
+      > .-inner {
+        display: grid;
+        grid-gap: $beat * 2;
+        grid-template-columns: 1fr 1fr;
+      }
+
+      figure {
+        margin: 0;
+
+        &.small {
+          grid-column: span 1;
+        }
+        &.medium {
+          grid-column: span 2;
+          padding-right: columns(1,4);
+        }
+        &.large {
+          grid-column: span 2;
+        }
+
+        figcaption {
+          margin-bottom: $padding-lg;
+        }
+      }
+    }
+  }
+}
+
+.project-navigation {
+  margin: $padding-md 0 0;
+  border-top: 1px solid color('black');
+
+  > div > .-inner {
+    padding-top: $padding-md;
+    padding-bottom: $padding-md;
+  }
+
+  .next-container {
+    position: relative;
+    &::after {
+      top: 0;
+      bottom: 0;
+      left: -1px;
+      width: 1px;
+      // z-index: 1;
+      content: '';
+      position: absolute;
+      border-left: 1px solid color('black');
+    }
+  }
+
+  .project-link {
+    margin: 0 0 $padding-md;
+
+    a {
+      color: color('red');
+    }
+  }
+
+  .project-title {
+    margin: 0;
+
+    span {
+      display: block;
+    }
+    .first {
+      @include h3;
+    }
+    .second {
+      @include h4;
+    }
+  }
+
+  .locality {
+    @include h4;
+    margin: 0;
+  }
+
+  @include media-md {
+    margin-top: $padding-lg;
+
+    .next-thumb {
+      height: 0;
+      background-size: cover;
+      padding-bottom: 45.977%;
+      margin-left: -$padding-lg;
+      width: calc(100% + #{$padding-lg});
+    }
+  }
+}

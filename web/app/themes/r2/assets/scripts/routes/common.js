@@ -1,8 +1,17 @@
+import jQueryBridget from 'jquery-bridget';
+import Isotope from 'isotope-layout';
+import Flickity from 'flickity-fade';
+
 export default {
   init() {
+    // Set up isotope to be used with jQuery
+    jQueryBridget( 'isotope', Isotope, $ );
+    jQueryBridget( 'flickity', Flickity, $ );
     // Set up Global Vars
+    const $body = $('body');
     const $siteHeader = $('#site-header');
     const $siteNav = $('#site-nav');
+    var $siteOverlay = '<div id="site-overlay"></div>';
 
     // Resize Vars
     var transitionElements = [],
@@ -22,6 +31,36 @@ export default {
     _initSiteNav();
     _initFormFunctions();
     _initInviewElements();
+    _initFilters();
+    _initCarousels();
+    _initTeamModal();
+
+    // Keyboard-triggered functions
+    $(document).keyup(function(e) {
+      // Escape key
+      if (e.keyCode === 27) {
+        _closeTeamModal();
+        if ($body.is('.filters-open')) {
+          _closeFilters();
+        }
+        // _hideSiteOverlay();
+        // _closeSiteNav();
+      }
+
+      // Left Arrow
+      if (e.keyCode === 37) {
+        if ($body.is('.modal-open')) {
+          // _changeProjectModal('previous');
+        }
+      }
+
+      // Right Arrow
+      if (e.keyCode === 39) {
+        if ($body.is('.modal-open')) {
+          // _changeProjectModal('next');
+        }
+      }
+    });
 
     function _scrollBody(element, offset, duration, delay) {
       var headerOffset = $siteHeader.outerHeight();
@@ -47,16 +86,16 @@ export default {
 
     function _disableScroll() {
       var st = $(window).scrollTop();
-      $('body').attr('data-st', st);
-      $('body').addClass('no-scroll');
-      $('body').css('top', -st);
+      $body.attr('data-st', st);
+      $body.addClass('no-scroll');
+      $body.css('top', -st);
     }
 
     function _enableScroll() {
-      $('body').removeClass('no-scroll');
-      $('body').css('top', '');
-      $(window).scrollTop($('body').attr('data-st'));
-      $('body').attr('data-st', '');
+      $body.removeClass('no-scroll');
+      $body.css('top', '');
+      $(window).scrollTop($body.attr('data-st'));
+      $body.attr('data-st', '');
     }
 
     function _getUrlParameter(name) {
@@ -70,6 +109,46 @@ export default {
       $(document).on('click', '.smooth-scroll', function(e) {
         e.preventDefault();
         _scrollBody($($(this).attr('href')));
+      });
+    }
+
+    function _showSiteOverlay(callback) {
+      // Check if there is already an overlay on the page
+      if (!$('#site-overlay').length) {
+        $body.append($siteOverlay);
+      }
+
+      // Check if it's already active, if not animate showing it
+      if (!$('#site-overlay').is('.-active')) {
+        // Fade in the overlay
+        $('#site-overlay').velocity(
+          { opacity: 1 }, {
+          display: "block",
+            // on complete, fade in the lightbox
+            complete: function() {
+              $('#site-overlay').addClass('-active');
+              if(typeof callback !== 'undefined') {
+                callback();
+              }
+            }
+        });
+      }
+    }
+
+    function _hideSiteOverlay(callback) {
+      if (!$('#site-overlay').length) {
+        return;
+      }
+
+      $('#site-overlay').velocity(
+        { opacity: 0 }, {
+        display: "none",
+        complete: function() {
+          $('#site-overlay').removeClass('-active');
+          if(typeof callback !== 'undefined') {
+            callback();
+          }
+        }
       });
     }
 
@@ -89,7 +168,9 @@ export default {
     }
 
     function _initSiteNav() {
-      $('#site-header').append('<button id="nav-toggle" class="nav-toggle" aria-hidden="true" data-active-toggle="#site-nav"></button>');
+      if (!$('#nav-toggle').length) {
+        $('#site-header').append('<button id="nav-toggle" class="nav-toggle" aria-hidden="true" data-active-toggle="#site-nav"></button>');
+      }
 
       $(document).on('click', '#nav-toggle', function() {
         if ($(this).is('.-active')) {
@@ -151,6 +232,167 @@ export default {
           $(this).css('transition-delay', 0.1 * i + 's');
         });
       });
+    }
+
+    function _initFilters() {
+      // Toggleing Filters
+      $('.filters-toggle').on('click', function() {
+        var $filters = $(this).closest('.filters');
+
+        if ($filters.is('.-active')) {
+          _closeFilters($filters);
+        } else {
+          _openFilters($filters);
+        }
+      });
+      // Close Filters Button
+      $('.filters-close').on('click', function() {
+        var $filters = $(this).closest('.filters');
+
+        if ($filters.is('.-active')) {
+          _closeFilters($filters);
+        } else {
+          _openFilters($filters);
+        }
+      });
+
+      // Isotope Functionality
+      var $filterGrid = $('.filter-grid').isotope({
+        itemSelector: '.grid-item',
+        layoutMode: 'fitRows',
+        stagger: 25,
+        percentPosition: true,
+        hiddenStyle: {
+          opacity: 0,
+        },
+        visibleStyle: {
+          opacity: 1,
+        }
+      });
+
+      // store filter for each group
+      var filters = [];
+
+      // change is-checked class on buttons
+      $('.filter-group').on( 'click', 'button', function(event) {
+        var $target = $(event.currentTarget);
+        $target.toggleClass('is-checked');
+        var isChecked = $target.hasClass('is-checked');
+        var filter = $target.attr('data-filter');
+        if (isChecked) {
+          addFilter(filter);
+        } else {
+          removeFilter(filter);
+        }
+        // filter isotope
+        // group filters together, inclusive
+        $filterGrid.isotope({ filter: filters.join('') });
+      });
+
+      function addFilter(filter) {
+        if (filters.indexOf(filter) == -1) {
+          filters.push(filter);
+        }
+      }
+
+      function removeFilter(filter) {
+        var index = filters.indexOf(filter);
+        if (index != -1) {
+          filters.splice(index, 1);
+        }
+      }
+    }
+
+    function _openFilters($filters) {
+      var $container = $filters.find('.filters-container');
+      $filters.addClass('-active');
+      $body.addClass('filters-open');
+      $container.velocity('slideDown', { duration: 250, easing: 'easeOutSine' });
+    }
+
+    function _closeFilters($filters) {
+      var $container = $filters.find('.filters-container');
+      $filters.removeClass('-active');
+      $body.removeClass('filters-open');
+      $container.velocity('slideUp', { duration: 250, easing: 'easeOutSine' });
+    }
+
+    function _initCarousels() {
+      $('.header-carousel').flickity({
+        prevNextButtons: false,
+        fade: true,
+        autoPlay: true,
+        draggable: false,
+        cellSelector: '.image'
+      });
+    }
+
+    function _initTeamModal() {
+      $('.team-member.principle').on('click', function(e) {
+        var $target = $(e.target);
+        if (!$target.is('a')) {
+          _openTeamModal($(this));
+        }
+      });
+
+      $(document).on('click', '#team-modal .modal-close, body.modal-open #site-overlay', function() {
+        _closeTeamModal();
+      });
+    }
+
+    function _openTeamModal($member) {
+      if (!$('.team-modal').length) {
+        $('body').append('<div id="team-modal" class="team-modal"><button class="modal-close"><svg aria-hidden="true" role="presentation"><use xlink:href="#icon-close-condensed"/></svg></button><div class="modal-content"><div class="member-meta"><div class="member-info"></div></div><div class="member-bio"></div></div></div>');
+      }
+
+      var $teamModal = $('#team-modal');
+
+      // Clear Modal Content
+      $teamModal.find('.member-meta').html('');
+      $teamModal.find('.member-bio').html('');
+
+      // Get Member Data
+      var memberPhoto = $member.attr('data-photo');
+      var memberInfo = $member.find('.member-info');
+      var memberBio = $member.find('.member-bio').html();
+
+      $teamModal.find('.member-meta').append('<div class="member-photo" style="background-image:url('+ memberPhoto +');"></div>');
+      memberInfo.clone().appendTo('#team-modal .member-meta');
+      $teamModal.find('.member-bio').html(memberBio);
+
+      $body.addClass('modal-open');
+      _showSiteOverlay();
+      $teamModal.velocity('stop').velocity({
+          translateX: [0, '100%'],
+          translateZ: 0,
+          skewX: [0, '-10deg'],
+        }, {
+          duration: 400,
+          display: 'block',
+          complete: function() {
+            $teamModal.addClass('-active');
+          }
+        }
+      )
+      _disableScroll();
+    }
+
+    function _closeTeamModal() {
+      $('#team-modal').removeClass('-active').velocity({
+          translateX: '110%',
+          translateZ: 0,
+          skewX: ['10deg', [1,.92,.43,1.35], 0]
+        }, {
+          duration: 350,
+          display: 'none',
+          complete: function() {
+            $('#team-modal').find('.member-bio').scrollTop(0);
+          }
+        }
+      );
+      _hideSiteOverlay();
+      $body.removeClass('modal-open');
+      _enableScroll();
     }
 
     // Disabling transitions on certain elements on resize

@@ -54,7 +54,7 @@ html.is-animating .transition-fade {
   margin: 0 auto;
   padding-left: $beat;
   padding-right: $beat;
-  max-width: $container;
+  // max-width: $container;
 
   @include media-md {
     padding-left: $padding-lg;
@@ -68,6 +68,7 @@ html.is-animating .transition-fade {
     &::before {
       bottom: 0;
       width: 1px;
+      z-index: 10;
       content: '';
       right: $beat;
       position: absolute;
@@ -80,6 +81,7 @@ html.is-animating .transition-fade {
 // Breadcrumbs
 .breadcrumbs {
   @include h4;
+  z-index: 10;
   right: $beat;
   display: none;
   top: -$header-md;
@@ -91,6 +93,17 @@ html.is-animating .transition-fade {
   @include media-nav {
     display: block;
   }
+}
+
+// Site Overlay
+#site-overlay {
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  z-index: 5;
+  position: fixed;
+  background-color: rgba(color('black'),.75);
 }
 
 // Default svg icon sizes

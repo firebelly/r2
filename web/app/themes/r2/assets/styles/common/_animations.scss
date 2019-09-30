@@ -1,5 +1,14 @@
 // Animations
 
+@keyframes fadeOut {
+  0% {
+    opacity: 1;
+  }
+  100% {
+    opacity: 0;
+  }
+}
+
 @keyframes nav-toggle-top-active {
   0% {
     top: 0;
@@ -57,5 +66,28 @@
   100% {
     bottom: 0;
     transform: none;
+  }
+}
+
+// Homepage Animaiton
+@keyframes homepageAnimationLogo {
+  0% {
+    opacity: 0;
+    transform: translate(-50%, -25%);
+  }
+  100% {
+    opacity: 1;
+    transform: translate(-50%, -50%);
+  }
+}
+
+@keyframes homepageAnimationWord {
+  0% {
+    opacity: 0;
+    transform: translateX(50px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateX(0);
   }
 }

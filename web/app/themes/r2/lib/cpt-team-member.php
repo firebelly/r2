@@ -125,16 +125,11 @@ function get_team_members($options=[]) {
   // Display all matching posts using article-{$post_type}.php
   $team_members = get_posts($args);
   if (!$team_members) return false;
-  $rows = array_chunk($team_members, 4, true);
   $output = '';
-  foreach ($rows as $row):
-    $output .= '<div class="member-row grid spaced animate-in-series">';
-    foreach ($row as $team_member):
-      ob_start();
-      \Firebelly\Utils\get_template_part_with_vars('templates/article', 'team_member', [ 'team_member' => $team_member]);
-      $output .= ob_get_clean();
-    endforeach;
-    $output .= '</div>';
+  foreach ($team_members as $team_member):
+    ob_start();
+    \Firebelly\Utils\get_template_part_with_vars('templates/article', 'team_member', [ 'team_member' => $team_member]);
+    $output .= ob_get_clean();
   endforeach;
   return $output;
 }
