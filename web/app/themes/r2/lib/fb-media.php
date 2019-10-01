@@ -9,9 +9,10 @@ namespace Firebelly\Media;
 add_action('after_setup_theme', __NAMESPACE__ . '\\set_image_sizes');
 function set_image_sizes() {
   // Set default sizes
-  update_option('medium_size_w', 600);
-  update_option('medium_size_h', 0);
-  update_option('medium_large_size_w', 1000);
+  update_option('medium_size_w', 620);
+  update_option('medium_size_h', 400);
+  update_option('medium_large_size_w', 870);
+  update_option('medium_large_size_h', 400);
   update_option('large_size_w', 1400);
   update_option('large_size_h', 0);
 
