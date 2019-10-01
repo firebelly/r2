@@ -1,6 +1,7 @@
 <?php
 use Roots\Sage\Setup;
 use Roots\Sage\Wrapper;
+$breadcrumb = (is_front_page()) ? 'R2 Companies' : $post->post_title ;
 ?>
 <!DOCTYPE html>
 <!--[if IE 9 ]> <html class="no-js ie9 lt-ie10" lang="en"> <![endif]-->
@@ -17,7 +18,7 @@ use Roots\Sage\Wrapper;
       ?>
       <div class="site-wrap transition-fade" role="document">
         <main class="site-main" role="main">
-          <div class="breadcrumbs">/ <?= $post->post_title ?></div>
+          <div class="breadcrumbs">/ <?= $breadcrumb ?></div>
           <?php include Wrapper\template_path(); ?>
         </main><!-- /.main -->
       </div><!-- /.site-wrap -->

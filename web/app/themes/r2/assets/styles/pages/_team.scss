@@ -144,6 +144,17 @@
     }
   }
 
+  .modal-member-name {
+    @include h4;
+    top: 4px;
+    margin: 0;
+    right: 16px;
+    position: absolute;
+    color: color('black');
+    transform: rotate(90deg) translateX(100%);
+    transform-origin: top right;
+  }
+
   .modal-content {
     overflow: auto;
     max-height: 100vh;
@@ -211,6 +222,16 @@
         max-height: 100vh;
         padding: $padding-md;
         -webkit-overflow-scrolling: touch;
+
+        &::before {
+          top: 0;
+          bottom: 0;
+          width: 1px;
+          content: '';
+          right: $beat;
+          position: absolute;
+          background-color: color('black');
+        }
       }
       @include media-lg {
         padding: $padding-lg;

@@ -18,6 +18,7 @@
 
   @include media-md {
     display: flex;
+    padding: 135px 0 65px;
 
     > * {
       max-width: 50%;

@@ -14,6 +14,22 @@
     text-decoration: none;
   }
 
+  .contact-link {
+    @include h4;
+    right: 16px;
+    display: none;
+    position: fixed;
+    content: 'contact';
+    color: color('black');
+    bottom: $padding-lg - $beat;
+    transform: rotate(90deg) translateY(100%);
+    transform-origin: bottom right;
+
+    @include media-md {
+      display: block;
+    }
+  }
+
   @include media-md {
     padding: $padding-lg 0 80px;
 
@@ -27,16 +43,6 @@
         top: -$padding-lg;
         position: absolute;
         background-color: color('white');
-      }
-      &::after {
-        @include h4;
-        right: $beat;
-        top: -$padding-lg;
-        content: 'contact';
-        position: absolute;
-        color: color('black');
-        transform: rotate(90deg) translateX(-100%);
-        transform-origin: top right;
       }
     }
   }

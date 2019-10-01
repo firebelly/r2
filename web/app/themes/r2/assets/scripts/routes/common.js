@@ -13,7 +13,9 @@ export default {
     const $body = $('body');
     const $siteHeader = $('#site-header');
     const $siteNav = $('#site-nav');
-    var $siteOverlay = '<div id="site-overlay"></div>';
+    var $siteOverlay = '<div id="site-overlay"></div>',
+        isAnimating = false,
+        modalOpen = false;
 
     // Resize Vars
     var transitionElements = [],
@@ -29,6 +31,7 @@ export default {
     transitionElements = [$siteNav];
 
     // JavaScript to be fired on all pages
+    _initSmoothScroll();
     _initActiveToggle();
     _initSiteNav();
     _initFormFunctions();
@@ -42,25 +45,11 @@ export default {
     $(document).keyup(function(e) {
       // Escape key
       if (e.keyCode === 27) {
-        _closeTeamModal();
+        if (modalOpen) {
+          _closeTeamModal();
+        }
         if ($body.is('.filters-open')) {
           _closeFilters();
-        }
-        // _hideSiteOverlay();
-        // _closeSiteNav();
-      }
-
-      // Left Arrow
-      if (e.keyCode === 37) {
-        if ($body.is('.modal-open')) {
-          // _changeProjectModal('previous');
-        }
-      }
-
-      // Right Arrow
-      if (e.keyCode === 39) {
-        if ($body.is('.modal-open')) {
-          // _changeProjectModal('next');
         }
       }
     });
@@ -109,7 +98,7 @@ export default {
     }
 
     function _initSmoothScroll() {
-      $(document).on('click', '.smooth-scroll', function(e) {
+      $body.on('click', '.smooth-scroll', function(e) {
         e.preventDefault();
         _scrollBody($($(this).attr('href')));
       });
@@ -338,27 +327,32 @@ export default {
         }
       });
 
-      $(document).on('click', '#team-modal .modal-close, body.modal-open #site-overlay', function() {
-        _closeTeamModal();
+      $(document).on('click', '#team-modal .modal-close, #site-overlay', function() {
+        if (modalOpen) {
+          _closeTeamModal();
+        }
       });
     }
 
     function _openTeamModal($member) {
       if (!$('.team-modal').length) {
-        $('body').append('<div id="team-modal" class="team-modal"><button class="modal-close"><svg aria-hidden="true" role="presentation"><use xlink:href="#icon-close-condensed"/></svg></button><div class="modal-content"><div class="member-meta"><div class="member-info"></div></div><div class="member-bio"></div></div></div>');
+        $('body').append('<div id="team-modal" class="team-modal"><button class="modal-close"><svg aria-hidden="true" role="presentation"><use xlink:href="#icon-close-condensed"/></svg></button><div class="modal-content"><h4 class="modal-member-name"></h4><div class="member-meta"><div class="member-info"></div></div><div class="member-bio"></div></div></div>');
       }
 
       var $teamModal = $('#team-modal');
 
       // Clear Modal Content
+      $teamModal.find('.modal-member-name').html('');
       $teamModal.find('.member-meta').html('');
       $teamModal.find('.member-bio').html('');
 
       // Get Member Data
+      var memberName = $member.find('.member-name').text();
       var memberPhoto = $member.attr('data-photo');
       var memberInfo = $member.find('.member-info');
       var memberBio = $member.find('.member-bio').html();
 
+      $teamModal.find('.modal-member-name').html('/ ' + memberName);
       $teamModal.find('.member-meta').append('<div class="member-photo" style="background-image:url('+ memberPhoto +');"></div>');
       memberInfo.clone().appendTo('#team-modal .member-meta');
       $teamModal.find('.member-bio').html(memberBio);
@@ -366,9 +360,11 @@ export default {
       $body.addClass('modal-open');
       _showSiteOverlay();
       $teamModal.velocity('stop').velocity({
-          translateX: [0, '100%'],
+          opacity: [1, 0],
+          translateY: [0, 50],
+          // translateX: [0, '100%'],
           translateZ: 0,
-          skewX: [0, '-10deg'],
+          // skewX: [0, '-10deg'],
         }, {
           duration: 400,
           display: 'block',
@@ -378,13 +374,17 @@ export default {
         }
       )
       _disableScroll();
+      modalOpen = true;
     }
 
     function _closeTeamModal() {
+      modalOpen = false;
       $('#team-modal').removeClass('-active').velocity({
-          translateX: '110%',
+          opacity: [0, 1],
+          translateY: [50, 0],
+          // translateX: '110%',
           translateZ: 0,
-          skewX: ['10deg', [1,.92,.43,1.35], 0]
+          // skewX: ['10deg', [1,.92,.43,1.35], 0]
         }, {
           duration: 350,
           display: 'none',

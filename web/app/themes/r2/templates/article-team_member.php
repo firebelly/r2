@@ -12,7 +12,7 @@ $bio = get_post_meta($team_member->ID, '_cmb2_member_bio', true);
   <div class="-inner">
     <div class="member-image" style="background-image:url('<?= $image ?>');"></div>
     <div class="member-info">
-      <h4><?= $team_member->post_title ?></h4>
+      <h4 class="member-name"><?= $team_member->post_title ?></h4>
       <h5><?= $title ?></h5>
       <div class="contact-info">
         <?php if (!empty($email)): ?>

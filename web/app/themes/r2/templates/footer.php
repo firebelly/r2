@@ -7,8 +7,10 @@
   $facebook = \Firebelly\SiteOptions\get_option('facebook_id');
 ?>
 
-<footer class="site-footer" role="contentinfo">
+<footer id="site-footer" class="site-footer" role="contentinfo">
   <div class="container">
+    <a href="#contact" class="contact-link">Contact</a>
+
     <div class="grid">
       <div class="newsletter-column col-md-1-2">
         <div class="-inner">
@@ -17,7 +19,7 @@
         </div>
       </div>
 
-      <div class="col-md-1-2 grid spaced">
+      <div id="contact" class="col-md-1-2 grid spaced">
         <div class="col-lg-1-2">
           <h2 class="footer-logo"><svg class="icon r2-companies" aria-hidden="true" role="presentation"><use xlink:href="#r2-companies"/></svg></h2>
           <?php if (!empty($headquarters)): ?>

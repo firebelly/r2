@@ -18,6 +18,7 @@ body {
   @include font-relative-faux;
   background-color: color('white');
   text-rendering: optimizeLegibility;
+  transition: background-color .75s .1s ease-out;
 }
 
 p {
@@ -81,11 +82,11 @@ html.is-animating .transition-fade {
 // Breadcrumbs
 .breadcrumbs {
   @include h4;
+  top: 0;
   z-index: 10;
-  right: $beat;
+  right: 16px;
   display: none;
-  top: -$header-md;
-  position: absolute;
+  position: fixed;
   text-transform: uppercase;
   transform: rotate(90deg) translateX(calc(100% + #{$beat}));
   transform-origin: top right;
