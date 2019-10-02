@@ -193,20 +193,20 @@ class FbSiteOptions {
     ]);
 
     $cmb->add_field( array(
-      'name' => __( 'Instagram ID', 'cmb2' ),
-      'id'   => 'instagram_id',
-      'type' => 'text',
+      'name' => __( 'Instagram URL', 'cmb2' ),
+      'id'   => 'instagram_url',
+      'type' => 'text_url',
       'before_row' => '<h3>Social Media</h3>',
     ) );
     $cmb->add_field( array(
-      'name' => __( 'Twitter ID', 'cmb2' ),
-      'id'   => 'twitter_id',
-      'type' => 'text',
+      'name' => __( 'Twitter URL', 'cmb2' ),
+      'id'   => 'twitter_url',
+      'type' => 'text_url',
     ) );
     $cmb->add_field( array(
-      'name' => __( 'Facebook ID', 'cmb2' ),
-      'id'   => 'facebook_id',
-      'type' => 'text',
+      'name' => __( 'LinkedIn URL', 'cmb2' ),
+      'id'   => 'linkedin_url',
+      'type' => 'text_url',
     ) );
 
     $cmb->add_field( array(

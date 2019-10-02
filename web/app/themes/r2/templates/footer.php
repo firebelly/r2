@@ -2,9 +2,9 @@
   $headquarters = \Firebelly\SiteOptions\get_option('headquarters');
   $contact_phone = \Firebelly\SiteOptions\get_option('contact_phone');
   $contact_emails = \Firebelly\SiteOptions\get_option('contact_emails');
-  $instagram = \Firebelly\SiteOptions\get_option('instagram_id');
-  $twitter = \Firebelly\SiteOptions\get_option('twitter_id');
-  $facebook = \Firebelly\SiteOptions\get_option('facebook_id');
+  $instagram = \Firebelly\SiteOptions\get_option('instagram_url');
+  $twitter = \Firebelly\SiteOptions\get_option('twitter_url');
+  $linkedin = \Firebelly\SiteOptions\get_option('linkedin_url');
 ?>
 
 <footer id="site-footer" class="site-footer" role="contentinfo">
@@ -60,13 +60,13 @@
             <?php if (!empty($instagram) || !empty($twitter) || !empty($facebook)): ?>
               <ul class="social-media-links">
                 <?php if (!empty($instagram)): ?>
-                  <li><a href="https://instagram.com/<?= $instagram ?>"><svg class="icon icon-instagram" aria-hidden="true" role="presentation"><use xlink:href="#icon-instagram"/></svg><span class="visually-hidden">Instagram</span></a></li>
+                  <li><a href="<?= $instagram ?>"><svg class="icon icon-instagram" aria-hidden="true" role="presentation"><use xlink:href="#icon-instagram"/></svg><span class="visually-hidden">Instagram</span></a></li>
                 <?php endif ?>
                 <?php if (!empty($twitter)): ?>
-                  <li><a href="https://twitter/com/<?= $twitter ?>"><svg class="icon icon-twitter" aria-hidden="true" role="presentation"><use xlink:href="#icon-twitter"/></svg><span class="visually-hidden">Twitter</span></a></li>
+                  <li><a href="<?= $twitter ?>"><svg class="icon icon-twitter" aria-hidden="true" role="presentation"><use xlink:href="#icon-twitter"/></svg><span class="visually-hidden">Twitter</span></a></li>
                 <?php endif ?>
-                <?php if (!empty($facebook)): ?>
-                  <li><a href="https://facebook.com/<?= $facebook ?>"><svg class="icon icon-facebook" aria-hidden="true" role="presentation"><use xlink:href="#icon-facebook"/></svg><span class="visually-hidden">Facebook</span></a></li>
+                <?php if (!empty($linkedin)): ?>
+                  <li><a href="<?= $linkedin ?>"><svg class="icon icon-linkedin" aria-hidden="true" role="presentation"><use xlink:href="#icon-linkedin"/></svg><span class="visually-hidden">Facebook</span></a></li>
                 <?php endif ?>
               </ul>
             <?php endif ?>

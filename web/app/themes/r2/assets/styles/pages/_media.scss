@@ -1,0 +1,60 @@
+// Media Page
+
+.page.media {
+  .media-sources {
+    @extend .semantic-list;
+    display: flex;
+
+    li {
+      display: flex;
+      margin: 0 #{$beat * 2} #{$beat * 2} 0;
+
+      img {
+        width: 100%;
+        max-width: 100px;
+      }
+    }
+
+    @include media-md {
+      li {
+        margin: 0 0 42px 84px;
+      }
+    }
+  }
+
+  .media-publications {
+    @extend .semantic-list;
+    margin: #{$beat * 10} 0 282px;
+    border-bottom: 1px solid color('black');
+
+    .year {
+      border-top: 1px solid color('black');
+      padding: #{$beat * 3} 0 #{$beat * 5};
+
+      > .container {
+        display: flex;
+      }
+
+      .year-label {
+        @include h5;
+        margin: 0;
+        width: columns(1,16);
+      }
+
+      ul {
+        flex-grow: 1;
+        @extend .semantic-list;
+        padding-left: columns(2,16);
+
+        li {
+          a {
+            text-decoration: none;
+            &:hover {
+              text-decoration: underline;
+            }
+          }
+        }
+      }
+    }
+  }
+}

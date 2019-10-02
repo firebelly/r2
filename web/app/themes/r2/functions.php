@@ -19,19 +19,19 @@ $sage_includes = [
 ];
 
 $firebelly_includes = [
-  'lib/fb-disable-comments.php',   // Disables WP comments in admin and frontend
-  'lib/fb-init.php',               // Various setup and config
-  'lib/fb-metatags.php',           // SEO/OG Metatags
-  'lib/fb-media.php',              // Media functions (image size definitions, image helpers)
-  'lib/fb-utils.php',              // Utility functions
-  'lib/fb-ajax.php',               // AJAX functions
-  'lib/fb-cmb2.php',               // CMB2 helper functions
-  'lib/fb-page-fields.php',        // Extra fields for pages
-  'lib/fb-post-fields.php',        // Extra fields for posts + CPTs
-  'lib/fb-site-options.php',       // Custom site options page for admin
-  'lib/cpt-project.php',           // Project CPT
-  'lib/cpt-team-member.php',       // Team Member CPT
-  'lib/cpt-media.php',             // Media CPT
+  'lib/fb-disable-comments.php',    // Disables WP comments in admin and frontend
+  'lib/fb-init.php',                // Various setup and config
+  'lib/fb-metatags.php',            // SEO/OG Metatags
+  'lib/fb-media.php',               // Media functions (image size definitions, image helpers)
+  'lib/fb-utils.php',               // Utility functions
+  'lib/fb-ajax.php',                // AJAX functions
+  'lib/fb-cmb2.php',                // CMB2 helper functions
+  'lib/fb-page-fields.php',         // Extra fields for pages
+  'lib/fb-post-fields.php',         // Extra fields for posts + CPTs
+  'lib/fb-site-options.php',        // Custom site options page for admin
+  'lib/cpt-project.php',            // Project CPT
+  'lib/cpt-team-member.php',        // Team Member CPT
+  'lib/cpt-media-publication.php',  // Media CPT
 ];
 
 $sage_includes = array_merge($sage_includes, $firebelly_includes);

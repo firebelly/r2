@@ -211,9 +211,9 @@ function hide_editor() {
   }
   // Hide the editor on a page with a specific page template
   // Get the name of the Page Template file.
-  $template_file = get_post_meta($post_id, '_wp_page_template', true);
-  if($template_file == 'page-media.php'){ // the filename of the page template
-    remove_post_type_support('page', 'editor');
-  }
+  // $template_file = get_post_meta($post_id, '_wp_page_template', true);
+  // if($template_file == 'page-media.php'){ // the filename of the page template
+  //   remove_post_type_support('page', 'editor');
+  // }
 }
 add_action( 'admin_head', __NAMESPACE__ . '\hide_editor' );

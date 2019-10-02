@@ -52,6 +52,48 @@ function metaboxes() {
     'desc'    => 'Paste in the video ID from vimeo, ex: https://vimeo.com/<strong>359676836</strong>',
     'type'    => 'text_small',
   ]);
+
+  /**
+    * Media Page Fields
+    */
+  $media_fields = new_cmb2_box([
+    'id'            => $prefix . 'media_fields',
+    'title'         => esc_html__('Featured Media Sources', 'cmb2'),
+    'show_on'       => ['key' => 'page-template', 'value' => ['page-media.php']],
+    'object_types'  => ['page'],
+    'context'       => 'normal',
+    'priority'      => 'high',
+  ]);
+  $media_sources_group = $media_fields->add_field([
+    'id'              => $prefix .'media_sources',
+    'type'            => 'group',
+    'options'         => [
+      'group_title'   => __( 'Source {#}', 'cmb2' ),
+      'add_button'    => __( 'Add Another Source', 'cmb2' ),
+      'remove_button' => __( 'Remove Source', 'cmb2' ),
+      'sortable'      => true,
+    ],
+  ]);
+  $media_fields->add_group_field( $media_sources_group, [
+    'name' => 'Source Title',
+    'id'   => 'title',
+    'type' => 'text',
+  ]);
+  $media_fields->add_group_field( $media_sources_group, [
+    'name' => 'Source Logo',
+    'id'   => 'logo',
+    'type' => 'file',
+    'options' => array(
+      'url' => false,
+    ),
+    'query_args' => array(
+      'type' => array(
+        'image/svg',
+        'image/png',
+      ),
+    ),
+    'preview_size' => 'small',
+  ]);
 }
 
 function sanitize_text_callback( $value, $field_args, $field ) {
