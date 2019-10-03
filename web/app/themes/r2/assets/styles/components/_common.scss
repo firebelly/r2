@@ -20,6 +20,12 @@
   @include p1;
   color: inherit;
   text-decoration: underline;
+  transition: color .2s ease-out;
+
+  &:hover,
+  &:focus {
+    color: color('red');
+  }
 
   @each $color, $value in $colors {
     &.-#{$color} {

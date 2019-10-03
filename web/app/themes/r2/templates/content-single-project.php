@@ -4,7 +4,6 @@
   $title = Titles\title();
   $title_words = explode(' ',trim($title));
   $title_first = $title_words[0];
-  $title_first_is_number = is_numeric(substr($title_first, 0, 1));
   $title_second = preg_replace("/^(\w+\s)/", "", $title);
   $locality = get_post_meta($post->ID, '_cmb2_locality', true);
   $description = get_post_meta($post->ID, '_cmb2_description', true);
@@ -36,7 +35,7 @@
   <div class="top-row grid">
     <div class="col-md-1-2">
       <div class="container">
-        <h1 class="project-title"><span class="first<?= $title_first_is_number === true ? ' numeral' : '' ?>"><?= $title_first ?></span> <span class="second"><?= $title_second ?></span></h1>
+        <h1 class="project-title"><span class="first"><?= $title_first ?></span> <span class="second"><?= $title_second ?></span></h1>
         <?php if (!empty($locality)): ?>
           <p class="locality"><?= $locality ?></p>
         <?php endif ?>
@@ -119,9 +118,13 @@
   <div class="comparison-images">
     <div class="-inner container">
       <?php foreach ($project_comparison_images as $image): ?>
+        <?php
+          $beforeImage = wp_get_attachment_image_src($image['before_id'], 'project_large', false, '');
+          $afterImage = wp_get_attachment_image_src($image['after_id'], 'project_large', false, '');
+        ?>
         <div class="cocoen">
-          <img src="<?= $image['before'] ?>" alt="">
-          <img src="<?= $image['after'] ?>" alt="">
+          <img src="<?= $beforeImage[0] ?>" alt="">
+          <img src="<?= $afterImage[0] ?>" alt="">
         </div>
       <?php endforeach ?>
     </div>

@@ -74,11 +74,7 @@ body.single-project {
       }
 
       .first {
-        @include h2;
-
-        &.numeral {
-          @include numbers-lg;
-        }
+        @include numbers-lg;
       }
       .second {
         @include h5;
@@ -87,11 +83,13 @@ body.single-project {
     }
 
     .locality {
+      @include h5;
       margin: 0;
     }
 
     .square-footage {
       @include dashed-rule(after);
+      @include p1;
       padding-bottom: 1em;
       display: inline-block;
       margin: $padding-md 0 0;
@@ -146,6 +144,7 @@ body.single-project {
         }
 
         a {
+          @include p1;
           color: color('red');
         }
       }
@@ -210,11 +209,11 @@ body.single-project {
 
 .project-navigation {
   margin: $padding-md 0 0;
-  border-top: 1px solid color('black');
+  border-top: 1px solid color('gray-mid');
 
   > div > .-inner {
-    padding-top: $padding-md;
-    padding-bottom: $padding-md;
+    padding-top: $beat * 5;
+    padding-bottom: $beat * 5;
   }
 
   .next-container {
@@ -224,18 +223,18 @@ body.single-project {
       bottom: 0;
       left: -1px;
       width: 1px;
-      // z-index: 1;
       content: '';
       position: absolute;
-      border-left: 1px solid color('black');
+      border-left: 1px solid color('gray-mid');
     }
   }
 
   .project-link {
-    margin: 0 0 $padding-md;
+    margin: 0 0 85px;
 
     a {
       color: color('red');
+      text-decoration: underline;
     }
   }
 
@@ -247,6 +246,7 @@ body.single-project {
     }
     .first {
       @include h3;
+      margin-bottom: 12px;
     }
     .second {
       @include h4;
@@ -259,7 +259,7 @@ body.single-project {
   }
 
   @include media-md {
-    margin-top: $padding-lg;
+    margin-top: $beat * 15;
 
     .next-thumb {
       height: 0;
@@ -268,5 +268,35 @@ body.single-project {
       margin-left: -$padding-lg;
       width: calc(100% + #{$padding-lg});
     }
+  }
+}
+
+// Slider icon
+.cocoen-drag {
+  background-color: transparent;
+  &::before,
+  &::after {
+    left: 50%;
+    width: 2px;
+    content: '';
+    height: 40%;
+    position: absolute;
+    background-color: color('red');
+  }
+  &::before {
+    top: 0;
+    margin: 0;
+    border: none;
+  }
+  &::after {
+    bottom: 0;
+  }
+  svg {
+    top: 0;
+    left: 50%;
+    width: 120px;
+    height: 100%;
+    position: absolute;
+    transform: translateX(-50%);
   }
 }

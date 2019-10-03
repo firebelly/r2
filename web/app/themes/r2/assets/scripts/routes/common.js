@@ -400,6 +400,10 @@ export default {
 
     function _initCocoen() {
       $('.cocoen').cocoen();
+
+      if ($('.cocoen-drag').length) {
+        $('.cocoen-drag').append('<svg class="slider" aria-hidden="true" role="presentation"><use xlink:href="#slider"/></svg>');
+      }
     }
 
     // Disabling transitions on certain elements on resize
