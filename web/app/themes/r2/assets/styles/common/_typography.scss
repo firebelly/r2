@@ -12,6 +12,16 @@
   font-style: normal;
 }
 @font-face {
+  font-family: 'relative-medium';
+  src: url('../fonts/relative-medium.eot');
+  src: url('../fonts/relative-medium.eot?#iefix') format('embedded-opentype'),
+       url('../fonts/relative-medium.woff2') format('woff2'),
+       url('../fonts/relative-medium.woff') format('woff'),
+       url('../fonts/relative-medium.ttf') format('truetype');
+  font-weight: normal;
+  font-style: normal;
+}
+@font-face {
   font-family: 'R2 Numbers';
   src: url('../fonts/r2numbers-display-webfont.woff2') format('woff2'),
        url('../fonts/r2numbers-display-webfont.woff') format('woff');
@@ -20,11 +30,11 @@
 }
 // Font-family mixins
 @mixin font-relative-faux {
-  font-family: 'relative-faux', serif;
+  font-family: 'relative-faux', sans-serif;
 }
 @mixin font-relative-medium {
   font-weight: 500;
-  font-family: 'Relative-Medium', sans-serif;
+  font-family: 'relative-medium', sans-serif;
 }
 @mixin font-numbers {
   font-family: 'R2 Numbers';
@@ -113,7 +123,7 @@
 
 @mixin numbers-lg {
   @include font-numbers;
-  @include paragraph-style(96,96);
+  @include paragraph-style(96,96, 0, normal, uppercase);
 }
 .numbers-lg {
   @include numbers-lg;

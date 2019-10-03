@@ -27,6 +27,7 @@ vendor/*
 !web/app/themes/*/assets/styles/vendor
 web/app/themes/*/dist
 web/app/themes/*/bower_components
+web/app/themes/r2/assets/fonts
 
 # Node Package Manager
 node_modules

@@ -74,11 +74,7 @@ body.single-project {
       }
 
       .first {
-        @include h2;
-
-        &.numeral {
-          @include numbers-lg;
-        }
+        @include numbers-lg;
       }
       .second {
         @include h5;

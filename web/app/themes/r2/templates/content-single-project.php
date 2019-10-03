@@ -4,7 +4,6 @@
   $title = Titles\title();
   $title_words = explode(' ',trim($title));
   $title_first = $title_words[0];
-  $title_first_is_number = is_numeric(substr($title_first, 0, 1));
   $title_second = preg_replace("/^(\w+\s)/", "", $title);
   $locality = get_post_meta($post->ID, '_cmb2_locality', true);
   $description = get_post_meta($post->ID, '_cmb2_description', true);
@@ -36,7 +35,7 @@
   <div class="top-row grid">
     <div class="col-md-1-2">
       <div class="container">
-        <h1 class="project-title"><span class="first<?= $title_first_is_number === true ? ' numeral' : '' ?>"><?= $title_first ?></span> <span class="second"><?= $title_second ?></span></h1>
+        <h1 class="project-title"><span class="first"><?= $title_first ?></span> <span class="second"><?= $title_second ?></span></h1>
         <?php if (!empty($locality)): ?>
           <p class="locality"><?= $locality ?></p>
         <?php endif ?>
