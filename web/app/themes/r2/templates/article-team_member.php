@@ -8,7 +8,7 @@ $phone = get_post_meta($team_member->ID, '_cmb2_member_phone', true);
 $linkedin = get_post_meta($team_member->ID, '_cmb2_member_linkedin', true);
 $bio = get_post_meta($team_member->ID, '_cmb2_member_bio', true);
 ?>
-<article class="team-member grid-item <?= $category->slug ?><?= $category->slug === 'principle' ? ' with-modal' : ''; ?> col-md-1-2 col-lg-1-4" data-photo="<?= $image ?>">
+<article class="team-member grid-item <?= $category->slug ?><?= $category->slug === 'principal' ? ' with-modal' : ''; ?> col-md-1-2 col-lg-1-4" data-photo="<?= $image ?>">
   <div class="-inner">
     <div class="member-image" style="background-image:url('<?= $image ?>');"></div>
     <div class="member-info">
@@ -26,7 +26,7 @@ $bio = get_post_meta($team_member->ID, '_cmb2_member_bio', true);
         <?php endif ?>
       </div>
     </div>
-    <?php if ($category->slug === 'principle' && !empty($bio)): ?>
+    <?php if ($category->slug === 'principal' && !empty($bio)): ?>
       <div class="member-bio">
         <div class="-inner">
           <?= apply_filters('the_content', $bio) ?>
