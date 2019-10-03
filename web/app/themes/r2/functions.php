@@ -32,6 +32,7 @@ $firebelly_includes = [
   'lib/cpt-project.php',            // Project CPT
   'lib/cpt-team-member.php',        // Team Member CPT
   'lib/cpt-media-publication.php',  // Media CPT
+  'lib/r2-importer.php',
 ];
 
 $sage_includes = array_merge($sage_includes, $firebelly_includes);
