@@ -2,6 +2,27 @@
 
 body {
   padding-top: $header-md;
+
+  // WP Admin Bar
+  &.logged-in {
+    padding-top: $header-md + $wpab-sm;
+    .site-header {
+      top: $wpab-sm;
+    }
+    .nav-toggle {
+      top: ($beat * 2) + $wpab-sm;
+    }
+
+    @include min-screen($wpab-bp) {
+      padding-top: $header-md + $wpab-md;
+      .site-header {
+        top: $wpab-md;
+      }
+      .nav-toggle {
+        top: ($beat * 2) + $wpab-md;
+      }
+    }
+  }
 }
 
 .site-header {

@@ -20,7 +20,11 @@ const swup = new Swup({
       animateScroll: false
     }),
     // new SwupDebugPlugin()
-  ]
+  ],
+  linkSelector:
+    'a[href^="' +
+    window.location.origin +
+    '"]:not([href*="wp-admin"]):not([data-no-swup]), a[href^="/"]:not([href*="wp-admin"]):not([data-no-swup]), a[href^="#"]:not([href*="wp-admin"]):not([data-no-swup])'
 });
 
 /** Populate Router instance with DOM routes */

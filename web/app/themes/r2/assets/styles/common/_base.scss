@@ -12,6 +12,7 @@ body {
 }
 
 body {
+  @include smooth;
   font-size: 12px;
   line-height: 20px;
   color: color('black');

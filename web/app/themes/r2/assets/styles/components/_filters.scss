@@ -1,12 +1,11 @@
 // Filters
 
 .filters {
-  @include clearfix;
+  position: relative;
   padding-bottom: $beat * 3;
 
   .toggle-container {
     @include media-md {
-      float: left;
       width: columns(2,16);
     }
   }
@@ -14,6 +13,9 @@
   .filters-toggle {
     @extend .button-reset;
     @include h4;
+    z-index: 3;
+    position: relative;
+    background: color('white');
 
     svg {
       top: -2px;
@@ -31,13 +33,31 @@
   }
 
   .filters-container {
-    @include clearfix;
+    top: 0;
+    left: 0;
+    z-index: 2;
+    width: 100%;
     display: none;
-    position: relative;
+    position: absolute;
+    padding-top: $padding-md;
+    padding-bottom: $padding-md;
+    &::before {
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      content: '';
+      position: absolute;
+      background-color: rgba(color('white'),.95);
+    }
+
+    > * {
+      position: relative;
+    }
 
     @include media-md {
-      float: left;
-      width: columns(14,16);
+      padding-top: 0;
+      padding-left: columns(2,16);
     }
   }
 

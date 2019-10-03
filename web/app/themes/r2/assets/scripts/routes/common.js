@@ -49,7 +49,7 @@ export default {
           _closeTeamModal();
         }
         if ($body.is('.filters-open')) {
-          _closeFilters();
+          _closeFilters($('.filters.-active'));
         }
       }
     });
@@ -320,7 +320,7 @@ export default {
     }
 
     function _initTeamModal() {
-      $('.team-member.principle').on('click', function(e) {
+      $('.team-member.principal').on('click', function(e) {
         var $target = $(e.target);
         if (!$target.is('a')) {
           _openTeamModal($(this));

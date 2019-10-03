@@ -72,7 +72,7 @@
     }
 
     // Hover State
-    &.principle {
+    &.principal {
       cursor: pointer;
 
       &.-hover,
@@ -88,14 +88,14 @@
 
 // Team Modal
 .team-modal {
-  top: 0;
   right: 0;
+  top: 100px;
   z-index: 20;
   display: none;
   position: fixed;
-  max-height: 100vh;
   will-change: transform;
   transform-origin: bottom left;
+  max-height: calc(100vh - 100px);
   background-color: color('black');
 
   &.-active {

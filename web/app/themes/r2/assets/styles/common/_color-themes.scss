@@ -4,14 +4,31 @@
   color: color($secondary);
   background-color: color($primary);
 
-  .site-header {
-    .site-logo {
-      svg {
-        fill: color($secondary);
-      }
-    }
+  // Background Color Primary
+  .filters .filters-toggle {
+    background-color: color($primary);
+  }
+  // Background Color Secondary
+  .nav-toggle::before,
+  .nav-toggle::after,
+  .site-main::before {
+    background-color: color($secondary);
   }
 
+  // Text Color Secondary
+  .site-footer .contact-link,
+  .filters button.filters-close {
+    color: color($secondary);
+  }
+
+  // SVG fill Secondary
+  .site-header .site-logo svg,
+  .filters .filters-toggle svg,
+  .filters button.filter svg {
+    fill: color($secondary);
+  }
+
+  // Site Nav
   .site-nav {
     @include media-nav {
       ul a {
@@ -21,32 +38,9 @@
     }
   }
 
-  .nav-toggle {
-    &::before,
-    &::after {
-      background-color: color($secondary);
-    }
-  }
-
-  .site-main::before {
-    background-color: color($secondary);
-  }
-
-  .site-footer .contact-link {
-    color: color($secondary);
-  }
-
-  .filters {
-    .filters-toggle,
-    button.filter {
-      svg {
-        fill: color($secondary);
-      }
-    }
-
-    button.filters-close {
-      color: color($secondary);
-    }
+  // Filters
+  .filters .filters-container::before {
+    background-color: rgba(color($primary),.95);
   }
 }
 
