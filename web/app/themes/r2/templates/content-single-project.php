@@ -118,9 +118,13 @@
   <div class="comparison-images">
     <div class="-inner container">
       <?php foreach ($project_comparison_images as $image): ?>
+        <?php
+          $beforeImage = wp_get_attachment_image_src($image['before_id'], 'project_large', false, '');
+          $afterImage = wp_get_attachment_image_src($image['after_id'], 'project_large', false, '');
+        ?>
         <div class="cocoen">
-          <img src="<?= $image['before'] ?>" alt="">
-          <img src="<?= $image['after'] ?>" alt="">
+          <img src="<?= $beforeImage[0] ?>" alt="">
+          <img src="<?= $afterImage[0] ?>" alt="">
         </div>
       <?php endforeach ?>
     </div>

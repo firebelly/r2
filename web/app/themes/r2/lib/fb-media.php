@@ -20,8 +20,8 @@ function set_image_sizes() {
   add_image_size('banner', 1800, 850, true);
   add_image_size('project_nav', 870, 400, true);
   add_image_size('project_small', 620, 400, true);
-  add_image_size('project_medium', 1400, 0, false);
-  add_image_size('project_large', 1400, 0, false);
+  add_image_size('project_medium', 1260, 0, false);
+  add_image_size('project_large', 1260, 800, true);
 }
 
 /**

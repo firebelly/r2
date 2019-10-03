@@ -12,10 +12,16 @@
 
   a {
     text-decoration: none;
+    transition: color .2s ease-out;
+    &:hover,
+    &:focus {
+      color: color('red');
+    }
   }
 
   .contact-link {
     @include h4;
+    z-index: 1;
     right: 16px;
     display: none;
     position: fixed;

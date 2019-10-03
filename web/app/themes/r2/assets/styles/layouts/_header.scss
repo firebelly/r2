@@ -1,10 +1,7 @@
 // Header
 
 body {
-  padding-top: $header-sm;
-  @include media-nav {
-    padding-top: $header-md;
-  }
+  padding-top: $header-md;
 }
 
 .site-header {
@@ -14,7 +11,7 @@ body {
   height: $header-sm;
   position: absolute;
   @include media-nav {
-    padding-top: 17px;
+    padding-top: $beat;
     height: $header-md;
   }
 

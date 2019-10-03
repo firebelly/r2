@@ -99,7 +99,7 @@
 
 @mixin h5 {
   @include font-relative-medium;
-  @include paragraph-style(10, 20, .1475em, normal, uppercase);
+  @include paragraph-style(10, 20, .1475em, 500, uppercase);
 }
 .h5 {
   @include h5;
@@ -107,7 +107,7 @@
 
 @mixin p1 {
   @include font-relative-faux;
-  @include paragraph-style(12, 20, .1025em, normal, capitalize)
+  @include paragraph-style(12, 20, .11em)
 }
 .p1 {
   @include p1;
