@@ -5,7 +5,7 @@
   background-color: color($primary);
 
   // Background Color Primary
-  .filters .filters-toggle {
+  .page-header::after {
     background-color: color($primary);
   }
   // Background Color Secondary

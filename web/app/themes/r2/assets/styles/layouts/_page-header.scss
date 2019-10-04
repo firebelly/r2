@@ -1,7 +1,19 @@
 // Page Header
 
 .page-header {
+  position: relative;
   padding: 34px 0 45px;
+  &::after {
+    top: 0;
+    right: 0;
+    bottom: 0;
+    opacity: 0;
+    width: 100%;
+    content: '';
+    position: absolute;
+    background-color: color('white');
+    transition: opacity .2s ease-out;
+  }
 
   h1 {
     @include h2;

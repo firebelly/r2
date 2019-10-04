@@ -299,14 +299,14 @@ export default {
       var $container = $filters.find('.filters-container');
       $filters.addClass('-active');
       $body.addClass('filters-open');
-      $container.velocity('slideDown', { duration: 250, easing: 'easeOutSine' });
+      $container.velocity('fadeIn', { duration: 250, easing: 'easeOut' });
     }
 
     function _closeFilters($filters) {
       var $container = $filters.find('.filters-container');
       $filters.removeClass('-active');
       $body.removeClass('filters-open');
-      $container.velocity('slideUp', { duration: 250, easing: 'easeOutSine' });
+      $container.velocity('fadeOut', { duration: 250, easing: 'easeOut' });
     }
 
     function _initCarousels() {

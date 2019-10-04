@@ -15,7 +15,6 @@
     @include h4;
     z-index: 3;
     position: relative;
-    background: color('white');
 
     svg {
       top: -2px;
@@ -116,11 +115,20 @@
     @extend .button-reset;
     @include p1;
     top: 0;
-    right: 0;
     margin-top: -7px;
+    right: $padding-md;
     position: absolute;
     text-decoration: underline;
     transform: translateX(100%) rotate(90deg);
     transform-origin: top left;
+  }
+}
+
+// Filters Open Styles
+body.filters-open {
+  .page-header {
+    &::after {
+      opacity: .95;
+    }
   }
 }
