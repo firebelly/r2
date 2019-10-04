@@ -56,9 +56,14 @@
         padding-left: columns(2,16);
 
         li {
+          @include p1;
+
           a {
             text-decoration: none;
-            &:hover {
+            transition: color .2s ease-out;
+            &:hover,
+            &:focus {
+              color: color('red');
               text-decoration: underline;
             }
           }
