@@ -31,7 +31,7 @@
   @include media-md {
     display: flex;
     align-items: flex-end;
-    padding: 135px 0 65px;
+    padding: 135px 0 $padding-lg;
 
     > * {
       max-width: 50%;

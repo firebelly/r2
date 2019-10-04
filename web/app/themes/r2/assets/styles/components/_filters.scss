@@ -88,9 +88,14 @@
     @extend .button-reset;
     @include p1;
     position: relative;
+    transition: color .2s ease-out;
 
     &:hover {
+      color: color('red');
       text-decoration: underline;
+      .icon {
+        fill: color('red');
+      }
     }
 
     .icon {
@@ -101,6 +106,7 @@
       right: -$beat;
       position: absolute;
       fill: color('black');
+      transition: fill .2s ease-out;
     }
 
     &.is-checked {
@@ -119,8 +125,14 @@
     right: $padding-md;
     position: absolute;
     text-decoration: underline;
+    transition: color .2s ease-out;
     transform: translateX(100%) rotate(90deg);
     transform-origin: top left;
+
+    &:hover,
+    &:focus {
+      color: color('red');
+    }
   }
 }
 
