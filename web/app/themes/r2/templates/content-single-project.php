@@ -12,6 +12,7 @@
   $callout_copy = get_post_meta($post->ID, '_cmb2_callout_copy', true);
   $downloads = get_post_meta($post->ID, '_cmb2_downloads', true);
   $project_images = get_post_meta($post->ID, '_cmb2_project_images', true);
+  $featured_image = \Firebelly\Media\get_post_thumbnail($post->ID);
   $project_comparison_images = get_post_meta($post->ID, '_cmb2_project_comparison_images', true);
 ?>
 
@@ -23,12 +24,16 @@
       <?php endforeach ?>
     </div>
   <?php else: ?>
-    <div class="header-image">
-      <div class="container">
-        <div class="image" style="background-image:url('<?= $header_images[0] ?>');"></div>
-      </div>
+    <div class="header-image container">
+      <?php foreach ($header_images as $carousel_image): ?>
+        <div class="image" style="background-image:url('<?= $carousel_image ?>');"></div>
+      <?php endforeach ?>
     </div>
   <?php endif ?>
+<?php elseif (!empty($featured_image)): ?>
+  <div class="header-image container">
+    <div class="image" style="background-image:url('<?= $featured_image ?>');"></div>
+  </div>
 <?php endif ?>
 
 <div class="project-info">

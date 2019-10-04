@@ -149,6 +149,7 @@ function metaboxes() {
     'name'    => 'Size',
     'id'      => 'size',
     'type'    => 'select',
+    'show_option_none' => true,
     'options' => array(
         'small'   => __( 'Small', 'cmb2' ),
         'medium'  => __( 'Medium', 'cmb2' ),

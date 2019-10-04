@@ -7,9 +7,9 @@
 }
 
 .project-grid {
-  .member-row {
+  .project-row {
     @include media-lg {
-      + .member-row {
+      + .project-row {
         margin-top: 80px;
       }
     }
