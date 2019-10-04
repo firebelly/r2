@@ -3,9 +3,15 @@
 body.single-project {
   .header-carousel {
     position: relative;
+    margin-bottom: $padding-sm;
     margin-right: -$padding-sm;
 
+    .flickity-viewport {
+      transition: height .2s ease-out;
+    }
+
     @include media-md {
+      margin-bottom: 0;
       margin-right: -$padding-lg;
     }
 
@@ -39,11 +45,8 @@ body.single-project {
       }
 
       @include media-md {
-        bottom: $padding-lg;
+        bottom: 110px;
         right: $padding-lg / 2;
-      }
-      @include media-lg {
-        bottom: $padding-lg * 2;
       }
     }
   }
