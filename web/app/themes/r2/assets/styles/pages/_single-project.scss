@@ -85,13 +85,13 @@ body.single-project {
         @include numbers-lg;
       }
       .second {
-        @include h5;
+        @include h4;
         margin-top: $beat * 2;
       }
     }
 
     .locality {
-      @include h5;
+      @include h4;
       margin: 0;
     }
 
@@ -118,7 +118,7 @@ body.single-project {
       margin: $padding-md 0 0;
 
       h5 {
-        @include h4;
+        @include h5;
         margin: 0;
       }
 
