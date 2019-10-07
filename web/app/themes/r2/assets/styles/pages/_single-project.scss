@@ -77,22 +77,23 @@ body.single-project {
     .project-title {
       margin: 0;
 
-      span {
+      &,.first {
+        @include numbers-lg;
         display: block;
       }
-
       .first {
-        @include numbers-lg;
+        margin: 0 0 #{$beat * 2};
       }
       .second {
         @include h4;
-        margin-top: $beat * 2;
+        display: block;
+        margin-bottom: -#{$beat * 2};
       }
     }
 
     .locality {
       @include h4;
-      margin: 0;
+      margin: #{$beat * 2} 0 0;
     }
 
     .square-footage {
@@ -249,21 +250,23 @@ body.single-project {
   .project-title {
     margin: 0;
 
-    span {
+    &,.first {
+      @include h3;
       display: block;
     }
     .first {
-      @include h3;
-      margin-bottom: 12px;
+      margin: 0 0 12px;
     }
     .second {
       @include h4;
+      display: block;
+      margin-bottom: -$beat;
     }
   }
 
   .locality {
     @include h4;
-    margin: 0;
+    margin: $beat 0 0;
   }
 
   @include media-md {

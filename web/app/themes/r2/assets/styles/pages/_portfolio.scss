@@ -16,18 +16,27 @@
   }
 
   .project {
-    margin-bottom: $padding-md;
+    margin-bottom: $beat * 4;
 
-    &:hover {
-      .project-info,
-      .project-image::after {
-        opacity: 1;
+    @include media-md {
+      &:hover {
+        .project-info,
+        .project-image::after {
+          opacity: 1;
+        }
+        .project-info {
+          transition: opacity .5s .25s ease-out;
+        }
+        .project-image::after {
+          transition: opacity .5s ease-out
+        }
       }
     }
 
     > .-inner {
       display: block;
       position: relative;
+      text-decoration: none;
     }
 
     @include media-lg {
@@ -51,30 +60,50 @@
         content: '';
         position: absolute;
         mix-blend-mode: multiply;
+        transition: opacity .35s ease-out;
         background-color: color('gray-dark');
+      }
+
+      @include media-md {
+        margin-bottom: $beat * 2;
       }
     }
 
     .project-info {
-      top: 0;
-      left: 0;
-      bottom: 0;
-      opacity: 0;
-      z-index: 1;
-      width: 100%;
-      padding: $beat;
-      position: absolute;
-      color: color('white');
-      transition: opacity .2s ease-out;
+      @include media-md {
+        top: 0;
+        left: 0;
+        bottom: 0;
+        z-index: 1;
+        opacity: 0;
+        width: 100%;
+        position: absolute;
+        color: color('white');
+        padding: 2px $beat $beat;
+        transition: opacity .35s ease-out;
+      }
     }
 
-    h2 {
+    .project-title {
       margin: 0;
-      @include h4;
+
+      &,.first {
+        @include h3;
+        display: block;
+      }
+      .first {
+        margin: 0 0 $beat;
+      }
+      .second {
+        @include type-caption;
+        display: block;
+        margin-bottom: -$beat;
+      }
     }
-    h3 {
-      @include p1;
-      margin: 0 0 #{$beat * 2};
+
+    .project-locality {
+      @include type-caption;
+      margin: $beat 0 0;
     }
 
     // Hover State

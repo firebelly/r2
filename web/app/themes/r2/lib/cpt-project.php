@@ -46,6 +46,27 @@ function metaboxes() {
     'priority'      => 'high',
   ]);
   $project_info->add_field([
+    'name'      => 'Property Title Large',
+    'id'        => $prefix . 'title_large',
+    'desc'      => 'The part of the title that gets the larger type treatment. Example: "1001", or "Crown Center"',
+    'type'      => 'text',
+    'attributes'  => array(
+      'required'    => 'required',
+    ),
+  ]);
+  $project_info->add_field([
+    'name'      => 'Property Title Small',
+    'id'        => $prefix . 'title_small',
+    'desc'      => 'Optional secondary part of the title that gets the smaller type treatment. Example: "North Branch", or "1353 Tyler St NE"',
+    'type'      => 'text',
+  ]);
+  $project_info->add_field([
+    'name'      => 'Locality',
+    'id'        => $prefix . 'locality',
+    'desc'      => 'Example: Goose Island, Chicago',
+    'type'      => 'text',
+  ]);
+  $project_info->add_field([
     'name'        => 'Header Images',
     'id'          => $prefix . 'header_images',
     'type'        => 'file_list',
@@ -68,12 +89,6 @@ function metaboxes() {
       'media_buttons' => false,
       'textarea_rows' => get_option('default_post_edit_rows', 8),
     ),
-  ]);
-  $project_info->add_field([
-    'name'      => 'Locality',
-    'id'        => $prefix . 'locality',
-    'desc'      => 'Example: Goose Island, Chicago',
-    'type'      => 'text',
   ]);
   $project_info->add_field([
     'name'      => 'Square footage',

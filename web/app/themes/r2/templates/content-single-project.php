@@ -1,10 +1,9 @@
 <?php
   use Roots\Sage\Titles;
   $header_images = get_post_meta($post->ID, '_cmb2_header_images', true);
-  $title = Titles\title();
-  $title_words = explode(' ',trim($title));
-  $title_first = $title_words[0];
-  $title_second = preg_replace("/^(\w+\s)/", "", $title);
+  $title = $post->post_title;
+  $title_first = get_post_meta($post->ID, '_cmb2_title_large', true);
+  $title_second = get_post_meta($post->ID, '_cmb2_title_small', true);
   $locality = get_post_meta($post->ID, '_cmb2_locality', true);
   $description = get_post_meta($post->ID, '_cmb2_description', true);
   $square_footage = get_post_meta($post->ID, '_cmb2_square_footage', true);
@@ -40,7 +39,16 @@
   <div class="top-row grid">
     <div class="col-md-1-2">
       <div class="container">
-        <h1 class="project-title"><span class="first"><?= $title_first ?></span> <span class="second"><?= $title_second ?></span></h1>
+        <h1 class="project-title">
+          <?php if (!empty($title_first)): ?>
+            <span class="first"><?= $title_first ?></span>
+            <?php if (!empty($title_second)): ?>
+              <span class="second"><?= $title_second ?></span>
+            <?php endif ?>
+          <?php else: ?>
+            <?= $title ?>
+          <?php endif ?>
+        </h1>
         <?php if (!empty($locality)): ?>
           <p class="locality"><?= $locality ?></p>
         <?php endif ?>
