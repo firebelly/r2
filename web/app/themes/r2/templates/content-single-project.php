@@ -13,6 +13,13 @@
   $project_images = get_post_meta($post->ID, '_cmb2_project_images', true);
   $featured_image = \Firebelly\Media\get_post_thumbnail($post->ID);
   $project_comparison_images = get_post_meta($post->ID, '_cmb2_project_comparison_images', true);
+  $video_url = $video_id = '';
+  $project_video = get_post_meta($post->ID, '_cmb2_project_video', true);
+  if (filter_var($project_video, FILTER_VALIDATE_URL)) {
+    $video_url = $project_video;
+  } else {
+    $video_id = $project_video;
+  }
 ?>
 
 <?php if (!empty($header_images)): ?>
@@ -141,6 +148,12 @@
         </div>
       <?php endforeach ?>
     </div>
+  </div>
+<?php endif ?>
+
+<?php if (!empty($project_video)): ?>
+  <div class="project-video-container container">
+    <div id="project-video" class="project-video" <?= (!empty($video_url)) ? ' data-url="'. $video_url .'"' : ' data-id="'. $video_id .'"' ?>></div>
   </div>
 <?php endif ?>
 

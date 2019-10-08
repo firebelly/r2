@@ -2,6 +2,7 @@ import jQueryBridget from 'jquery-bridget';
 import Isotope from 'isotope-layout';
 import Flickity from 'flickity-fade';
 import Cocoen from 'cocoen';
+import Player from '@vimeo/player/dist/player.js';
 
 export default {
   init() {
@@ -9,6 +10,7 @@ export default {
     jQueryBridget( 'isotope', Isotope, $ );
     jQueryBridget( 'flickity', Flickity, $ );
     jQueryBridget( 'cocoen', Cocoen, $ );
+    jQueryBridget( 'player', Player, $ );
     // Set up Global Vars
     const $body = $('body');
     const $siteHeader = $('#site-header');
@@ -40,6 +42,7 @@ export default {
     _initCarousels();
     _initTeamModal();
     _initCocoen();
+    _initProjectVideo();
 
     // Keyboard-triggered functions
     $(document).keyup(function(e) {
@@ -404,6 +407,36 @@ export default {
       if ($('.cocoen-drag').length) {
         $('.cocoen-drag').append('<svg class="slider" aria-hidden="true" role="presentation"><use xlink:href="#slider"/></svg>');
       }
+    }
+
+    function _initProjectVideo() {
+      if (!$('.project-video').length) {
+        return;
+      }
+
+      var $projectVideo = $('#project-video');
+
+      var options = {
+          controls: false,
+          responsive: true
+      };
+
+      if ($projectVideo[0].hasAttribute('data-url')) {
+        options['url'] = $projectVideo.attr('data-url');
+      } else {
+        options['id'] = $projectVideo.attr('data-id');
+      }
+
+      var player = new Player('project-video', options);
+
+      player.on('loaded', function() {
+        $projectVideo.append('<svg class="project-video-play" aria-hidden="true" role="presentation"><use xlink:href="#icon-play"/></svg>');
+      });
+
+      $(document).on('click', '.project-video-play', function() {
+        $projectVideo.addClass('playing');
+        player.play();
+      });
     }
 
     // Disabling transitions on certain elements on resize

@@ -205,6 +205,20 @@ function metaboxes() {
     'id'   => 'after',
     'type' => 'file',
   ]);
+
+  $project_video = new_cmb2_box([
+    'id'            => $prefix . 'project_video',
+    'title'         => __( 'Project Video', 'cmb2' ),
+    'object_types'  => ['project'],
+    'context'       => 'normal',
+    'priority'      => 'high',
+  ]);
+  $project_video->add_field([
+    'name'      => 'Vimeo ID or URL',
+    'id'        => $prefix . 'project_video',
+    'desc'      => 'Video id (ex: 299331465), or full url (ex: https://vimeo.com/364142068/ac2becbf0f) from vimeo',
+    'type'      => 'text',
+  ]);
 }
 add_filter( 'cmb2_admin_init', __NAMESPACE__ . '\metaboxes' );
 
