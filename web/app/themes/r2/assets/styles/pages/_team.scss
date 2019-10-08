@@ -52,6 +52,7 @@
       position: relative;
       background-size: cover;
       padding-bottom: 66.6666%;
+      background-image: url('../images/team-default.jpg');
       background-position: center center;
       &::before {
         top: 0;
@@ -74,13 +75,13 @@
     // Hover State
     &.principal {
       cursor: pointer;
+    }
 
-      &.-hover,
-      &:hover,
-      &:focus {
-        .member-image::before {
-          opacity: 0;
-        }
+    &.-hover,
+    &:hover,
+    &:focus {
+      .member-image::before {
+        opacity: 0;
       }
     }
   }
