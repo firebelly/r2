@@ -44,6 +44,8 @@ body.single-project {
         border-radius: 0;
         background-color: transparent;
         border: 1px solid color('white');
+        transition: background-color .2s ease-out;
+        &:hover,
         &.is-selected {
           background-color: color('white');
         }
