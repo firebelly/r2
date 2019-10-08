@@ -89,8 +89,8 @@
 
 // Team Modal
 .team-modal {
+  top: 0;
   right: 0;
-  top: 100px;
   z-index: 20;
   display: none;
   position: fixed;
@@ -98,6 +98,11 @@
   transform-origin: bottom left;
   max-height: calc(100vh - 100px);
   background-color: color('black');
+
+  @include media-md {
+    top: $header-md;
+    bottom: $header-md;
+  }
 
   &.-active {
     transform-origin: top left;
@@ -166,6 +171,7 @@
     @include media-md {
       display: flex;
       overflow: hidden;
+      max-height: calc(100vh - #{$header-md * 2});
     }
 
     > div {
@@ -182,7 +188,7 @@
         filter: blur(3px);
         position: relative;
         background-size: cover;
-        padding-bottom: 73.8461%;
+        padding-bottom: 56.25%;
         transition: opacity .35s ease-out, filter .5s ease-out;
         &::before {
           top: 0;
