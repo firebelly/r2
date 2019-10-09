@@ -29,14 +29,14 @@
   .media-publications {
     @extend .semantic-list;
     margin: #{$beat * 10} 0 0;
-    border-bottom: 1px solid color('black');
+    border-bottom: 1px solid color('gray-mid');
 
     @include media-md {
       margin-right: $beat;
     }
 
     .year {
-      border-top: 1px solid color('black');
+      border-top: 1px solid color('gray-mid');
       padding: #{$beat * 3} 0 #{$beat * 5};
 
 
