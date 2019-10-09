@@ -60,7 +60,7 @@ body.single-project {
 
   .project-info {
     .top-row {
-      border-bottom: 1px solid color('black');
+      border-bottom: 1px solid color('gray-mid');
 
       > div {
         padding: 0 0 $padding-md;
@@ -70,7 +70,7 @@ body.single-project {
         > div {
           padding: $padding-lg 0;
           &:first-of-type {
-            border-right: 1px solid color('black');
+            border-right: 1px solid color('gray-mid');
           }
         }
       }
@@ -135,7 +135,7 @@ body.single-project {
     .downloads {
       text-align: left;
       padding: $padding-md 0;
-      border-bottom: 1px solid color('black');
+      border-bottom: 1px solid color('gray-mid');
 
       h3 {
         @include h4;
@@ -163,8 +163,13 @@ body.single-project {
       @include media-md {
         border-bottom: none;
         padding: $padding-lg 0;
-        outline: 1px solid color('black');
+        outline: 1px solid color('gray-mid');
       }
+    }
+
+    // If project is empty
+    + .project-navigation {
+      margin-top: -1px;
     }
   }
 
