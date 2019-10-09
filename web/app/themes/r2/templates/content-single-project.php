@@ -11,7 +11,7 @@
   $callout_copy = get_post_meta($post->ID, '_cmb2_callout_copy', true);
   $downloads = get_post_meta($post->ID, '_cmb2_downloads', true);
   $project_images = get_post_meta($post->ID, '_cmb2_project_images', true);
-  $featured_image = \Firebelly\Media\get_post_thumbnail($post->ID);
+  $featured_image = Firebelly\Media\get_treated_image($post);
   $project_comparison_images = get_post_meta($post->ID, '_cmb2_project_comparison_images', true);
   $video_url = $video_id = '';
   $project_video = get_post_meta($post->ID, '_cmb2_project_video', true);
@@ -25,20 +25,22 @@
 <?php if (!empty($header_images)): ?>
   <?php if (sizeof($header_images) > 1): ?>
     <div class="header-carousel container">
-      <?php foreach ($header_images as $carousel_image): ?>
-        <div class="image" style="background-image:url('<?= $carousel_image ?>');"></div>
+      <?php foreach ($header_images as $attachment_id => $attachment_url): ?>
+        <?php $carousel_image = Firebelly\Media\get_treated_image('image', ['thumb_id' => $attachment_id]); ?>
+        <div class="image" <?= $carousel_image ?>></div>
       <?php endforeach ?>
     </div>
   <?php else: ?>
     <div class="header-image container">
-      <?php foreach ($header_images as $carousel_image): ?>
-        <div class="image" style="background-image:url('<?= $carousel_image ?>');"></div>
+      <?php foreach ($header_images as $attachment_id => $attachment_url): ?>
+        <?php $carousel_image = Firebelly\Media\get_treated_image('image', ['thumb_id' => $attachment_id]); ?>
+        <div class="image" <?= $carousel_image ?>></div>
       <?php endforeach ?>
     </div>
   <?php endif ?>
 <?php elseif (!empty($featured_image)): ?>
   <div class="header-image container">
-    <div class="image" style="background-image:url('<?= $featured_image ?>');"></div>
+    <div class="image" <?= $featured_image ?>></div>
   </div>
 <?php endif ?>
 
@@ -113,10 +115,9 @@
           $size = $image['size'];
           $crop = 'project_' . $size;
           if (!empty($image['bw'])) {
-            $file = Firebelly\Media\get_header_bg('image', ['thumb_id' => $image['file_id'], 'size' => $crop, 'output' => false]);
+            $file = Firebelly\Media\get_treated_image('image', ['bw' => true, 'thumb_id' => $image['file_id'], 'size' => $crop, 'output' => false]);
           } else {
-            $file = wp_get_attachment_image_src($image['file_id'], $crop, false, '');
-            $file = $file[0];
+            $file = Firebelly\Media\get_treated_image('image', ['thumb_id' => $image['file_id'], 'size' => $crop, 'output' => false]);
           }
           $image_alt = get_post_meta($image['file_id'], '_wp_attachment_image_alt', TRUE);
           $caption = wp_get_attachment_caption($image['file_id']);

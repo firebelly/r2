@@ -1,7 +1,19 @@
 <?php
   use Roots\Sage\Titles;
-  $previous_post = get_previous_post();
-  $next_post = get_next_post();
+
+  if(!empty(get_next_post())) {
+    $previous_post = get_next_post();
+  } else {
+    $last = new WP_Query('post_type=project&posts_per_page=1&order=DESC');
+    $previous_post = $last->posts[0];
+  };
+
+  if(!empty(get_previous_post())) {
+    $next_post = get_previous_post();
+  } else {
+    $first = new WP_Query('post_type=project&posts_per_page=1&order=ASC');
+    $next_post = $first->posts[0];
+  };
 ?>
 
 <div class="project-navigation grid">
@@ -35,7 +47,7 @@
   <div class="next-container col-1-2">
     <?php if (!empty($next_post)): ?>
       <?php
-        $next_thumb = get_the_post_thumbnail_url($next_post, 'projet_nav');
+        $next_thumb = Firebelly\Media\get_treated_image($next_post, ['size' => 'project_nav']);
       ?>
       <div class="-inner container">
         <?php
@@ -59,7 +71,7 @@
           <p class="locality"><?= $next_locality ?></p>
         <?php endif ?>
       </div>
-      <div class="next-thumb" style="background-image:url('<?= $next_thumb ?>');"></div>
+      <div class="next-thumb" <?= $next_thumb ?>></div>
     <?php endif ?>
   </div>
 </div>

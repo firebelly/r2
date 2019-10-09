@@ -9,8 +9,8 @@ namespace Firebelly\Media;
 add_action('after_setup_theme', __NAMESPACE__ . '\\set_image_sizes');
 function set_image_sizes() {
   // Set default sizes
-  update_option('medium_size_w', 620);
-  update_option('medium_size_h', 400);
+  update_option('medium_size_w', 800);
+  update_option('medium_size_h', 800);
   update_option('medium_large_size_w', 870);
   update_option('medium_large_size_h', 400);
   update_option('large_size_w', 1400);
@@ -63,15 +63,16 @@ function get_attachment_id_from_src($image_src) {
 }
 
 /**
- * Get header bg for post, duotone treated
+ * Get treated images
  * @param  string|object   $post_or_image (WP post object or background image)
  * @return HTML            background image code
  */
-function get_header_bg($post_or_image, $opts=[]) {
+function get_treated_image($post_or_image, $opts=[]) {
   // Default options
   $opts = array_merge([
     'absolute_url' => false,
     'thumb_id' => '',
+    'bw' => false,
     'colors' => ['232323','ffffff'],
     'size' => 'banner',
     'output' => 'background',
@@ -102,7 +103,11 @@ function get_header_bg($post_or_image, $opts=[]) {
     $base_dir = $upload_dir['basedir'] . '/backgrounds/';
 
     // Build treated filename with thumb_id in case there are filename conflicts
-    $treated_filename = preg_replace("/.+\/(.+)\.(\w{2,5})$/", $opts['thumb_id']."-$1-".$opts['colors'][0]."-".$opts['colors'][1].".$2", $background_image);
+    if ($opts['bw'] === true) {
+      $treated_filename = preg_replace("/.+\/(.+)\.(\w{2,5})$/", $opts['thumb_id']."-$1-".$opts['colors'][0]."-".$opts['colors'][1].".$2", $background_image);
+    } else {
+      $treated_filename = preg_replace("/.+\/(.+)\.(\w{2,5})$/", $opts['thumb_id']."-$1.$2", $background_image);
+    }
     $treated_image = $base_dir . $treated_filename;
 
     // If treated file doesn't exist, create it
@@ -113,7 +118,12 @@ function get_header_bg($post_or_image, $opts=[]) {
         mkdir($base_dir);
       }
       $convert_command = (WP_ENV==='development') ? '/usr/local/bin/convert' : '/usr/bin/convert';
-      exec($convert_command.' '.$background_image.' +profile "*"  -quality 65 -modulate 100,0 -size 256x1! -brightness-contrast 0x5 gradient:#'.$opts['colors'][0].'-#'.$opts['colors'][1].' -clut '.$treated_image);
+
+      if ($opts['bw'] === true) {
+        exec($convert_command.' '.$background_image.' +profile "*" -quality 65 -modulate 100,0 -size 256x1! -brightness-contrast 0x-15 gradient:#'.$opts['colors'][0].'-#'.$opts['colors'][1].' -clut '.$treated_image);
+      } else {
+        exec($convert_command.' '.$background_image.' +profile "*" -quality 65 -size 256x1! -brightness-contrast 0x-15 '.$treated_image);
+      }
     }
 
     // Option to return commonly used style=background, or just filename
