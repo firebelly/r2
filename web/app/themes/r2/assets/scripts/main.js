@@ -37,7 +37,6 @@ const routes = new Router({
 });
 
 function _initInviewElements() {
-  console.log('inview ran');
   $('.animate-in').each(function() {
     var $elem = $(this);
     inView($elem);
