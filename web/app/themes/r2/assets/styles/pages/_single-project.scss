@@ -275,6 +275,8 @@ body.single-project {
     z-index: 1;
     width: 263px;
     height: 263px;
+    max-width: 75%;
+    max-height: 75%;
     cursor: pointer;
     position: absolute;
     fill: color('red');
