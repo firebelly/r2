@@ -47,6 +47,7 @@ body.single-project {
     }
 
     .flickity-page-dots {
+      left: 0;
       bottom: $beat * 3;
 
       .dot {
@@ -64,6 +65,7 @@ body.single-project {
       }
 
       @include media-md {
+        left: auto;
         bottom: 110px;
         right: $padding-lg / 2;
       }
