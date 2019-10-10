@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "533c2b50f8094776114371a155bbd662",
+    "content-hash": "4731b74f191dc459dc95e5c3b324e4bc",
     "packages": [
         {
             "name": "composer/installers",
@@ -649,24 +649,6 @@
             "homepage": "https://wordpress.org/plugins/intuitive-custom-post-order/"
         },
         {
-            "name": "wpackagist-plugin/turbolinks",
-            "version": "1.0.0",
-            "source": {
-                "type": "svn",
-                "url": "https://plugins.svn.wordpress.org/turbolinks/",
-                "reference": "tags/1.0.0"
-            },
-            "dist": {
-                "type": "zip",
-                "url": "https://downloads.wordpress.org/plugin/turbolinks.1.0.0.zip"
-            },
-            "require": {
-                "composer/installers": "~1.0"
-            },
-            "type": "wordpress-plugin",
-            "homepage": "https://wordpress.org/plugins/turbolinks/"
-        },
-        {
             "name": "wpackagist-plugin/update-from-bottom",
             "version": "1.0.3",
             "source": {
@@ -701,6 +683,24 @@
             },
             "type": "wordpress-plugin",
             "homepage": "https://wordpress.org/plugins/wp-mail-smtp/"
+        },
+        {
+            "name": "wpackagist-plugin/wp-smartcrop",
+            "version": "2.0.2",
+            "source": {
+                "type": "svn",
+                "url": "https://plugins.svn.wordpress.org/wp-smartcrop/",
+                "reference": "tags/2.0.2"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://downloads.wordpress.org/plugin/wp-smartcrop.2.0.2.zip"
+            },
+            "require": {
+                "composer/installers": "~1.0"
+            },
+            "type": "wordpress-plugin",
+            "homepage": "https://wordpress.org/plugins/wp-smartcrop/"
         }
     ],
     "packages-dev": [
