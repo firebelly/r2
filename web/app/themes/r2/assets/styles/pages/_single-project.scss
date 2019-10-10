@@ -4,12 +4,10 @@ body.single-project {
   .header-carousel,
   .header-image {
     position: relative;
-    margin-bottom: $padding-sm;
-    margin-right: -$padding-sm;
+    margin: #{$padding-sm} -#{$beat} #{$padding-md} 0;
 
     @include media-md {
-      margin-bottom: 0;
-      margin-right: -$padding-lg;
+      margin: 0 -#{$padding-lg} 0 0;
     }
 
     .image {
@@ -49,7 +47,7 @@ body.single-project {
     }
 
     .flickity-page-dots {
-      bottom: $padding-md;
+      bottom: $beat * 3;
 
       .dot {
         opacity: 1;
