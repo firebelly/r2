@@ -13,17 +13,19 @@ $categories = get_terms(array(
   </div>
 
   <div id="team-filters" class="filters-container">
-    <?php if (!empty($categories)): ?>
-      <div class="filter-group">
-        <h5 class="group-label">Department</h5>
-        <ul>
-          <?php foreach ($categories as $category): ?>
-            <li><button class="filter" data-filter=".<?= $category->slug ?>"><?= $category->name ?> <svg class="icon" aria-hidden="true" role="presentation"><use xlink:href="#icon-close"/></svg></button></li>
-          <?php endforeach ?>
-        </ul>
-      </div>
-    <?php endif ?>
+    <div class="-inner">
+      <?php if (!empty($categories)): ?>
+        <div class="filter-group">
+          <h5 class="group-label">Department</h5>
+          <ul>
+            <?php foreach ($categories as $category): ?>
+              <li><button class="filter" data-filter=".<?= $category->slug ?>"><?= $category->name ?> <svg class="icon" aria-hidden="true" role="presentation"><use xlink:href="#icon-close"/></svg></button></li>
+            <?php endforeach ?>
+          </ul>
+        </div>
+      <?php endif ?>
 
-    <button class="filters-close">Close</button>
+      <button class="filters-close">Close</button>
+    </div>
   </div>
 </div>
