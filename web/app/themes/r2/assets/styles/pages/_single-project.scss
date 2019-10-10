@@ -24,16 +24,21 @@ body.single-project {
 
   .header-carousel {
     opacity: 0;
+    padding-bottom: 50%;
     transition: opacity .5s ease-out;
-    &.is-hidden {
-      display: none;
-    }
     &.flickity-enabled {
       opacity: 1;
     }
 
     .flickity-viewport {
-      transition: height .2s ease-out;
+      top: 0;
+      left: 0;
+      right: 0;
+      position: absolute;
+
+      @include media-md {
+        left: $padding-lg;
+      }
     }
 
     .image {
@@ -166,6 +171,7 @@ body.single-project {
         a {
           @include p1;
           color: color('red');
+          @include inline-link('red');
         }
       }
 
@@ -308,7 +314,7 @@ body.single-project {
 
     a {
       color: color('red');
-      text-decoration: underline;
+      @include inline-link('red');
     }
   }
 

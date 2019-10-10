@@ -1,5 +1,4 @@
 import jQueryBridget from 'jquery-bridget';
-import Waypoint from 'waypoints/lib/jquery.waypoints.js';
 import Velocity from 'velocity-animate';
 import Isotope from 'isotope-layout';
 import ImagesLoaded from 'imagesloaded';
@@ -35,7 +34,6 @@ export default {
     _initActiveToggle();
     _initSiteNav();
     _initFormFunctions();
-    _initInviewElements();
     _initFilters();
     _initTeamModal();
 
@@ -186,47 +184,6 @@ export default {
       // Select functionality
       $('.select-wrap select').on('change', function() {
         $(this).closest('.select-wrap').addClass('-filled');
-      });
-    }
-
-    function _initInviewElements() {
-      $('.animate-in').each(function() {
-        var $elem = $(this);
-        inView($elem);
-      });
-
-      $('.animate-out').each(function() {
-        var $elem = $(this);
-        var inview = new Waypoint.Inview({
-          element: $(this)[0],
-          exited: function(direction) {
-            $(this).addClass('out-of-view');
-          }
-        });
-      });
-
-      function inView($elem) {
-        var waypoint = $elem.waypoint(function(direction) {
-          console.log('waypoint!');
-          $elem.addClass('in-view', direction === 'down');
-        },{
-          offset: '85%'
-        });
-      }
-
-      $('.animate-in-series').each(function() {
-        var $container = $(this);
-        $container.waypoint(function(direction) {
-          $container.addClass('in-view', direction === 'down');
-        },{
-          offset: '85%'
-        });
-
-        // establish transition delays
-        var animationItems = $container.find('.animation-item');
-        animationItems.each(function(i) {
-          $(this).css('transition-delay', 0.1 * i + 's');
-        });
       });
     }
 
@@ -445,5 +402,3 @@ export default {
     // JavaScript to be fired on all pages, after page specific JS is fired
   },
 };
-
-// Fire Resize Functions

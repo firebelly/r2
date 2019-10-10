@@ -28,7 +28,7 @@ $bio = get_post_meta($team_member->ID, '_cmb2_member_bio', true);
     </div>
     <?php if ($category->slug === 'principal' && !empty($bio)): ?>
       <div class="member-bio">
-        <div class="-inner">
+        <div class="-inner user-content">
           <?= apply_filters('the_content', $bio) ?>
         </div>
       </div>

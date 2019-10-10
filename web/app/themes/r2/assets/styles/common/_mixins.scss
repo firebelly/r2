@@ -32,6 +32,52 @@
   }
 }
 
+@mixin inline-link($color: 'black') {
+  position: relative;
+  text-decoration: none;
+  transition: color .2s ease-out;
+  &::after {
+    left: 0;
+    bottom: 0;
+    opacity: 0;
+    height: 2px;
+    width: 100%;
+    content: '';
+    position: absolute;
+    transition: opacity .2s ease-out;
+    background: linear-gradient(to top, color('red') 1px, rgba(0,0,0,0) 1px, rgba(0,0,0,0) 100%);
+  }
+
+  @if $color != transparent {
+    &::before {
+      left: 0;
+      bottom: 0;
+      opacity: 1;
+      height: 2px;
+      width: 100%;
+      content: '';
+      position: absolute;
+      transition: opacity .2s ease-out;
+      background: linear-gradient(to top, color($color) 1px, rgba(0,0,0,0) 1px, rgba(0,0,0,0) 100%);
+    }
+
+    &:hover,
+    &.-hover {
+      &::before {
+        opacity: 0;
+      }
+    }
+  }
+
+  &:hover,
+  &.-hover {
+    color: color('red');
+    &::after {
+      opacity: 1;
+    }
+  }
+}
+
 // Clearfix
 @mixin clearfix {
   &:after {

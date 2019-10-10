@@ -27,13 +27,7 @@
       }
 
       a {
-        text-decoration: none;
-        transition: color .2s ease-out;
-        &:hover,
-        &:focus {
-          color: color('red');
-          text-decoration: underline;
-        }
+        @include inline-link(transparent);
       }
     }
   }

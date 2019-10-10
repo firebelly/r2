@@ -34,6 +34,11 @@
   }
 }
 
+// Inline link underline
+.inline-link {
+  @include inline-link();
+}
+
 // Animate on scroll classes
 .animate-in,
 .animation-item {

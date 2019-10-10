@@ -66,7 +66,7 @@
     <div class="col-md-1-2">
       <div class="container">
         <?php if (!empty($description)): ?>
-          <div class="description">
+          <div class="description user-content">
             <?= apply_filters('the_content', $description) ?>
           </div>
         <?php endif ?>
@@ -81,7 +81,7 @@
               <h5><?= $callout_headline ?></h5>
             <?php endif ?>
             <?php if (!empty($callout_copy)): ?>
-              <div class="callout-copy">
+              <div class="callout-copy user-content">
                 <?= apply_filters('the_content', $callout_copy) ?>
               </div>
             <?php endif ?>
@@ -143,7 +143,7 @@
           $beforeImage = wp_get_attachment_image_src($image['before_id'], 'project_large', false, '');
           $afterImage = wp_get_attachment_image_src($image['after_id'], 'project_large', false, '');
         ?>
-        <div class="cocoen">
+        <div class="cocoen animate-in">
           <img src="<?= $beforeImage[0] ?>" alt="">
           <img src="<?= $afterImage[0] ?>" alt="">
         </div>
@@ -154,7 +154,7 @@
 
 <?php if (!empty($project_video)): ?>
   <div class="project-video-container container">
-    <div id="project-video" class="project-video" <?= (!empty($video_url)) ? ' data-url="'. $video_url .'"' : ' data-id="'. $video_id .'"' ?>></div>
+    <div id="project-video" class="project-video animate-in" <?= (!empty($video_url)) ? ' data-url="'. $video_url .'"' : ' data-id="'. $video_id .'"' ?>></div>
   </div>
 <?php endif ?>
 

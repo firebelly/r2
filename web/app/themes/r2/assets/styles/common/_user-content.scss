@@ -6,7 +6,7 @@
   hr {
     height: 0;
     border: 0;
-    border-bottom: 1px solid color(black);
+    border-bottom: 1px solid color('black');
   }
 
   em {
@@ -15,5 +15,15 @@
 
   strong {
     font-weight: bold;
+  }
+
+  a {
+    @include inline-link;
+  }
+
+  ul, ol {
+    li {
+      @include p1;
+    }
   }
 }

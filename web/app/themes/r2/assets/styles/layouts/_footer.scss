@@ -11,12 +11,7 @@
   }
 
   a {
-    text-decoration: none;
-    transition: color .2s ease-out;
-    &:hover,
-    &:focus {
-      color: color('red');
-    }
+    @include inline-link(transparent);
   }
 
   .contact-link {
