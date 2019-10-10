@@ -210,7 +210,7 @@ export default {
           console.log('waypoint!');
           $elem.addClass('in-view', direction === 'down');
         },{
-          offset: '-25%'
+          offset: '85%'
         });
       }
 
