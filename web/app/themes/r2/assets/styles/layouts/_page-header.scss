@@ -2,7 +2,7 @@
 
 .page-header {
   position: relative;
-  padding: 34px 0 45px;
+  padding: #{$beat * 5} 0 45px;
   &::after {
     top: 0;
     right: 0;
