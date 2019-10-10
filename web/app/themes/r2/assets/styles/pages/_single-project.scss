@@ -23,6 +23,15 @@ body.single-project {
   }
 
   .header-carousel {
+    opacity: 0;
+    transition: opacity .5s ease-out;
+    &.is-hidden {
+      display: none;
+    }
+    &.flickity-enabled {
+      opacity: 1;
+    }
+
     .flickity-viewport {
       transition: height .2s ease-out;
     }

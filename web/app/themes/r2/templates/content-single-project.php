@@ -24,7 +24,7 @@
 
 <?php if (!empty($header_images)): ?>
   <?php if (sizeof($header_images) > 1): ?>
-    <div class="header-carousel container">
+    <div class="header-carousel is-hidden container">
       <?php foreach ($header_images as $attachment_id => $attachment_url): ?>
         <?php $carousel_image = Firebelly\Media\get_treated_image('image', ['thumb_id' => $attachment_id]); ?>
         <div class="image" <?= $carousel_image ?>></div>
@@ -122,7 +122,7 @@
           $image_alt = get_post_meta($image['file_id'], '_wp_attachment_image_alt', TRUE);
           $caption = wp_get_attachment_caption($image['file_id']);
         ?>
-        <figure class="<?= $image['size'] ?>">
+        <figure class="animate-in <?= $image['size'] ?>">
           <img src="<?= $file ?>" alt="<?= !empty($image_alt) ? $image_alt : get_the_title($image['file_id']); ?>">
           <?php if (!empty($caption)): ?>
             <figcaption>
