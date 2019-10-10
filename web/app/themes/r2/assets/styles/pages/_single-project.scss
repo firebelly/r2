@@ -248,52 +248,67 @@ body.single-project {
 }
 
 // Project Video
-.project-video {
+.project-video-container {
   position: relative;
-  margin-top: $beat * 11;
-  &::before {
+  margin-top: $padding-lg;
+
+  .video-thumb {
     top: 0;
     left: 0;
-    right: 0;
-    bottom: 0;
     z-index: 1;
-    content: '';
-    opacity: .65;
-    position: absolute;
-    pointer-events: none;
-    background-color: color('white');
-    transition: opacity .2s ease-out;
-  }
-
-  iframe {
     width: 100%;
-  }
-
-  svg {
-    top: 50%;
-    left: 50%;
-    z-index: 1;
-    width: 263px;
-    height: 263px;
-    max-width: 75%;
-    max-height: 75%;
-    cursor: pointer;
     position: absolute;
-    fill: color('red');
-    transform: translate(-50%, -50%);
+    padding-bottom: 56.25%;
+    background-size: cover;
+    transition: opacity .5s ease-out;
+    background-position: center center;
+    &::before {
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      z-index: 1;
+      content: '';
+      opacity: .65;
+      position: absolute;
+      pointer-events: none;
+      background-color: color('white');
+      transition: opacity .2s ease-out;
+    }
+
+    svg {
+      top: 50%;
+      left: 50%;
+      z-index: 1;
+      width: 263px;
+      height: 263px;
+      max-width: 75%;
+      max-height: 75%;
+      cursor: pointer;
+      position: absolute;
+      fill: color('red');
+      transform: translate(-50%, -50%);
+    }
   }
 
   &.playing {
-    &::before {
+    .video-thumb {
       opacity: 0;
+      pointer-events: none;
     }
-    .project-video-play {
-      display: none;
+  }
+
+  .project-video {
+    position: relative;
+
+    iframe {
+      width: 100%;
     }
   }
 
   @include media-md {
     width: columns(12,16);
+    margin-top: $beat * 11;
   }
 }
 

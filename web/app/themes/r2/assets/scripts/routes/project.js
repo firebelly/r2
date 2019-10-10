@@ -43,9 +43,9 @@ export default {
       }
 
       var $projectVideo = $('#project-video');
+      var $container = $projectVideo.closest('.project-video-container');
 
       var options = {
-          controls: false,
           responsive: true
       };
 
@@ -57,13 +57,14 @@ export default {
 
       var player = new Player('project-video', options);
 
-      player.on('loaded', function() {
-        $projectVideo.append('<svg class="project-video-play" aria-hidden="true" role="presentation"><use xlink:href="#icon-play"/></svg>');
+      $('.project-video-play').on('click', function() {
+        $container.addClass('playing');
+        player.play();
       });
 
-      $(document).on('click', '.project-video-play', function() {
-        $projectVideo.addClass('playing');
-        player.play();
+      // Show thumbnail when video finishes
+      player.on('ended', function() {
+        $container.removeClass('playing');
       });
     }
 

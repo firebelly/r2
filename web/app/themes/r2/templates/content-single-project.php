@@ -13,13 +13,7 @@
   $project_images = get_post_meta($post->ID, '_cmb2_project_images', true);
   $featured_image = Firebelly\Media\get_treated_image($post);
   $project_comparison_images = get_post_meta($post->ID, '_cmb2_project_comparison_images', true);
-  $video_url = $video_id = '';
   $project_video = get_post_meta($post->ID, '_cmb2_project_video', true);
-  if (filter_var($project_video, FILTER_VALIDATE_URL)) {
-    $video_url = $project_video;
-  } else {
-    $video_id = $project_video;
-  }
 ?>
 
 <?php if (!empty($header_images)): ?>
@@ -140,12 +134,12 @@
     <div class="-inner container">
       <?php foreach ($project_comparison_images as $image): ?>
         <?php
-          $beforeImage = wp_get_attachment_image_src($image['before_id'], 'project_large', false, '');
-          $afterImage = wp_get_attachment_image_src($image['after_id'], 'project_large', false, '');
+          $beforeImage = Firebelly\Media\get_treated_image('image', ['thumb_id' => $image['before_id'], 'size' => 'project_large', 'output' => false]);
+          $afterImage = Firebelly\Media\get_treated_image('image', ['thumb_id' => $image['after_id'], 'size' => 'project_large', 'output' => false]);
         ?>
         <div class="cocoen animate-in">
-          <img src="<?= $beforeImage[0] ?>" alt="">
-          <img src="<?= $afterImage[0] ?>" alt="">
+          <img src="<?= $beforeImage ?>" alt="">
+          <img src="<?= $afterImage ?>" alt="">
         </div>
       <?php endforeach ?>
     </div>
@@ -153,8 +147,16 @@
 <?php endif ?>
 
 <?php if (!empty($project_video)): ?>
-  <div class="project-video-container container">
-    <div id="project-video" class="project-video animate-in" <?= (!empty($video_url)) ? ' data-url="'. $video_url .'"' : ' data-id="'. $video_id .'"' ?>></div>
+  <?php
+    $video_thumb = get_post_meta($post->ID, '_cmb2_video_thumbnail', true);
+  ?>
+  <div class="project-video-section container">
+    <div class="project-video-container animate-in">
+      <div class="video-thumb" style="background-image: url('<?= $video_thumb ?>');">
+        <svg class="project-video-play" aria-hidden="true" role="presentation"><use xlink:href="#icon-play"/></svg>
+      </div>
+      <div id="project-video" class="project-video" data-url="<?=  $project_video ?>"></div>
+    </div>
   </div>
 <?php endif ?>
 

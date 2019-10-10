@@ -216,11 +216,39 @@ function metaboxes() {
   $project_video->add_field([
     'name'      => 'Vimeo ID or URL',
     'id'        => $prefix . 'project_video',
-    'desc'      => 'Video id (ex: 299331465), or full url (ex: https://vimeo.com/364142068/ac2becbf0f) from vimeo',
+    'desc'      => 'Full vimeo video url (ex: https://vimeo.com/364142068/ac2becbf0f) from vimeo',
     'type'      => 'text',
   ]);
 }
 add_filter( 'cmb2_admin_init', __NAMESPACE__ . '\metaboxes' );
+
+/**
+ * Parse event_video url for thumbnail on save
+ */
+function get_video_thumbnail($post_id, $post, $update) {
+  $video_url = !empty($_POST['_cmb2_project_video']) ? $_POST['_cmb2_project_video'] : '';
+  if ($video_url) {
+    // Extract vimeo video ID and pull large thumbnail from API
+    $video_url = trim($video_url);
+    $img_url = '';
+    if (preg_match('/vimeo.com\/(\d+)/', $video_url, $m)) {
+      $img_id = $m[1];
+      $hash = unserialize(file_get_contents('http://vimeo.com/api/v2/video/' . $img_id . '.php'));
+      $img_url = $hash[0]['thumbnail_large'];
+      $title = $hash[0]['title'];
+    } elseif (preg_match('%(?:youtube(?:-nocookie)?\.com/(?:[^/]+/.+/|(?:v|e(?:mbed)?)/|.*[?&]v=)|youtu\.be/)([^"&?/ ]{11})%i', $video_url, $m)) {
+      update_post_meta($post_id, '_cmb2_video_thumbnail', 'youtube');
+      $img_id = $m[1];
+      $img_url = 'http://img.youtube.com/vi/'.$img_id.'/maxresdefault.jpg';
+    }
+
+    // Store image url in hidden field
+    if ($img_url) {
+      update_post_meta($post_id, '_cmb2_video_thumbnail', $img_url);
+    }
+  }
+}
+add_action('save_post_project', __NAMESPACE__ . '\\get_video_thumbnail', 10, 3);
 
 /**
  * Get Projects

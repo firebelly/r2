@@ -104,10 +104,10 @@ add_action( 'wp_before_admin_bar_render', function() {
 /**
  * Custom Admin styles + JS
  */
-add_action('admin_enqueue_scripts', function($hook){
-  wp_enqueue_style('fb_wp_admin_css', Assets\asset_path('styles/admin.css'));
-  wp_enqueue_script('fb_wp_admin_js', Assets\asset_path('scripts/admin.js'), ['jquery'], null, true);
-}, 100);
+// add_action('admin_enqueue_scripts', function($hook){
+//   wp_enqueue_style('fb_wp_admin_css', Assets\asset_path('styles/admin.css'));
+//   wp_enqueue_script('fb_wp_admin_js', Assets\asset_path('scripts/admin.js'), ['jquery'], null, true);
+// }, 100);
 
 /**
  * Remove labels from archive/category titles
