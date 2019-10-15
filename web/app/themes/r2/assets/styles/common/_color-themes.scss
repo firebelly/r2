@@ -19,6 +19,16 @@
   .site-footer .contact-link,
   .filters button.filters-close {
     color: color($secondary);
+    &:hover {
+      color: color('red');
+    }
+  }
+
+  // Inline link corrections
+  .filters button.filters-close {
+    &::before {
+      background: linear-gradient(to top, color($secondary) 1px, rgba(0,0,0,0) 1px, rgba(0,0,0,0) 100%);
+    }
   }
 
   // SVG fill Secondary

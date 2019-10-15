@@ -10,11 +10,12 @@
     }
   }
 
-  .filters-toggle {
+  button.filters-toggle {
     @extend .button-reset;
     @include h4;
     z-index: 3;
     position: relative;
+    transition: color .2s ease-out;
 
     svg {
       top: -2px;
@@ -24,6 +25,15 @@
       position: relative;
       fill: color('black');
       display: inline-block;
+      transition: fill .2s ease-out;
+    }
+
+    &:hover {
+      color: color('red');
+
+      svg.icon {
+        fill: color('red');
+      }
     }
   }
 
@@ -102,10 +112,10 @@
     position: relative;
     transition: color .2s ease-out;
 
-    &:hover {
+    &:hover,
+    &.is-checked {
       color: color('red');
-      text-decoration: underline;
-      .icon {
+      svg.icon {
         fill: color('red');
       }
     }
@@ -122,22 +132,21 @@
     }
 
     &.is-checked {
-      text-decoration: underline;
       .icon {
         display: block;
       }
     }
   }
 
-  .filters-close {
+  button.filters-close {
     @extend .button-reset;
     @include p1;
+    @include inline-link;
     top: 0;
     right: 0;
+    padding: 0;
     position: absolute;
-    text-decoration: underline;
     transition: color .2s ease-out;
-
 
     &:hover,
     &:focus {

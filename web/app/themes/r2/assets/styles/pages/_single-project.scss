@@ -217,7 +217,7 @@ body.single-project {
     }
 
     @include media-md {
-      padding: $padding-lg 0;
+      padding: 100px 0 112px;
 
       > .-inner {
         display: grid;
