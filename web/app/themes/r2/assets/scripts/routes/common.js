@@ -1,12 +1,14 @@
 import jQueryBridget from 'jquery-bridget';
 import Velocity from 'velocity-animate';
 import Isotope from 'isotope-layout';
+import Masonry from 'masonry-layout';
 import ImagesLoaded from 'imagesloaded';
 
 export default {
   init() {
     // Set up libraries to be used with jQuery
     jQueryBridget( 'isotope', Isotope, $ );
+    jQueryBridget( 'masonry', Masonry, $ );
 
     // Set up Global Vars
     const $body = $('body');
@@ -19,6 +21,7 @@ export default {
     // Resize Vars
     var transitionElements = [],
         resizeTimer,
+        $filtersMasonry,
         breakpointIndicatorString,
         breakpoint_xl = false,
         breakpoint_nav = false,
@@ -209,6 +212,14 @@ export default {
         }
       });
 
+      // Masonry Layout for filters
+      $filtersMasonry = $('.filters-container .-inner').masonry({
+        itemSelector: '.filter-group',
+        columnWidth: '.filter-group',
+        containerStyle: null,
+        transitionDuration: 0
+      });
+
       // Isotope Functionality
       var $filterGrid = $('.filter-grid').isotope({
         itemSelector: '.grid-item',
@@ -260,7 +271,16 @@ export default {
       var $container = $filters.find('.filters-container');
       $filters.addClass('-active');
       $body.addClass('filters-open');
-      $container.velocity('fadeIn', { duration: 250, easing: 'easeOut' });
+      $container.velocity({
+          opacity: 1
+        },{
+          display: 'block',
+          duration: 250,
+          easing: 'easeOut',
+          complete: function() {
+            $filtersMasonry.masonry();
+          }
+      });
     }
 
     function _closeFilters($filters) {
@@ -268,6 +288,13 @@ export default {
       $filters.removeClass('-active');
       $body.removeClass('filters-open');
       $container.velocity('fadeOut', { duration: 250, easing: 'easeOut' });
+      $container.velocity({
+          opacity: 0
+        },{
+          display: 'none',
+          duration: 250,
+          easing: 'easeOut',
+      });
     }
 
     function _initTeamModal() {
