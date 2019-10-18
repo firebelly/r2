@@ -123,7 +123,11 @@
 
 @mixin numbers-lg {
   @include font-numbers;
-  @include paragraph-style(96,96, 0, normal, uppercase);
+  @include paragraph-style(64,64, 0, normal, uppercase);
+
+  @include media-md {
+    @include paragraph-style(96,96, 0, normal, uppercase);
+  }
 }
 .numbers-lg {
   @include numbers-lg;

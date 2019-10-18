@@ -298,7 +298,7 @@ export default {
     }
 
     function _initTeamModal() {
-      $('.team-member.principal').on('click', function(e) {
+      $('.team-member.with-modal').on('click', function(e) {
         var $target = $(e.target);
         if (!$target.is('a')) {
           _openTeamModal($(this));
