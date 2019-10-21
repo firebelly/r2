@@ -3,6 +3,12 @@
 .page.team {
   @extend .theme-dark;
 
+  .cursor {
+    width: 46px;
+    height: 46px;
+    background-image: url('../svgs/plus-cursor.svg');
+  }
+
   .site-main {
     padding-bottom: $padding-lg;
   }
@@ -66,9 +72,8 @@
       display: none;
     }
 
-    // Hover State
     &.with-modal {
-      cursor: url("data:image/svg+xml,%3Csvg version='1.1' id='Layer_1' xmlns='http://www.w3.org/2000/svg' xmlns:xlink='http://www.w3.org/1999/xlink' x='0px' y='0px' width='46px' height='46px' viewBox='0 0 46 46' style='enable-background:new 0 0 46 46;' xml:space='preserve'%3E %3Cpath fill='%23E03C2D' shape-rendering='optimizeQuality' d='M23,0C10.3,0,0,10.3,0,23c0,12.7,10.3,23,23,23c12.7,0,23-10.3,23-23C46,10.3,35.7,0,23,0z M38,24H24v14h-2V24 H8v-2h14V8h2v14h14V24z'/%3E %3C/svg%3E") 23 23, pointer;
+      cursor: none;
     }
 
     &.-hover,

@@ -1,5 +1,24 @@
 // Common Components
 
+// Custom Cursor Styles
+body.-cursor-active {
+  .cursor {
+    display: block;
+  }
+}
+.cursor {
+  top: 0;
+  left: 0;
+  width: 46px;
+  height: 46px;
+  z-index: 1000;
+  display: none;
+  position: fixed;
+  margin-top: -23px;
+  margin-left: -23px;
+  pointer-events: none;
+}
+
 .dashed-rule {
   &--top-black {
     @include dashed-rule(before, black);

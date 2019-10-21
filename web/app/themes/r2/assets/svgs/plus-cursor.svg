@@ -1,4 +1,10 @@
-<svg version="1.1" id="plus-cursor" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Generator: Adobe Illustrator 21.1.0, SVG Export Plug-In . SVG Version: 6.00 Build 0)  -->
+<svg version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
 	 viewBox="0 0 46 46" style="enable-background:new 0 0 46 46;" xml:space="preserve">
-<path id="cursor" fill="#E03C2D" d="M38,24H24v14h-2V24H8v-2h14V8h2v14h14V24z M46,23C46,10.3,35.7,0,23,0C10.3,0,0,10.3,0,23	c0,12.7,10.3,23,23,23C35.7,46,46,35.7,46,23z M44,23c0,11.6-9.4,21-21,21C11.4,44,2,34.6,2,23C2,11.4,11.4,2,23,2 C34.6,2,44,11.4,44,23z"/>
+<style type="text/css">
+	.st0{fill:#E03C2D;}
+</style>
+<path class="st0" d="M23,0C10.3,0,0,10.3,0,23c0,12.7,10.3,23,23,23c12.7,0,23-10.3,23-23C46,10.3,35.7,0,23,0z M38,24H24v14h-2V24
+	H8v-2h14V8h2v14h14V24z"/>
 </svg>
