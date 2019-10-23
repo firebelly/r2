@@ -374,6 +374,9 @@ body.single-project {
 
     .next-container {
       padding-bottom: 23%;
+      &::after {
+        bottom: $beat * 4;
+      }
     }
 
     .next-thumb {
