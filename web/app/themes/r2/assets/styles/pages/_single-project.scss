@@ -61,7 +61,7 @@ body.single-project {
       .dot {
         opacity: 1;
         height: 5px;
-        width: 72px;
+        width: 50px;
         border-radius: 0;
         background-color: transparent;
         border: 1px solid color('white');
@@ -76,6 +76,10 @@ body.single-project {
         left: auto;
         bottom: 110px;
         right: $padding-lg / 2;
+
+        .dot {
+          width: 72px;
+        }
       }
     }
   }
