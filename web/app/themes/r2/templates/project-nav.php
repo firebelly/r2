@@ -56,7 +56,7 @@
           $next_title_second = get_post_meta($next_post->ID, '_cmb2_title_small', true);
           $next_locality = get_post_meta($next_post->ID, '_cmb2_locality', true);
         ?>
-        <p class="project-link"><a href="<?= get_permalink($next_post) ?>">Next</a></p>
+        <p class="project-link"><a href="<?= get_permalink($next_post) ?>" data-hover-pair="nextProject">Next</a></p>
         <h4 class="project-title">
           <?php if (!empty($next_title_first)): ?>
             <span class="first"><?= $next_title_first ?></span>
@@ -71,7 +71,7 @@
           <p class="locality"><?= $next_locality ?></p>
         <?php endif ?>
       </div>
-      <div class="next-thumb" <?= $next_thumb ?>></div>
+      <a class="next-thumb" href="<?= get_permalink($next_post) ?>" <?= $next_thumb ?> data-hover-pair="nextProject"></a>
     <?php endif ?>
   </div>
 </div>

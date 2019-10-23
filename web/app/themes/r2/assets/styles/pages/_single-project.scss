@@ -372,12 +372,23 @@ body.single-project {
   @include media-md {
     margin-top: $beat * 15;
 
+    .next-container {
+      padding-bottom: 23%;
+    }
+
     .next-thumb {
       height: 0;
+      bottom: 0;
+      position: absolute;
       background-size: cover;
       padding-bottom: 45.977%;
       margin-left: -$padding-lg;
       width: calc(100% + #{$padding-lg});
+      transition: padding-bottom .2s ease-out;
+
+      &.-hover {
+        padding-bottom: 48%;
+      }
     }
   }
 }

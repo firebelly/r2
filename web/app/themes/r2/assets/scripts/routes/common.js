@@ -37,6 +37,7 @@ export default {
     _initCustomCursor();
     _initSmoothScroll();
     _initActiveToggle();
+    _initHoverPairs();
     _initSiteNav();
     _initFormFunctions();
     _initFilters();
@@ -210,6 +211,17 @@ export default {
         }
       });
     }
+
+    function _initHoverPairs() {
+      $(document).on('mouseenter', '[data-hover-pair]', function(e) {
+        var hoverPair = $(this).attr('data-hover-pair');
+        $('[data-hover-pair="'+hoverPair+'"]').addClass('-hover');
+      }).on('mouseleave', '[data-hover-pair]', function(e) {
+        var hoverPair = $(this).attr('data-hover-pair');
+        $('[data-hover-pair="'+hoverPair+'"]').removeClass('-hover');
+      });
+    }
+
 
     function _initSiteNav() {
       if (!$('#nav-toggle').length) {
