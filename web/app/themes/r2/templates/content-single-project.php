@@ -1,5 +1,6 @@
 <?php
   use Roots\Sage\Titles;
+  $header_video = get_post_meta($post->ID, '_cmb2_header_video', true);
   $header_images = get_post_meta($post->ID, '_cmb2_header_images', true);
   $title = $post->post_title;
   $title_first = get_post_meta($post->ID, '_cmb2_title_large', true);
@@ -16,7 +17,11 @@
   $project_video = get_post_meta($post->ID, '_cmb2_project_video', true);
 ?>
 
-<?php if (!empty($header_images)): ?>
+<?php if (!empty($header_video)): ?>
+  <div class="header-video container">
+    <div id="header-video" class="video is-hidden" data-url="<?=  $header_video ?>"></div>
+  </div>
+<?php elseif (!empty($header_images)): ?>
   <?php if (sizeof($header_images) > 1): ?>
     <div class="header-carousel is-hidden container">
       <?php foreach ($header_images as $attachment_id => $attachment_url): ?>

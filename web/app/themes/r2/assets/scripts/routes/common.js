@@ -4,6 +4,11 @@ import Isotope from 'isotope-layout';
 import Masonry from 'masonry-layout';
 import ImagesLoaded from 'imagesloaded';
 
+// Shared vars among modules
+import appState from '../util/appState';
+import siteOverlay from '../util/siteOverlay';
+import loadingSpinner from '../util/loadingSpinner';
+
 export default {
   init() {
     // Set up libraries to be used with jQuery
@@ -14,9 +19,6 @@ export default {
     const $body = $('body');
     const $siteHeader = $('#site-header');
     const $siteNav = $('#site-nav');
-    var $siteOverlay = '<div id="site-overlay"></div>',
-        isAnimating = false,
-        modalOpen = false;
 
     // Resize Vars
     var transitionElements = [],
@@ -47,7 +49,7 @@ export default {
     $(document).keyup(function(e) {
       // Escape key
       if (e.keyCode === 27) {
-        if (modalOpen) {
+        if (appState.modalOpen) {
           _closeTeamModal();
         }
         if ($body.is('.filters-open')) {
@@ -117,13 +119,13 @@ export default {
       }
 
       if ($(element).length) {
-        isAnimating = true;
+        appState.isAnimating = true;
         element.velocity("scroll", {
           duration: duration,
           delay: delay,
           offset: -offset,
           complete: function(elements) {
-            isAnimating = false;
+            appState.isAnimating = false;
           }
         }, "easeOutSine");
       }
@@ -154,46 +156,6 @@ export default {
       $body.on('click', '.smooth-scroll', function(e) {
         e.preventDefault();
         _scrollBody($($(this).attr('href')));
-      });
-    }
-
-    function _showSiteOverlay(callback) {
-      // Check if there is already an overlay on the page
-      if (!$('#site-overlay').length) {
-        $body.append($siteOverlay);
-      }
-
-      // Check if it's already active, if not animate showing it
-      if (!$('#site-overlay').is('.-active')) {
-        // Fade in the overlay
-        $('#site-overlay').velocity(
-          { opacity: 1 }, {
-          display: "block",
-            // on complete, fade in the lightbox
-            complete: function() {
-              $('#site-overlay').addClass('-active');
-              if(typeof callback !== 'undefined') {
-                callback();
-              }
-            }
-        });
-      }
-    }
-
-    function _hideSiteOverlay(callback) {
-      if (!$('#site-overlay').length) {
-        return;
-      }
-
-      $('#site-overlay').velocity(
-        { opacity: 0 }, {
-        display: "none",
-        complete: function() {
-          $('#site-overlay').removeClass('-active');
-          if(typeof callback !== 'undefined') {
-            callback();
-          }
-        }
       });
     }
 
@@ -371,7 +333,7 @@ export default {
       });
 
       $(document).on('click', '#team-modal .modal-close, #site-overlay', function() {
-        if (modalOpen) {
+        if (appState.modalOpen) {
           _closeTeamModal();
         }
       });
@@ -401,7 +363,7 @@ export default {
       $teamModal.find('.member-bio').html(memberBio);
 
       $body.addClass('modal-open');
-      _showSiteOverlay();
+      siteOverlay.show();
       $teamModal.velocity('stop').velocity({
           opacity: [1, 0],
           translateY: [0, 50],
@@ -417,11 +379,11 @@ export default {
         }
       )
       _disableScroll();
-      modalOpen = true;
+      appState.modalOpen = true;
     }
 
     function _closeTeamModal() {
-      modalOpen = false;
+      appState.modalOpen = false;
       $('#team-modal').removeClass('-active').velocity({
           opacity: [0, 1],
           translateY: [50, 0],
@@ -436,7 +398,7 @@ export default {
           }
         }
       );
-      _hideSiteOverlay();
+      siteOverlay.hide();
       $body.removeClass('modal-open');
       _enableScroll();
     }

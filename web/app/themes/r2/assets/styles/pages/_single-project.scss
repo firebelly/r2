@@ -1,6 +1,52 @@
 // Single Project Template
 
 body.single-project {
+  // Header Video
+  .header-video {
+    position: relative;
+    margin: #{$padding-sm} -#{$beat} #{$padding-md} 0;
+
+    #loading-spinner {
+      position: absolute;
+    }
+
+    .video {
+      height: 0;
+      opacity: 1;
+      width: 100%;
+      overflow: hidden;
+      position: relative;
+      padding-bottom: 63.492%;
+      background-color: color('gray-light');
+
+      &.is-hidden {
+        iframe {
+          opacity: 0;
+        }
+      }
+    }
+
+    iframe {
+      top: 50%;
+      left: 50%;
+      width: 100vw;
+      height: 56.25vw;
+      min-height: 100vh;
+      position: absolute;
+      min-width: 177.77vh;
+      transition: opacity .5s ease-out;
+      transform: translate(-50%, -50%);
+    }
+
+    @include media-md {
+      margin: 0 -#{$padding-lg} 0 0;
+
+      .video {
+        padding-bottom: 50%;
+      }
+    }
+  }
+
   .header-carousel,
   .header-image {
     position: relative;

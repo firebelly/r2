@@ -108,3 +108,13 @@
     transform: translateX(0);
   }
 }
+
+// Loading Spinner
+@keyframes loading {
+  0%, 100% {
+    opacity: 0;
+  }
+  50% {
+    opacity: 1;
+  }
+}

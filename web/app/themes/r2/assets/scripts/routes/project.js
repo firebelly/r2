@@ -3,6 +3,8 @@ import Cocoen from 'cocoen';
 import Player from '@vimeo/player/dist/player.js';
 import Flickity from 'flickity-fade';
 
+import loadingSpinner from '../util/loadingSpinner';
+
 export default {
   init() {
     // Set up libraries to be used with jQuery
@@ -13,6 +15,7 @@ export default {
     // Init
     _initCarousels();
     _initCocoen();
+    _initHeaderVideo();
     _initProjectVideo();
 
     function _initCarousels() {
@@ -35,6 +38,33 @@ export default {
       if ($('.cocoen-drag').length) {
         $('.cocoen-drag').append('<svg class="slider" aria-hidden="true" role="presentation"><use xlink:href="#slider"/></svg>');
       }
+    }
+
+    function _initHeaderVideo() {
+      if (!$('#header-video').length) {
+        return;
+      }
+
+      loadingSpinner.show($('.header-video'));
+      var $headerVideo = $('#header-video');
+
+      var options = {
+        background: true
+      };
+
+      if ($headerVideo[0].hasAttribute('data-url')) {
+        options['url'] = $headerVideo.attr('data-url');
+      } else {
+        options['id'] = $headerVideo.attr('data-id');
+      }
+
+      var player = new Player('header-video', options);
+
+      // Show thumbnail when video finishes
+      player.on('play', function() {
+        loadingSpinner.hide();
+        $headerVideo.removeClass('is-hidden');
+      });
     }
 
     function _initProjectVideo() {

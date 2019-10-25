@@ -91,3 +91,32 @@ body.-cursor-active {
     }
   }
 }
+
+// Loading Spinner
+#loading-spinner {
+  top: 50%;
+  left: 50%;
+  z-index: 1;
+  position: fixed;
+  mix-blend-mode: exclusion;
+  transform: translate(-50%, -50%);
+
+  span {
+    opacity: 0;
+    height: 5px;
+    width: 72px;
+    display: inline-block;
+    background-color: #fff;
+    animation: loading 2s forwards infinite;
+
+    @for $i from 1 through 3 {
+      &:nth-of-type(#{$i}) {
+        animation-delay: .2s * $i;
+      }
+    }
+
+    + span {
+      margin-left: 16px;
+    }
+  }
+}
