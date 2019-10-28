@@ -8,6 +8,9 @@ body.single-project {
 
     #loading-spinner {
       position: absolute;
+      @include media-md {
+        margin-left: -#{$padding-lg / 2};
+      }
     }
 
     .video {
