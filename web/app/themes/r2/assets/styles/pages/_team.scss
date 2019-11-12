@@ -54,18 +54,6 @@
       padding-bottom: 66.6666%;
       background-image: url('../images/team-default.jpg');
       background-position: center center;
-      &::before {
-        top: 0;
-        left: 0;
-        bottom: 0;
-        opacity: 1;
-        width: 100%;
-        content: '';
-        position: absolute;
-        mix-blend-mode: saturation;
-        background-color: color('black');
-        transition: opacity .3s ease-out;
-      }
     }
 
     .member-bio {
@@ -73,15 +61,7 @@
     }
 
     &.with-modal {
-      cursor: none;
-    }
-
-    &.-hover,
-    &:hover,
-    &:focus {
-      .member-image::before {
-        opacity: 0;
-      }
+      cursor: pointer;
     }
   }
 }
@@ -189,18 +169,6 @@
         background-size: cover;
         padding-bottom: 56.25%;
         transition: opacity .35s ease-out, filter .5s ease-out;
-        &::before {
-          top: 0;
-          left: 0;
-          bottom: 0;
-          opacity: 1;
-          width: 100%;
-          content: '';
-          position: absolute;
-          mix-blend-mode: saturation;
-          background-color: color('black');
-          transition: opacity .3s ease-out;
-        }
       }
       .member-info {
         color: color('white');
