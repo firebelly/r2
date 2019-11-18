@@ -139,12 +139,18 @@
     <div class="-inner container">
       <?php foreach ($project_comparison_images as $image): ?>
         <?php
-          $beforeImage = wp_get_attachment_image_src($image['before_id'], 'project_large')[0];
-          $afterImage = wp_get_attachment_image_src($image['after_id'], 'project_large')[0];
+          $beforeImage = wp_get_attachment_image_src($image['before_id'], 'project_medium')[0];
+          $afterImage = wp_get_attachment_image_src($image['after_id'], 'project_medium')[0];
         ?>
-        <div class="cocoen animate-in">
-          <img src="<?= $beforeImage ?>" alt="">
-          <img src="<?= $afterImage ?>" alt="">
+        <div class="comparison animate-in">
+          <div class="cocoen">
+            <img src="<?= $beforeImage ?>" alt="">
+            <img src="<?= $afterImage ?>" alt="">
+          </div>
+          <div class="comparison-labels">
+            <h6 class="before">Before</h6>
+            <h6 class="after">After</h6>
+          </div>
         </div>
       <?php endforeach ?>
     </div>

@@ -298,6 +298,42 @@ body.single-project {
       }
     }
   }
+
+  // Comparision images
+  .comparison-images {
+    .comparison {
+      @include media-md {
+        max-width: 75%;
+      }
+    }
+
+    .comparison-labels {
+      display: flex;
+      padding-top: $beat;
+      justify-content: space-between;
+      h6 {
+        margin: 0;
+        @include type-caption;
+      }
+    }
+
+    // Slider icon
+    .cocoen-drag {
+      background-color: transparent;
+      &::before,
+      &::after {
+        display: none;
+      }
+      svg {
+        top: 50%;
+        left: 50%;
+        width: 120px;
+        height: 1240px;
+        position: absolute;
+        transform: translate(-50%, -50%);
+      }
+    }
+  }
 }
 
 // Project Video
@@ -442,22 +478,5 @@ body.single-project {
         padding-bottom: 48%;
       }
     }
-  }
-}
-
-// Slider icon
-.cocoen-drag {
-  background-color: transparent;
-  &::before,
-  &::after {
-    display: none;
-  }
-  svg {
-    top: 50%;
-    left: 50%;
-    width: 120px;
-    height: 1240px;
-    position: absolute;
-    transform: translate(-50%, -50%);
   }
 }
