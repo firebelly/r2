@@ -369,15 +369,22 @@ body.single-project {
       top: 50%;
       left: 50%;
       z-index: 1;
-      width: 263px;
-      height: 263px;
+      fill: none;
+      width: 130px;
+      height: 130px;
       max-width: 75%;
       max-height: 75%;
       cursor: pointer;
+      stroke-width: 3px;
       position: absolute;
-      fill: color('red');
+      stroke: color('black');
       transform: translate(-50%, -50%);
+
+      &:hover {
+        fill: color('black');
+      }
     }
+
   }
 
   &.playing {
@@ -401,6 +408,7 @@ body.single-project {
   }
 }
 
+// Project Navigation
 .project-navigation {
   margin: $padding-md 0 0;
   border-top: 1px solid color('gray-mid');
