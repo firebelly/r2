@@ -17,6 +17,7 @@
     display: none;
     position: fixed;
     content: 'contact';
+    text-decoration: none;
     color: color('black');
     bottom: $padding-lg - $beat;
     transform: rotate(90deg) translateY(100%);

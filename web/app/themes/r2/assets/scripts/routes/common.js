@@ -251,7 +251,6 @@ export default {
       var $filterGrid = $('.filter-grid').isotope({
         itemSelector: '.grid-item',
         layoutMode: 'fitRows',
-        stagger: 25,
         percentPosition: true,
         hiddenStyle: {
           opacity: 0,
