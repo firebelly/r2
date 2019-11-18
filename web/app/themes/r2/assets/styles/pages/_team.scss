@@ -111,6 +111,7 @@
     padding: 0;
     width: 20px;
     left: $beat;
+    cursor: pointer;
     position: absolute;
     mix-blend-mode: exclusion;
 
@@ -124,6 +125,12 @@
       left: auto;
       right: 100%;
       margin-right: $beat;
+
+      &:hover {
+        svg {
+          fill: color('red');
+        }
+      }
 
       svg {
         fill: color('white');
