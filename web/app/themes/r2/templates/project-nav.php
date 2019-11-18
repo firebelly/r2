@@ -47,7 +47,7 @@
   <div class="next-container col-1-2">
     <?php if (!empty($next_post)): ?>
       <?php
-        $next_thumb = Firebelly\Media\get_treated_image($next_post, ['size' => 'project_nav']);
+        $next_thumb = get_the_post_thumbnail_url($next_post, 'project_nav');
       ?>
       <div class="-inner container">
         <?php
@@ -71,7 +71,7 @@
           <p class="locality"><?= $next_locality ?></p>
         <?php endif ?>
       </div>
-      <a class="next-thumb" href="<?= get_permalink($next_post) ?>" <?= $next_thumb ?> data-hover-pair="nextProject"></a>
+      <a class="next-thumb" href="<?= get_permalink($next_post) ?>" style="background-image:url('<?= $next_thumb ?>');" data-hover-pair="nextProject"></a>
     <?php endif ?>
   </div>
 </div>

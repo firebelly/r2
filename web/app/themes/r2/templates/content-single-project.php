@@ -12,7 +12,7 @@
   $callout_copy = get_post_meta($post->ID, '_cmb2_callout_copy', true);
   $downloads = get_post_meta($post->ID, '_cmb2_downloads', true);
   $project_images = get_post_meta($post->ID, '_cmb2_project_images', true);
-  $featured_image = Firebelly\Media\get_treated_image($post);
+  $featured_image = get_the_post_thumbnail_url($post, 'banner');
   $project_comparison_images = get_post_meta($post->ID, '_cmb2_project_comparison_images', true);
   $project_video = get_post_meta($post->ID, '_cmb2_project_video', true);
 ?>
@@ -25,21 +25,21 @@
   <?php if (sizeof($header_images) > 1): ?>
     <div class="header-carousel is-hidden container">
       <?php foreach ($header_images as $attachment_id => $attachment_url): ?>
-        <?php $carousel_image = Firebelly\Media\get_treated_image('image', ['thumb_id' => $attachment_id]); ?>
-        <div class="image" <?= $carousel_image ?>></div>
+        <?php $carousel_image = wp_get_attachment_image_src( $attachment_id, 'banner')[0]; ?>
+        <div class="image" style="background-image:url('<?= $carousel_image ?>');"></div>
       <?php endforeach ?>
     </div>
   <?php else: ?>
     <div class="header-image container">
       <?php foreach ($header_images as $attachment_id => $attachment_url): ?>
-        <?php $carousel_image = Firebelly\Media\get_treated_image('image', ['thumb_id' => $attachment_id]); ?>
-        <div class="image" <?= $carousel_image ?>></div>
+        <?php $carousel_image = wp_get_attachment_image_src( $attachment_id, 'banner')[0]; ?>
+        <div class="image" style="background-image:url('<?= $carousel_image ?>');"></div>
       <?php endforeach ?>
     </div>
   <?php endif ?>
 <?php elseif (!empty($featured_image)): ?>
   <div class="header-image container">
-    <div class="image" <?= $featured_image ?>></div>
+    <div class="image" style="background-image:url('<?= $featured_image ?>');"></div>
   </div>
 <?php endif ?>
 
@@ -116,7 +116,7 @@
           if (!empty($image['bw'])) {
             $file = Firebelly\Media\get_treated_image('image', ['bw' => true, 'thumb_id' => $image['file_id'], 'size' => $crop, 'output' => false]);
           } else {
-            $file = Firebelly\Media\get_treated_image('image', ['thumb_id' => $image['file_id'], 'size' => $crop, 'output' => false]);
+            $file = wp_get_attachment_image_src($image['file_id'], $crop)[0];
           }
           $image_alt = get_post_meta($image['file_id'], '_wp_attachment_image_alt', TRUE);
           $caption = wp_get_attachment_caption($image['file_id']);
@@ -139,8 +139,8 @@
     <div class="-inner container">
       <?php foreach ($project_comparison_images as $image): ?>
         <?php
-          $beforeImage = Firebelly\Media\get_treated_image('image', ['thumb_id' => $image['before_id'], 'size' => 'project_large', 'output' => false]);
-          $afterImage = Firebelly\Media\get_treated_image('image', ['thumb_id' => $image['after_id'], 'size' => 'project_large', 'output' => false]);
+          $beforeImage = wp_get_attachment_image_src($image['before_id'], 'project_large')[0];
+          $afterImage = wp_get_attachment_image_src($image['after_id'], 'project_large')[0];
         ?>
         <div class="cocoen animate-in">
           <img src="<?= $beforeImage ?>" alt="">
