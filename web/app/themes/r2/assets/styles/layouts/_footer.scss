@@ -10,10 +10,6 @@
     @include h4;
   }
 
-  a {
-    @include inline-link(transparent);
-  }
-
   .contact-link {
     @include h4;
     z-index: 1;
@@ -154,6 +150,7 @@
 
     a {
       @include p1;
+      @include inline-link(transparent);
     }
   }
 
@@ -168,6 +165,7 @@
 
     a {
       @include p1;
+      @include inline-link(transparent);
       text-decoration: none;
       text-transform: lowercase;
     }
@@ -195,6 +193,12 @@
       display: flex;
       border-radius: 50%;
       background-color: color('white');
+      transition: background-color .2s ease-out;
+
+      &:hover,
+      &:focus {
+        background-color: color('red');
+      }
     }
 
     svg {
