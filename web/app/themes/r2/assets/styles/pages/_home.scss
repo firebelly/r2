@@ -46,7 +46,11 @@
           margin: auto;
           text-align: center;
           position: relative;
-          animation: fadeOut 1s 4s forwards;
+          text-shadow: 3px 0 5px rgba(color('black'),.45),
+                       -3px 0 5px rgba(color('black'),.45),
+                       0 3px 5px rgba(color('black'),.45),
+                       0 -3px 5px rgba(color('black'),.45);
+          // animation: fadeOut 1s 4s forwards;
         }
 
         span {
