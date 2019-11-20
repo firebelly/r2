@@ -3,6 +3,7 @@ import Velocity from 'velocity-animate';
 import Isotope from 'isotope-layout';
 import Masonry from 'masonry-layout';
 import ImagesLoaded from 'imagesloaded';
+import Player from '@vimeo/player/dist/player.js';
 
 // Shared vars among modules
 import appState from '../util/appState';
@@ -14,6 +15,7 @@ export default {
     // Set up libraries to be used with jQuery
     jQueryBridget( 'isotope', Isotope, $ );
     jQueryBridget( 'masonry', Masonry, $ );
+    jQueryBridget( 'player', Player, $ );
 
     // Set up Global Vars
     const $body = $('body');
@@ -44,6 +46,7 @@ export default {
     _initFormFunctions();
     _initFilters();
     _initTeamModal();
+    _initHeaderVideo();
 
     // Keyboard-triggered functions
     $(document).keyup(function(e) {
@@ -400,6 +403,33 @@ export default {
       siteOverlay.hide();
       $body.removeClass('modal-open');
       _enableScroll();
+    }
+
+    function _initHeaderVideo() {
+      if (!$('#header-video').length) {
+        return;
+      }
+
+      loadingSpinner.show($('.header-video'));
+      var $headerVideo = $('#header-video');
+
+      var options = {
+        background: true
+      };
+
+      if ($headerVideo[0].hasAttribute('data-url')) {
+        options['url'] = $headerVideo.attr('data-url');
+      } else {
+        options['id'] = $headerVideo.attr('data-id');
+      }
+
+      var player = new Player('header-video', options);
+
+      // Show thumbnail when video finishes
+      player.on('play', function() {
+        loadingSpinner.hide();
+        $headerVideo.removeClass('is-hidden');
+      });
     }
 
     // Disabling transitions on certain elements on resize

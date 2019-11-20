@@ -58,6 +58,27 @@ body.-cursor-active {
   @include inline-link();
 }
 
+// Link with arrow
+.arrow-link {
+  text-decoration: none;
+  @include paragraph-style(20, 40, .06em, normal);
+
+  svg {
+    bottom: 2px;
+    width: 10px;
+    height: 9px;
+    fill: color('red');
+    position: relative;
+    transition: transform .2s ease-out;
+  }
+
+  &:hover {
+    svg {
+      transform: translateX(4px);
+    }
+  }
+}
+
 // Animate on scroll classes
 .animate-in,
 .animation-item {
@@ -98,6 +119,7 @@ body.-cursor-active {
   left: 50%;
   z-index: 1;
   position: fixed;
+  white-space: nowrap;
   mix-blend-mode: exclusion;
   transform: translate(-50%, -50%);
 

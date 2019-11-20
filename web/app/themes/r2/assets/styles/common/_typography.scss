@@ -113,6 +113,14 @@
   @include p1;
 }
 
+@mixin p2 {
+  @include font-relative-faux;
+  @include paragraph-style(35, 42);
+}
+.p2 {
+  @include p2;
+}
+
 @mixin type-caption {
   @include font-relative-faux;
   @include paragraph-style(10, 16, .2225em, normal, uppercase)

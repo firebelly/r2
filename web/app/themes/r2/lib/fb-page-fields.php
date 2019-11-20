@@ -54,6 +54,99 @@ function metaboxes() {
   ]);
 
   /**
+    * About Page Fields
+    */
+  $about_header = new_cmb2_box([
+    'id'            => $prefix . 'about_header',
+    'title'         => esc_html__('Header Video', 'cmb2'),
+    'show_on'       => ['key' => 'page-template', 'value' => ['page-about.php']],
+    'object_types'  => ['page'],
+    'context'       => 'normal',
+    'priority'      => 'high',
+    'show_names'   => false
+  ]);
+  $about_header->add_field([
+    'name'  => 'Header Video',
+    'id'    => $prefix . 'header_video',
+    'desc'  => 'Full vimeo video url (ex: https://vimeo.com/364142068/ac2becbf0f) from vimeo. This is optional, an image can be used instead, set from the Featured Image field.',
+    'type'  => 'text',
+  ]);
+
+  $about_test = new_cmb2_box([
+    'id'            => $prefix . 'about_stats_box',
+    'title'         => esc_html__('Stats', 'cmb2'),
+    'show_on'       => ['key' => 'page-template', 'value' => ['page-about.php']],
+    'object_types'  => ['page'],
+    'context'       => 'normal',
+    'priority'      => 'high',
+  ]);
+  $about_test_group = $about_test->add_field([
+    'id'              => $prefix .'about_stats',
+    'type'            => 'group',
+    'options'         => [
+      'group_title'   => __( 'Stat {#}', 'cmb2' ),
+      'add_button'    => __( 'Add Another Stat', 'cmb2' ),
+      'remove_button' => __( 'Remove Stat', 'cmb2' ),
+      'sortable'      => true,
+    ],
+  ]);
+  $about_test->add_group_field( $about_test_group, [
+    'name' => 'Stat Figure',
+    'id'   => 'figure',
+    'type' => 'text',
+  ]);
+  $about_test->add_group_field( $about_test_group, [
+    'name' => 'Stat Description',
+    'id'   => 'description',
+    'type' => 'text',
+  ]);
+
+  $about_platform = new_cmb2_box([
+    'id'            => $prefix . 'about_platform_box',
+    'title'         => esc_html__('Platform', 'cmb2'),
+    'show_on'       => ['key' => 'page-template', 'value' => ['page-about.php']],
+    'object_types'  => ['page'],
+    'context'       => 'normal',
+    'priority'      => 'low',
+  ]);
+  $about_platform_group = $about_platform->add_field([
+    'id'              => $prefix .'about_platform',
+    'type'            => 'group',
+    'options'         => [
+      'group_title'   => __( 'Platform Item {#}', 'cmb2' ),
+      'add_button'    => __( 'Add Another Platform Item', 'cmb2' ),
+      'remove_button' => __( 'Remove Platform Item', 'cmb2' ),
+      'sortable'      => true,
+    ],
+  ]);
+  $about_platform->add_group_field( $about_platform_group, [
+    'name' => 'Icon',
+    'id'   => 'icon',
+    'type' => 'file',
+    'options' => array(
+      'url' => false,
+    ),
+    'query_args' => array(
+      'type' => array(
+        'image/svg',
+        'image/png',
+      ),
+    ),
+    'preview_size' => 'small',
+  ]);
+  $about_platform->add_group_field( $about_platform_group, [
+    'name' => 'Title',
+    'id'   => 'title',
+    'type' => 'text',
+  ]);
+  $about_platform->add_group_field( $about_platform_group, [
+    'name' => 'Description',
+    'id'   => 'description',
+    'type' => 'textarea',
+  ]);
+
+
+  /**
     * Media Page Fields
     */
   $media_fields = new_cmb2_box([
