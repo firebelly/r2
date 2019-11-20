@@ -1,10 +1,17 @@
 <?xml version="1.0" encoding="utf-8"?>
 <!-- Generator: Adobe Illustrator 21.1.0, SVG Export Plug-In . SVG Version: 6.00 Build 0)  -->
 <svg version="1.1" id="slider" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
-	 viewBox="0 0 24 1240" style="enable-background:new 0 0 24 1240;" xml:space="preserve">
+	 viewBox="0 0 60 1240" style="enable-background:new 0 0 60 1240;" xml:space="preserve">
 <style type="text/css">
-	.st0{fill:#E03C2D;}
+	.st0{display:none;fill:#F5F5F3;}
+	.st1{fill:#F5F5F3;}
+	.st2{fill:#232323;}
+	.st3{fill:none;stroke:#F5F5F3;stroke-width:2;}
 </style>
-<path id="path" class="st0" d="M13,590h-2V0h2V590z M13,650h-2v590h2V650z M24,592v56c0,1.1-0.9,2-2,2H2c-1.1,0-2-0.9-2-2v-56
-	c0-1.1,0.9-2,2-2h20C23.1,590,24,590.9,24,592z M8,600H6v40h2V600z M13,600h-2v40h2V600z M18,600h-2v40h2V600z"/>
+<path class="st0" d="M-41,649c16.6,0,30-13.4,30-30s-13.4-30-30-30s-30,13.4-30,30S-57.6,649-41,649z"/>
+<path class="st1" d="M30,654c16.6,0,30-13.4,30-30s-13.4-30-30-30S0,607.4,0,624S13.4,654,30,654z"/>
+<path class="st2" d="M38,632l12.1-8L38,616V632z"/>
+<path class="st2" d="M22.1,616L10,624l12.1,8V616z"/>
+<line class="st3" x1="30" y1="0" x2="30" y2="594"/>
+<line class="st3" x1="30" y1="654" x2="30" y2="1240"/>
 </svg>

@@ -1,6 +1,7 @@
 import jQueryBridget from 'jquery-bridget';
 import Cocoen from 'cocoen';
 import Flickity from 'flickity-fade';
+import Player from '@vimeo/player/dist/player.js';
 
 import loadingSpinner from '../util/loadingSpinner';
 
@@ -9,6 +10,7 @@ export default {
     // Set up libraries to be used with jQuery
     jQueryBridget( 'flickity', Flickity, $ );
     jQueryBridget( 'cocoen', Cocoen, $ );
+    jQueryBridget( 'player', Player, $ );
 
     // Init
     _initCarousels();
