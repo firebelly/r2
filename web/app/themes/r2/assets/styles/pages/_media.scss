@@ -15,13 +15,13 @@
 
       img {
         width: 100%;
-        max-width: 100px;
+        max-width: 120px;
       }
     }
 
     @include media-md {
       li {
-        margin: 0 0 42px 84px;
+        margin: 0 0 30px 59px;
       }
     }
   }
@@ -47,16 +47,20 @@
       .year-label {
         @include h5;
         margin: 0;
-        width: columns(1,16);
+        flex-basis: 85px;
+        color: color('red');
       }
 
-      ul {
+      .publications-list {
         flex-grow: 1;
-        @extend .semantic-list;
-        padding-left: columns(2,16);
 
-        li {
+        tr {
           @include p1;
+
+          .publication {
+            margin-right: 18px;
+            vertical-align: top;
+          }
 
           a {
             @include inline-link(transparent);

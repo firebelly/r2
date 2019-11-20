@@ -81,13 +81,13 @@ function get_media_publications($options=[]) {
 
   $output = '<ol class="media-publications">';
   foreach ($years as $year => $yearposts):
-    $output .= '<li class="year"><div class="container"><h3 class="year-label">'.$year.'</h3><ul class="publications-list">';
+    $output .= '<li class="year"><div class="container"><h3 class="year-label">'.$year.'</h3><table class="publications-list">';
       foreach ($yearposts as $post):
         ob_start();
         \Firebelly\Utils\get_template_part_with_vars('templates/article', 'media_publication', [ 'media_publication' => $post]);
         $output .= ob_get_clean();
       endforeach;
-    $output .= '</ul></div></li>';
+    $output .= '</table></div></li>';
   endforeach;
   $output .= '</ol>';
   return $output;
