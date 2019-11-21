@@ -29,9 +29,9 @@
 
   <div id="stats" class="stats-section">
     <?php if (!empty($stats)): ?>
-      <ul class="stats">
+      <ul class="stats animate-in-series">
         <?php foreach ($stats as $stat): ?>
-          <li class="stat">
+          <li class="stat animation-item">
             <div class="-inner">
               <h5><?= $stat['figure'] ?></h5>
               <p><?= $stat['description'] ?></p>
