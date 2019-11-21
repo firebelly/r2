@@ -41,7 +41,9 @@
 
 
       > .container {
-        display: flex;
+        @include media-md {
+          display: flex;
+        }
       }
 
       .year-label {
@@ -57,9 +59,31 @@
         tr {
           @include p1;
 
+          td {
+            width: 100%;
+            display: block;
+            vertical-align: top;
+
+            @include media-md {
+              width: auto;
+              display: table-cell;
+            }
+          }
+
           .publication {
             padding-right: 18px;
-            vertical-align: top;
+
+            @include media-md {
+              width: 292px;
+            }
+          }
+
+          .link {
+            padding-bottom: $beat;
+
+            @include media-md {
+              padding-bottom: 0;
+            }
           }
 
           a {
