@@ -1,6 +1,13 @@
 // Single Project Template
 
 body.single-project {
+  // Active item in nav
+  .site-nav {
+    li.menu-portfolio a {
+      background-size: 97% 100%;
+    }
+  }
+
   // Header Video
   .header-video {
     position: relative;

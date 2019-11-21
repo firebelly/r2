@@ -7,7 +7,7 @@ namespace Firebelly\PostTypes\Project;
 use PostTypes\PostType; // see https://github.com/jjgrainger/PostTypes
 use PostTypes\Taxonomy;
 
-$projects = new PostType(['name' => 'project', 'plural' => 'Projects', 'slug' => 'project'], [
+$projects = new PostType(['name' => 'project', 'plural' => 'Projects', 'slug' => 'portfolio'], [
   'taxonomies' => ['property_type', 'project_location'],
   'supports'   => ['title', 'thumbnail', 'revisions'],
   'rewrite'    => ['with_front' => false],

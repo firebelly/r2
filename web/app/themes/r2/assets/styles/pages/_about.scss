@@ -60,7 +60,7 @@ body.about {
       padding: 100px 0;
     }
     p {
-      @include paragraph-style(20, 40, .06em, normal);
+      @include paragraph-style(20, 32, .06em, normal);
       margin: 0;
     }
   }
