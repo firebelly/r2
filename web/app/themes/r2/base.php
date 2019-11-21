@@ -1,7 +1,8 @@
 <?php
 use Roots\Sage\Setup;
 use Roots\Sage\Wrapper;
-$breadcrumb = (is_front_page()) ? 'R2 Companies' : $post->post_title ;
+$breadcrumbTitle = ($post) ? $post->post_title : '404 Page Not Found';
+$breadcrumb = (is_front_page()) ? 'R2 Companies' :  $breadcrumbTitle;
 ?>
 <!DOCTYPE html>
 <!--[if IE 9 ]> <html class="no-js ie9 lt-ie10" lang="en"> <![endif]-->

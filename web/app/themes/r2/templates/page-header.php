@@ -1,7 +1,9 @@
 <?php
   use Roots\Sage\Titles;
 
-  $post_meta = get_post_meta($post->ID);
+  if ($post) {
+    $post_meta = get_post_meta($post->ID);
+  }
 ?>
 
 <div class="page-header">
