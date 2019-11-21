@@ -50,9 +50,9 @@
     <h2>Fully-Integrated<br> Real Estate Platform</h2>
 
     <?php if (!empty($platform)): ?>
-      <ul class="platform">
+      <ul class="platform animate-in-series">
         <?php foreach ($platform as $platform): ?>
-          <li class="platform-item">
+          <li class="platform-item animation-item">
             <div class="-inner">
               <?php if (!empty($platform['icon'])): ?>
                 <div class="icon">
