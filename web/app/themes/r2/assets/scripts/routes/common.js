@@ -263,11 +263,21 @@ export default {
         }
       });
 
+      // check if there are any active filters
+      function anyActiveFilters() {
+        if ($('.filters-container .filter.is-checked').length) {
+          return true;
+        } else {
+          return false;
+        }
+      }
+
       // store filter for each group
       var filters = [];
 
       // change is-checked class on buttons
-      $('.filter-group').on( 'click', 'button', function(event) {
+      $('.filter-group').on( 'click', 'button.filter', function(event) {
+        var groupId = $(this).closest('.filter-group').attr('id');
         var $target = $(event.currentTarget);
         $target.toggleClass('is-checked');
         var isChecked = $target.hasClass('is-checked');
@@ -280,6 +290,15 @@ export default {
         // filter isotope
         // group filters together, inclusive
         $filterGrid.isotope({ filter: filters.join('') });
+
+        // Update filter toggle status
+        _checkFilterGroupStatus(groupId);
+
+        if (anyActiveFilters) {
+          $('button.clear-filters').removeClass('hidden');
+        } else {
+          $('button.clear-filters').addClass('hidden');
+        }
       });
 
       function addFilter(filter) {
@@ -294,6 +313,15 @@ export default {
           filters.splice(index, 1);
         }
       }
+
+      // Clear All Filters
+      $('button.clear-filters').on('click', function() {
+        $(this).addClass('hidden');
+        $('.filters-container .group-label, .filters-toggle').removeClass('-active');
+        $('.filters-container .filter.is-checked').removeClass('is-checked');
+        filters = [];
+        $filterGrid.isotope({ filter: '*' });
+      });
     }
 
     function _openFilters($filters) {
@@ -324,6 +352,14 @@ export default {
           duration: 250,
           easing: 'easeOut',
       });
+    }
+
+    function _checkFilterGroupStatus(groupId) {
+      if ($('#' + groupId).find('button.is-checked').length) {
+        $('#' + groupId + ' .group-label, .toggle-container .filters-toggle[data-group=' + groupId + ']').addClass('-active');
+      } else {
+        $('#' + groupId + ' .group-label, .toggle-container .filters-toggle[data-group=' + groupId + ']').removeClass('-active');
+      }
     }
 
     function _initTeamModal() {

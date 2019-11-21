@@ -7,6 +7,8 @@
 }
 
 .project-grid {
+  min-height: 400px;
+
   .project-row {
     @include media-lg {
       + .project-row {
