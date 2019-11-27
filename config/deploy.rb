@@ -1,7 +1,7 @@
 set :application, 'r2'
-set :domain, 'r2.firebelly.co'
+set :domain, 'zcupkovic.opalstacked.com'
 set :theme, 'r2'
-set :login, 'firebelly'
+set :login, 'zcupkovic'
 set :repo_url, 'git@github.com:firebelly/r2.git'
 set :php, 'php72'
 
@@ -13,7 +13,7 @@ set :wpcli_local_url, "http://#{fetch(:theme)}.localhost"
 # This could be overridden in a stage config file
 set :branch, :master
 
-set :deploy_to, -> { "/home/#{fetch(:login)}/webapps/#{fetch(:application)}" }
+set :deploy_to, -> { "/home/#{fetch(:login)}/apps/#{fetch(:application)}" }
 
 set :tmp_dir, -> { "/home/#{fetch(:login)}/tmp" }
 
@@ -47,7 +47,7 @@ namespace :deploy do
           # set previous_release to current_path for use below
           set :previous_release, capture("readlink #{current_path}")
         end
-        SSHKit.config.command_map[:composer] = "#{fetch(:php)} /home/#{fetch(:login)}/bin/composer.phar"
+        SSHKit.config.command_map[:composer] = "php /home/#{fetch(:login)}/bin/composer"
       end
   end
 end
