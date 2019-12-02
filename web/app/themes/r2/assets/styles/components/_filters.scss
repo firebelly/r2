@@ -209,6 +209,7 @@
 
     @include media-lg {
       left: 0;
+      right: auto;
       top: $beat * 4;
     }
   }
