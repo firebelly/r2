@@ -40,6 +40,7 @@
     "@swup/fade-theme": "^1.0.5",
     "@swup/scroll-plugin": "^1.0.6",
     "@vimeo/player": "^2.10.0",
+    "body-scroll-lock": "^2.6.4",
     "cocoen": "^2.0.5",
     "flickity": "^2.2.1",
     "flickity-fade": "^1.0.0",

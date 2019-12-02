@@ -4,6 +4,7 @@ import Isotope from 'isotope-layout';
 import Masonry from 'masonry-layout';
 import ImagesLoaded from 'imagesloaded';
 import Player from '@vimeo/player/dist/player.js';
+import { disableBodyScroll, enableBodyScroll, clearAllBodyScrollLocks } from 'body-scroll-lock';
 
 // Shared vars among modules
 import appState from '../util/appState';
@@ -18,6 +19,7 @@ export default {
     jQueryBridget( 'player', Player, $ );
 
     // Set up Global Vars
+    const $html = $('html');
     const $body = $('body');
     const $siteHeader = $('#site-header');
     const $siteNav = $('#site-nav');
@@ -132,20 +134,6 @@ export default {
           }
         }, "easeOutSine");
       }
-    }
-
-    function _disableScroll() {
-      var st = $(window).scrollTop();
-      $body.attr('data-st', st);
-      $body.addClass('no-scroll');
-      $body.css('top', -st);
-    }
-
-    function _enableScroll() {
-      $body.removeClass('no-scroll');
-      $body.css('top', '');
-      $(window).scrollTop($body.attr('data-st'));
-      $body.attr('data-st', '');
     }
 
     function _getUrlParameter(name) {
@@ -420,7 +408,8 @@ export default {
           }
         }
       )
-      _disableScroll();
+      disableBodyScroll($('.team-modal .modal-content .member-bio')[0]);
+      $html.css('overflow', 'hidden');
       appState.modalOpen = true;
     }
 
@@ -442,7 +431,8 @@ export default {
       );
       siteOverlay.hide();
       $body.removeClass('modal-open');
-      _enableScroll();
+      enableBodyScroll($('.modal .text-wrap .person-body')[0]);
+      $html.css('overflow', '');
     }
 
     function _initHeaderVideo() {

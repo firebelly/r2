@@ -85,7 +85,6 @@
 
   @include media-md {
     top: $header-md;
-    bottom: $header-md;
   }
 
   &.-active {
@@ -210,6 +209,10 @@
         max-height: 100vh;
         padding: $padding-md;
         -webkit-overflow-scrolling: touch;
+
+        > .-inner {
+          max-width: 600px;
+        }
 
         &::before {
           top: 0;
