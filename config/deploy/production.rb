@@ -1,7 +1,7 @@
 set :stage, :production
 set :login, 'zcupkovic'
 set :application, 'r2'
-set :domain, 'zcupkovic.opalstacked.com'
+set :domain, '172.241.25.136'
 set :wpcli_remote_url, "https://#{fetch(:domain)}"
 
 # Simple Role Syntax

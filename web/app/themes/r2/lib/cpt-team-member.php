@@ -104,6 +104,14 @@ function get_team_members($options=[]) {
   $args = [
     'numberposts' => $options['numberposts'],
     'post_type'   => 'team_member',
+    'tax_query'   => array(
+      array(
+        'taxonomy' => 'team_member_category',
+        'field'    => 'slug',
+        'terms'    => array('advisory-board'),
+        'operator' => 'NOT IN',
+      ),
+    ),
   ];
   if (!empty($options['category'])) {
     $args['tax_query'] = [

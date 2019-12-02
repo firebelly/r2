@@ -37,6 +37,11 @@
       }
     }
   }
+
+  .advisory-board-title {
+    @include h5;
+    padding-left: $padding-sm;
+  }
 }
 
 .team-grid {

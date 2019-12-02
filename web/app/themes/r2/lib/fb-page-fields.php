@@ -94,6 +94,7 @@ function metaboxes() {
     'name' => 'Stat Figure',
     'id'   => 'figure',
     'type' => 'text',
+    'sanitization_cb' => 'Firebelly\Utils\unsanitize_cmb2_field',
   ]);
   $about_test->add_group_field( $about_test_group, [
     'name' => 'Stat Description',

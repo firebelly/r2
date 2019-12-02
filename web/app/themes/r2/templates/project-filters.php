@@ -23,7 +23,7 @@ $property_types = get_terms(array(
         <button class="filters-toggle" data-group="location">Location <svg class="icon icon-arrow-down" aria-hidden="true" role="presentation"><use xlink:href="#icon-arrow-down"/></svg></button>
       </div>
       <div>
-        <button class="filters-toggle" data-group="property-type">Property Type <svg class="icon icon-arrow-down" aria-hidden="true" role="presentation"><use xlink:href="#icon-arrow-down"/></svg></button>
+        <button class="filters-toggle" data-group="property-type">Asset Class <svg class="icon icon-arrow-down" aria-hidden="true" role="presentation"><use xlink:href="#icon-arrow-down"/></svg></button>
       </div>
     </div>
   </div>

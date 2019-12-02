@@ -130,3 +130,8 @@ function get_template_part_with_vars($slug, $name = null, array $namedVariables 
 
   require $template;
 }
+
+// In another file somewhere
+function unsanitize_cmb2_field( $original_value, $args, $cmb2_field ) {
+  return $original_value; // Unsanitized value.
+}

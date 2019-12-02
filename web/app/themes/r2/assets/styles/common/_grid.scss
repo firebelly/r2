@@ -56,7 +56,7 @@ $column-width: 100% / $columns;
 
     @include media-md {
       margin-left: -$padding-sm;
-      width: calc(100% + #{$padding-sm});
+      width: calc(100% + #{$padding-sm * 2});
 
       > [class*='col-'] {
         padding: 0 $padding-sm;

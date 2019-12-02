@@ -5,6 +5,12 @@
     padding-bottom: 282px;
   }
 
+  .page-header {
+    @include media-md {
+      padding-bottom: 66px;
+    }
+  }
+
   .media-sources {
     @extend .semantic-list;
     display: flex;
@@ -20,8 +26,9 @@
     }
 
     @include media-md {
+      padding-left: 26px;
       li {
-        margin: 0 0 48px 59px;
+        margin: 0 0 24px 59px;
       }
     }
   }
@@ -57,7 +64,6 @@
         flex-grow: 1;
 
         tr {
-          @include p1;
 
           td {
             width: 100%;
@@ -71,14 +77,18 @@
           }
 
           .publication {
+            @include h5;
+            line-height: 18px;
             padding-right: 18px;
+            vertical-align: bottom;
 
             @include media-md {
-              width: 292px;
+              width: 200px;
             }
           }
 
           .link {
+            @include p1;
             padding-bottom: $beat;
 
             @include media-md {

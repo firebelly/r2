@@ -284,6 +284,10 @@ export default {
         var filter = $target.attr('data-filter');
         if (isChecked) {
           addFilter(filter);
+          var $activeSibling = $target.closest('.filter-group').find('.filter.is-checked').not($target);
+          var activeSiblingFilter = $activeSibling.attr('data-filter');
+          $activeSibling.removeClass('is-checked');
+          removeFilter(activeSiblingFilter);
         } else {
           removeFilter(filter);
         }
