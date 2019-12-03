@@ -2,6 +2,7 @@ set :stage, :staging
 set :login, 'firebelly'
 set :domain, 'r2.firebelly.co'
 set :wpcli_remote_url, 'http://r2.firebelly.co'
+set :apps_dir, 'webapps'
 
 # Simple Role Syntax
 # ==================

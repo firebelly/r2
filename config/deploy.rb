@@ -4,6 +4,7 @@ set :theme, 'r2'
 set :login, 'zcupkovic'
 set :repo_url, 'git@github.com:firebelly/r2.git'
 set :php, 'php72'
+set :apps_dir, 'apps'
 
 # For wpcli db command search-replace
 set :wpcli_remote_url, "http://#{fetch(:domain)}"
@@ -13,7 +14,7 @@ set :wpcli_local_url, "http://#{fetch(:theme)}.localhost"
 # This could be overridden in a stage config file
 set :branch, :master
 
-set :deploy_to, -> { "/home/#{fetch(:login)}/apps/#{fetch(:application)}" }
+set :deploy_to, -> { "/home/#{fetch(:login)}/#{fetch(:apps_dir)}/#{fetch(:application)}" }
 
 set :tmp_dir, -> { "/home/#{fetch(:login)}/tmp" }
 
