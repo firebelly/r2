@@ -431,7 +431,7 @@ export default {
       );
       siteOverlay.hide();
       $body.removeClass('modal-open');
-      enableBodyScroll($('.modal .text-wrap .person-body')[0]);
+      enableBodyScroll($('.team-modal .modal-content .member-bio')[0]);
       $html.css('overflow', '');
     }
 
