@@ -444,7 +444,9 @@ export default {
       var $headerVideo = $('#header-video');
 
       var options = {
-        background: true
+        background: true,
+        muted: true,
+        loop: true,
       };
 
       if ($headerVideo[0].hasAttribute('data-url')) {

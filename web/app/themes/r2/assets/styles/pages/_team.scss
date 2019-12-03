@@ -146,11 +146,19 @@
     @include h4;
     top: 4px;
     margin: 0;
-    right: 16px;
+    z-index: 1;
+    right: 2px;
     position: absolute;
-    color: color('black');
+    color: color('white');
+    mix-blend-mode: exclusion;
     transform: rotate(90deg) translateX(100%);
     transform-origin: top right;
+
+    @include media-md {
+      right: 16px;
+      color: color('black');
+      mix-blend-mode: initial;
+    }
   }
 
   .modal-content {
