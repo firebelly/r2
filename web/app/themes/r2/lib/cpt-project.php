@@ -69,7 +69,7 @@ function metaboxes() {
   $project_info->add_field([
     'name'  => 'Header Video',
     'id'    => $prefix . 'header_video',
-    'desc'  => 'Full vimeo video url (ex: https://vimeo.com/364142068/ac2becbf0f) from vimeo. If this field is set then there will be no header images displayed.',
+    'desc'  => 'Paste in the video ID from vimeo, ex: https://vimeo.com/<strong>359676836</strong>',
     'type'  => 'text',
   ]);
   $project_info->add_field([
