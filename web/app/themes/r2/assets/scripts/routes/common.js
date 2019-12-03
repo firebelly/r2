@@ -371,7 +371,7 @@ export default {
 
     function _openTeamModal($member) {
       if (!$('.team-modal').length) {
-        $('body').append('<div id="team-modal" class="team-modal"><button class="modal-close"><svg aria-hidden="true" role="presentation"><use xlink:href="#icon-close-condensed"/></svg></button><div class="modal-content"><h4 class="modal-member-name"></h4><div class="member-meta"><div class="member-info"></div></div><div class="member-bio"></div></div></div>');
+        $('body').append('<div id="team-modal" class="team-modal"><button class="modal-close"><svg aria-hidden="true" role="presentation"><use xlink:href="#icon-close-condensed"/></svg></button><div class="modal-content overflow-scroll"><h4 class="modal-member-name"></h4><div class="member-meta"><div class="member-info"></div></div><div class="member-bio overflow-scroll"></div></div></div>');
       }
 
       var $teamModal = $('#team-modal');
@@ -408,7 +408,7 @@ export default {
           }
         }
       )
-      disableBodyScroll($('.team-modal .modal-content')[0]);
+      disableBodyScroll($('.team-modal .overflow-scroll'));
       $html.css('overflow', 'hidden');
       appState.modalOpen = true;
     }
