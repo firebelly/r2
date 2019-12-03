@@ -19,7 +19,11 @@
 
 <?php if (!empty($header_video)): ?>
   <div class="header-video container">
-    <div id="header-video" class="video is-hidden" data-url="<?=  $header_video ?>"></div>
+    <div class="video">
+      <div id="loading-spinner"><span></span><span></span><span></span></div>
+      <iframe src="https://player.vimeo.com/video/<?= $header_video ?>?background=1&autoplay=1&loop=1&byline=0&title=0"
+                 frameborder="0" webkitallowfullscreen mozallowfullscreen allowfullscreen></iframe>
+    </div>
   </div>
 <?php elseif (!empty($header_images)): ?>
   <?php if (sizeof($header_images) > 1): ?>
