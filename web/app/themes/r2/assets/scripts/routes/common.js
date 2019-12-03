@@ -408,7 +408,7 @@ export default {
           }
         }
       )
-      disableBodyScroll($('.team-modal .overflow-scroll'));
+      disableBodyScroll($('.team-modal .modal-content')[0]);
       $html.css('overflow', 'hidden');
       appState.modalOpen = true;
     }
@@ -431,7 +431,7 @@ export default {
       );
       siteOverlay.hide();
       $body.removeClass('modal-open');
-      enableBodyScroll($('.team-modal .modal-content .member-bio')[0]);
+      enableBodyScroll($('.team-modal .modal-content')[0]);
       $html.css('overflow', '');
     }
 
