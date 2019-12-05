@@ -17,6 +17,8 @@
           <h5>Newsletter Signup</h5>
           <?php get_template_part('templates/newsletter-signup'); ?>
         </div>
+
+        <svg class="r2-icon" aria-hidden="true" role="presentation"><use xlink:href="#r2-icon"/></svg>
       </div>
 
       <div id="contact" class="col-md-1-2 grid spaced">

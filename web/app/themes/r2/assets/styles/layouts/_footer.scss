@@ -47,17 +47,38 @@
 
   // Newsletter Column
   .newsletter-column {
-    @include media-lg {
-      display: flex;
-      padding-bottom: 125px;
-      flex-direction: column;
-      justify-content: flex-end;
-    }
-
     h5 {
       @include dashed-rule(after, white);
       padding-bottom: 34px;
       display: inline-block;
+    }
+
+    // R2 Icon
+    .r2-icon {
+      width: 70px;
+      height: 16px;
+      margin-top: 34px;
+    }
+
+    @include media-md {
+      display: flex;
+      flex-direction: column;
+
+      .r2-icon {
+        order: 0;
+        width: 80px;
+        height: 18px;
+        margin: 0 0 34px;
+      }
+
+      > .-inner {
+        order: 1;
+      }
+    }
+
+    @include media-lg {
+      padding-bottom: 125px;
+      justify-content: space-between;
     }
   }
 
