@@ -14,9 +14,9 @@
   .media-sources {
     @extend .semantic-list;
     display: flex;
+    align-items: center;
 
     li {
-      display: flex;
       margin: 0 #{$beat * 2} #{$beat * 2} 0;
 
       img {
@@ -27,6 +27,7 @@
 
     @include media-md {
       padding-left: 26px;
+
       li {
         margin: 0 0 24px 59px;
       }
