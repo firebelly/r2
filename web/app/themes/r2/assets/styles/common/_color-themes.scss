@@ -52,6 +52,9 @@
   .filters .filters-container::before {
     background-color: rgba(color($primary),.95);
   }
+  .filter-grid::after {
+    background-color: color($primary);
+  }
 }
 
 // Dark Theme

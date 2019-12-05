@@ -229,14 +229,17 @@ export default {
           _openFilters($filters);
         }
       });
-
-      // Masonry Layout for filters
-      $filtersMasonry = $('.filters-container .-inner').masonry({
-        itemSelector: '.filter-group',
-        columnWidth: '.filter-group',
-        containerStyle: null,
-        transitionDuration: 0
-      });
+      // Close Filters when clicking away
+      $(document).on('click touchend', 'body.filters-open', function(e) {
+        if (!$('.filters.-active').length) {
+          return;
+        }
+        var $target = $(e.target);
+        var $filters = $('.filters.-active');
+        if (!$target.is('.filters-container') && !$target.parents('.filters-container').length) {
+          _closeFilters($filters);
+        }
+      })
 
       // Isotope Functionality
       var $filterGrid = $('.filter-grid').isotope({
@@ -318,8 +321,18 @@ export default {
 
     function _openFilters($filters) {
       var $container = $filters.find('.filters-container');
-      $filters.addClass('-active');
       $body.addClass('filters-open');
+
+      if (!breakpoint_lg) {
+        // Masonry Layout for filters
+        $filtersMasonry = $('.filters-container .-inner').masonry({
+          itemSelector: '.filter-group',
+          columnWidth: '.filter-group',
+          containerStyle: null,
+          transitionDuration: 0
+        });
+      }
+
       $container.velocity({
           opacity: 1
         },{
@@ -327,7 +340,10 @@ export default {
           duration: 250,
           easing: 'easeOut',
           complete: function() {
-            $filtersMasonry.masonry();
+            $filters.addClass('-active');
+            if (!breakpoint_lg) {
+              $filtersMasonry.masonry();
+            }
           }
       });
     }
